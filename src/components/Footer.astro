@@ -1,0 +1,25 @@
+---
+import Image from 'astro/components/Image.astro';
+import shapeArrow from '@/assets/figures/arrow.svg';
+import shapePixelCircle from '@/assets/figures/pixel-circle.svg';
+import shapePuffyDiamond from '@/assets/figures/puffy-diamond.svg';
+---
+
+<footer>
+    <div>
+        <Image src={shapeArrow} alt="Arrow Shape" class="w-12 h-12" />
+        <p class="text-sm text-gray-600">© 2024 Music Web. All rights reserved.</p>
+    </div>
+</footer>
+
+<style>
+    @reference "tailwindcss";
+    @reference "@/global.css";
+
+    footer {
+        @apply  w-full bg-zinc-300;
+    }
+    .container {
+        @app
+    }
+</style>
