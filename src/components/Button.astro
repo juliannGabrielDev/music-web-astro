@@ -1,0 +1,19 @@
+---
+interface Props {
+	text: string;
+	className: string;
+}
+
+const { text, className }: Props = Astro.props;
+---
+
+<button class={className}>{text}</button>
+
+<style>
+	@reference "tailwindcss";
+	@reference "@/global.css";
+
+	button {
+		@apply cursor-pointer rounded-3xl bg-zinc-100 px-4 py-2 font-sans font-semibold text-zinc-900 transition-colors duration-300 hover:bg-zinc-200 active:scale-95;
+	}
+</style>

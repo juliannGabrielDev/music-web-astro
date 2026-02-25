@@ -1,0 +1,61 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import Button from '@/components/Button.astro';
+import { Image } from 'astro:assets';
+import softBoom from '@/assets/figures/soft-boom.svg';
+---
+
+<Layout>
+	<div class="container">
+		<Image
+			src={softBoom}
+			alt="Soft Boom"
+			class="background-decoration w-auto h-full"
+		/>
+		<h1 class="sr-only">Página no encontrada</h1>
+		<span class="text404">404</span>
+		<p class="message">Parece que la página que buscas no existe.</p>
+		<Button
+			className="button"
+			text="Volver al inicio"
+		/>
+	</div>
+</Layout>
+
+<script>
+	import { gsap } from 'gsap';
+
+	gsap.from('.text404', {
+		y: -50,
+		opacity: 0,
+		duration: 1,
+		ease: 'bounce.out',
+	});
+
+	gsap.from('.message, .button', {
+		y: 50,
+		opacity: 0,
+		duration: 1,
+		delay: 0.5,
+		stagger: 0.2,
+		ease: 'power3.out',
+	});
+</script>
+
+<style>
+	@reference "tailwindcss";
+	@reference "@/global.css";
+
+	.container {
+		@apply flex min-h-screen w-full flex-col items-center justify-center gap-6 p-6 mx-auto;
+	}
+	.background-decoration {
+		@apply fixed left-1/2 top-1/2 -z-10 opacity-50 -translate-x-1/2 -translate-y-1/2;
+	}
+	.text404 {
+		@apply font-display not-sr-only text-9xl text-zinc-100;
+	}
+	.message {
+		@apply font-sans font-semibold text-zinc-200;
+	}
+</style>

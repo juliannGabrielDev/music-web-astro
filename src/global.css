@@ -1,0 +1,35 @@
+@import 'tailwindcss';
+
+/* Configuración de fuentes */
+@font-face {
+	font-family: 'Anton';
+	src: url('/fonts/Anton-Regular.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+	font-display: swap;
+}
+@font-face {
+	font-family: 'Inter';
+	src: url('/fonts/Inter-VariableFont_opsz,wght.ttf') format('truetype');
+	font-weight: 100 900;
+	font-style: normal;
+	font-display: swap;
+}
+@font-face {
+	font-family: 'Inter';
+	src: url('/fonts/Inter-Italic-VariableFont_opsz,wght.ttf') format('truetype');
+	font-weight: 100 900;
+	font-style: italic;
+	font-display: swap;
+}
+/* Variables CSS para las fuentes */
+@theme {
+	--font-display: 'Anton', sans-serif;
+	--font-body: 'Inter', system-ui, sans-serif;
+}
+
+@layer components {
+	.h1 {
+		@apply font-display text-center text-7xl text-zinc-100 md:text-9xl;
+	}
+}
