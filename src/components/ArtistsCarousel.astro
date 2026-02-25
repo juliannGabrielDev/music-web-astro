@@ -1,42 +1,56 @@
 ---
-import { Image } from 'astro:assets';
-
 // Import all requested organic shapes
-import shapeCookie4 from '../assets/figures/sided-cookie-4.svg';
-import shapeSoftBoom from '../assets/figures/soft-boom.svg';
-import shapeFlower from '../assets/figures/flower.svg';
-import shapeGum from '../assets/figures/Gum.svg';
-import shapeGhost from '../assets/figures/ghost-ish.svg';
-import shapePill from '../assets/figures/pill.svg';
-import shapeCircle from '../assets/figures/Circle.svg';
-import shapeSquare from '../assets/figures/Square.svg';
-import shapeArrow from '../assets/figures/arrow.svg';
-import shapePixelCircle from '../assets/figures/pixel-circle.svg';
-import shapePuffyDiamond from '../assets/figures/puffy-diamond.svg';
-import shapeCookie12 from '../assets/figures/sided-cookie-12.svg';
-import shapeTriangle from '../assets/figures/triangle.svg';
+import shapeCookie4 from '@/assets/figures/sided-cookie-4.svg';
+import shapeSoftBoom from '@/assets/figures/soft-boom.svg';
+import shapeFlower from '@/assets/figures/flower.svg';
+import shapeGum from '@/assets/figures/Gum.svg';
+import shapeGhost from '@/assets/figures/ghost-ish.svg';
+import shapePill from '@/assets/figures/pill.svg';
+import shapeCircle from '@/assets/figures/Circle.svg';
+import shapeSquare from '@/assets/figures/Square.svg';
+import shapeArrow from '@/assets/figures/arrow.svg';
+import shapePixelCircle from '@/assets/figures/pixel-circle.svg';
+import shapePuffyDiamond from '@/assets/figures/puffy-diamond.svg';
+import shapeCookie12 from '@/assets/figures/sided-cookie-12.svg';
+import shapeTriangle from '@/assets/figures/triangle.svg';
+
+import Adele from '@/assets/artists/adele.jpg';
+import AmyWinehouse from '@/assets/artists/amy-winehouse.webp';
+import CarlyRaeJepsen from '@/assets/artists/carly-rae-jepsen.webp';
+import LadyGaga from '@/assets/artists/lady-gaga.webp';
+import LanaDelRey from '@/assets/artists/lana-del-rey.jpg';
+import MeghanTrainor from '@/assets/artists/meghan-trainor.png';
+import Raye from '@/assets/artists/raye.webp';
+import Top from '@/assets/artists/top.jpg';
+import Twice from '@/assets/artists/twice.webp';
+import OliviaDean from '@/assets/artists/olivia-dean.webp';
 
 const baseSlides = [
+	{
+		type: 'single',
+		shape: shapePixelCircle.src,
+		item: { img: Adele.src, bg: 'bg-zinc-800' },
+	},
 	{
 		type: 'quad',
 		items: [
 			{
-				img: 'https://images.unsplash.com/photo-1549213578-834bf53f5eb1?w=400&q=80',
+				img: LanaDelRey.src,
 				bg: 'bg-blue-500',
 				shape: shapeCookie4.src,
 			},
 			{
-				img: 'https://images.unsplash.com/photo-1520635360276-79f3dbd809f6?w=400&q=80',
+				img: AmyWinehouse.src,
 				bg: 'bg-yellow-400',
 				shape: shapeSoftBoom.src,
 			},
 			{
-				img: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?w=400&q=80',
+				img: CarlyRaeJepsen.src,
 				bg: 'bg-red-600',
 				shape: shapeFlower.src,
 			},
 			{
-				img: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&q=80',
+				img: LadyGaga.src,
 				bg: 'bg-emerald-500',
 				shape: shapeGum.src,
 			},
@@ -44,29 +58,24 @@ const baseSlides = [
 	},
 	{
 		type: 'single',
-		shape: shapeSoftBoom.src,
-		item: { img: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=800&q=80', bg: 'bg-zinc-800' },
-	},
-	{
-		type: 'single',
-		shape: shapeFlower.src,
-		item: { img: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&q=80', bg: 'bg-yellow-500' },
+		shape: shapeGhost.src,
+		item: { img: Raye.src, bg: 'bg-yellow-500' },
 	},
 	{
 		type: 'quad',
 		items: [
 			{
-				img: 'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=400&q=80',
+				img: Raye.src,
 				bg: 'bg-purple-500',
 				shape: shapeGhost.src,
 			},
 			{
-				img: 'https://images.unsplash.com/photo-1552374196-c4e7ffc6e126?w=400&q=80',
+				img: Top.src,
 				bg: 'bg-orange-500',
 				shape: shapePill.src,
 			},
 			{
-				img: 'https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=400&q=80',
+				img: Twice.src,
 				bg: 'bg-teal-500',
 				shape: shapeCircle.src,
 			},
@@ -79,13 +88,13 @@ const baseSlides = [
 	},
 	{
 		type: 'single',
-		shape: shapeGhost.src,
-		item: { img: 'https://images.unsplash.com/photo-1488161628813-04466f872507?w=800&q=80', bg: 'bg-pink-500' },
+		shape: shapeFlower.src,
+		item: { img: OliviaDean.src, bg: 'bg-pink-500' },
 	},
 	{
 		type: 'single',
 		shape: shapeArrow.src,
-		item: { img: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=800&q=80', bg: 'bg-emerald-600' },
+		item: { img: MeghanTrainor.src, bg: 'bg-emerald-600' },
 	},
 	{
 		type: 'quad',
@@ -115,12 +124,12 @@ const baseSlides = [
 	{
 		type: 'single',
 		shape: shapePill.src,
-		item: { img: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=800&q=80', bg: 'bg-indigo-700' },
+		item: { img: Twice.src, bg: 'bg-indigo-700' },
 	},
 	{
 		type: 'single',
 		shape: shapeCookie12.src,
-		item: { img: 'https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?w=800&q=80', bg: 'bg-blue-700' },
+		item: { img: Top.src, bg: 'bg-blue-700' },
 	},
 ];
 
