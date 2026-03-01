@@ -6,9 +6,13 @@ import shapePuffyDiamond from '@/assets/figures/puffy-diamond.svg';
 ---
 
 <footer>
-    <div>
-        <Image src={shapeArrow} alt="Arrow Shape" class="w-12 h-12" />
-        <p class="text-sm text-gray-600">© 2024 Music Web. All rights reserved.</p>
+    <div class="footer-content">
+        <div class="flex gap-3">
+            <Image src={shapeArrow} alt="Arrow Shape" class="w-12 h-12" />
+            <Image src={shapePixelCircle} alt="Pixel Circle" class="w-12 h-12" />
+            <Image src={shapePuffyDiamond} alt="Puffy Diamond" class="w-12 h-12" />
+        </div>
+        <p class="copy">© 2025. Todos los derechos reservados.</p>
     </div>
 </footer>
 
@@ -17,9 +21,12 @@ import shapePuffyDiamond from '@/assets/figures/puffy-diamond.svg';
     @reference "@/global.css";
 
     footer {
-        @apply  w-full bg-zinc-300;
+        @apply w-full;
     }
-    .container {
-        @app
+    .footer-content {
+        @apply bg-zinc-200 px-6 py-4 w-full flex flex-wrap gap-4 justify-between items-center;
+    }
+    .copy {
+        @apply text-sm text-gray-700 font-semibold;
     }
 </style>

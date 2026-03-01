@@ -2,9 +2,23 @@
 
 ---
 
-<div class="navbar__wrapper">
+<header class="navbar__wrapper">
     <nav class="navbar">
         <a href="/" class="text-zinc-100 font-display tracking-widest text-lg uppercase">M</a>
+        <div class="navbar__menu" role="button" aria-label="Open menu">
+            <div class="navbar__menu-line navbar__menu-line--1"></div>
+            <div class="navbar__menu-line navbar__menu-line--2"></div>
+            <div class="navbar__menu-line navbar__menu-line--3"></div>
+        </div>
+    </nav>
+</header>
+
+<div class="nav-panel">
+    <nav class="nav-panel__nav">
+        <ul class="nav-panel__links">
+            <li><a href="/" class="nav-panel__link">Inicio</a></li>
+            <li><a href="/artists" class="nav-panel__link">Artistas</a></li>
+        </ul>
     </nav>
 </div>
 
@@ -13,6 +27,78 @@
     @reference "@/global.css";
 
     .navbar__wrapper {
-        @apply sticky top-0 left-0 w-full z-100 p-3 border-b border-zinc-800 bg-zinc-900/80 backdrop-blur-sm;
+        @apply sticky top-0 left-0 w-full z-120 py-3 px-5 border-b border-zinc-800 bg-zinc-900/80 backdrop-blur-sm;
+    }
+    .navbar {
+        @apply flex justify-between items-center;
+    }
+    .navbar__menu {
+        @apply space-y-2 cursor-pointer p-2;
+    }
+    .navbar__menu-line {
+        @apply w-9 h-0.5 bg-zinc-200;
+        transform-origin: center;
+    }
+
+    .nav-panel {
+        @apply fixed top-0 right-0 w-full h-screen bg-zinc-950 z-110;
+        transform: translateX(100%);
+    }
+
+    .nav-panel__nav {
+        @apply flex items-center justify-center h-full;
+    }
+
+    .nav-panel__links {
+        @apply text-center;
+    }
+
+    .nav-panel__link {
+        @apply text-zinc-100 text-3xl font-display hover:underline tracking-widest uppercase block py-4;
     }
 </style>
+
+<script>
+	import { gsap } from 'gsap';
+
+	const menuToggle = document.querySelector('.navbar__menu');
+	const navPanel = document.querySelector('.nav-panel');
+	const navLinks = gsap.utils.toArray('.nav-panel__link');
+
+	const tl = gsap.timeline({ paused: true, reversed: true });
+
+	tl.to(navPanel, {
+		xPercent: -100,
+		duration: 0.8,
+		ease: 'power3.inOut',
+	});
+
+	tl.to('.navbar__menu-line--1', {
+		rotate: 45,
+		y: 10,
+		duration: 0.3,
+	}, '<0.1');
+
+	tl.to('.navbar__menu-line--2', {
+		opacity: 0,
+		duration: 0.3,
+	}, '<');
+
+	tl.to('.navbar__menu-line--3', {
+		rotate: -45,
+		y: -10,
+		duration: 0.3,
+	}, '<');
+
+	tl.from(navLinks, {
+		y: 50,
+		opacity: 0,
+		duration: 0.5,
+		stagger: 0.1,
+		ease: 'power3.out',
+	}, '-=0.5');
+
+	menuToggle.addEventListener('click', () => {
+		tl.reversed() ? tl.play() : tl.reverse();
+	});
+</script>
