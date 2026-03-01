@@ -39,6 +39,6 @@
 		@apply font-display text-3xl;
 	}
 	.p {
-		@apply font-sans text-zinc-200 leading-normal text-pretty;
+		@apply font-sans text-zinc-200 leading-normal text-pretty text-lg;
 	}
 }
