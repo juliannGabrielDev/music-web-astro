@@ -4,12 +4,12 @@
 
 <header class="navbar__wrapper">
     <nav class="navbar">
-        <a href="/" class="text-zinc-100 font-display tracking-widest text-lg uppercase">M</a>
-        <div class="navbar__menu" role="button" aria-label="Open menu">
+        <a href="/" class="text-zinc-100 font-display tracking-widest text-lg uppercase">Música</a>
+        <label for="nav-toggle" class="navbar__checkbox-label">
+            <input type="checkbox" id="nav-toggle" class="navbar__checkbox navbar__checkbox--hidden">
             <div class="navbar__menu-line navbar__menu-line--1"></div>
             <div class="navbar__menu-line navbar__menu-line--2"></div>
-            <div class="navbar__menu-line navbar__menu-line--3"></div>
-        </div>
+        </label>
     </nav>
 </header>
 
@@ -32,16 +32,37 @@
     .navbar {
         @apply flex justify-between items-center;
     }
-    .navbar__menu {
-        @apply space-y-2 cursor-pointer p-2;
+    .navbar__checkbox-label {
+        @apply relative gap-2 cursor-pointer size-9 flex flex-col justify-center items-center;
+    }
+    .navbar__checkbox:checked ~ .navbar__menu-line--1 {
+        @apply -rotate-45;
+        top: initial;
+    }
+    .navbar__checkbox:checked ~ .navbar__menu-line--2 {
+        @apply rotate-45;
+        bottom: initial;
+    }
+    .navbar__wrapper:has(.navbar__checkbox:checked) ~ .nav-panel {
+        transform: translateX(0);
+    }
+
+    .navbar__checkbox--hidden {
+        @apply hidden;
     }
     .navbar__menu-line {
-        @apply w-9 h-0.5 bg-zinc-200;
-        transform-origin: center;
+        @apply w-full h-0.5 bg-zinc-200 absolute transition-transform duration-300 ease-in-out;
+    }
+    .navbar__menu-line--1 {
+        @apply top-3;
+    }
+    .navbar__menu-line--2 {
+        @apply bottom-3;
     }
 
     .nav-panel {
-        @apply fixed top-0 right-0 w-full h-screen bg-zinc-950 z-110;
+        @apply fixed top-0 right-0 h-screen bg-zinc-900 z-110 transition-transform ease-in-out duration-300;
+        width: min(100%, 600px);
         transform: translateX(100%);
     }
 
@@ -61,34 +82,10 @@
 <script>
 	import { gsap } from 'gsap';
 
-	const menuToggle = document.querySelector('.navbar__menu');
-	const navPanel = document.querySelector('.nav-panel');
+    const navCheckbox = document.getElementById('nav-toggle');
 	const navLinks = gsap.utils.toArray('.nav-panel__link');
 
 	const tl = gsap.timeline({ paused: true, reversed: true });
-
-	tl.to(navPanel, {
-		xPercent: -100,
-		duration: 0.8,
-		ease: 'power3.inOut',
-	});
-
-	tl.to('.navbar__menu-line--1', {
-		rotate: 45,
-		y: 10,
-		duration: 0.3,
-	}, '<0.1');
-
-	tl.to('.navbar__menu-line--2', {
-		opacity: 0,
-		duration: 0.3,
-	}, '<');
-
-	tl.to('.navbar__menu-line--3', {
-		rotate: -45,
-		y: -10,
-		duration: 0.3,
-	}, '<');
 
 	tl.from(navLinks, {
 		y: 50,
@@ -98,7 +95,7 @@
 		ease: 'power3.out',
 	}, '-=0.5');
 
-	menuToggle.addEventListener('click', () => {
+	navCheckbox.addEventListener('click', () => {
 		tl.reversed() ? tl.play() : tl.reverse();
 	});
 </script>
