@@ -1,6 +1,6 @@
 ---
 import Image from 'astro/components/Image.astro';
-import shapeArrow from '@/assets/figures/arrow.svg';
+import shapegum from '@/assets/figures/Gum.svg';
 import shapePixelCircle from '@/assets/figures/pixel-circle.svg';
 import shapePuffyDiamond from '@/assets/figures/puffy-diamond.svg';
 ---
@@ -8,7 +8,7 @@ import shapePuffyDiamond from '@/assets/figures/puffy-diamond.svg';
 <footer>
     <div class="footer-content">
         <div class="flex gap-3">
-            <Image src={shapeArrow} alt="Arrow Shape" class="w-12 h-12" />
+            <Image src={shapegum} alt="Gum Shape" class="w-12 h-12" />
             <Image src={shapePixelCircle} alt="Pixel Circle" class="w-12 h-12" />
             <Image src={shapePuffyDiamond} alt="Puffy Diamond" class="w-12 h-12" />
         </div>
@@ -24,7 +24,7 @@ import shapePuffyDiamond from '@/assets/figures/puffy-diamond.svg';
         @apply w-full;
     }
     .footer-content {
-        @apply bg-zinc-200 px-6 py-4 w-full flex flex-wrap gap-4 justify-between items-center;
+        @apply bg-zinc-200 pl-6 pr-21 py-4 w-full flex flex-wrap gap-4 justify-between items-center;
     }
     .copy {
         @apply text-sm text-gray-700 font-semibold;
