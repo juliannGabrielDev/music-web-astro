@@ -29,7 +29,8 @@
 }
 
 @layer components {
-	.h1, .h2 {
+	.h1,
+	.h2 {
 		@apply leading-none text-zinc-100;
 	}
 	.h1 {
@@ -39,6 +40,6 @@
 		@apply font-display text-3xl;
 	}
 	.p {
-		@apply font-sans text-zinc-200 leading-normal text-pretty text-lg;
+		@apply font-sans text-lg leading-normal text-pretty text-zinc-200;
 	}
 }
