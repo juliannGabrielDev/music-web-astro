@@ -22,6 +22,7 @@
       "bradlc.vscode-tailwindcss"
       "pkief.material-icon-theme"
       "miguelsolorio.fluent-icons"
+      "esbenp.prettier-vscode"
     ];
 
     # Enable previews
