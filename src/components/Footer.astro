@@ -6,27 +6,39 @@ import shapePuffyDiamond from '@/assets/figures/puffy-diamond.svg';
 ---
 
 <footer>
-    <div class="footer-content">
-        <div class="flex gap-3">
-            <Image src={shapegum} alt="Gum Shape" class="w-12 h-12" />
-            <Image src={shapePixelCircle} alt="Pixel Circle" class="w-12 h-12" />
-            <Image src={shapePuffyDiamond} alt="Puffy Diamond" class="w-12 h-12" />
-        </div>
-        <p class="copy">© 2026. Todos los derechos reservados.</p>
-    </div>
+	<div class="footer-content">
+		<div class="flex gap-3">
+			<Image
+				src={shapegum}
+				alt="Gum Shape"
+				class="h-12 w-12"
+			/>
+			<Image
+				src={shapePixelCircle}
+				alt="Pixel Circle"
+				class="h-12 w-12"
+			/>
+			<Image
+				src={shapePuffyDiamond}
+				alt="Puffy Diamond"
+				class="h-12 w-12"
+			/>
+		</div>
+		<p class="copy">© 2026. Todos los derechos reservados.</p>
+	</div>
 </footer>
 
 <style>
-    @reference "tailwindcss";
-    @reference "@/global.css";
+	@reference "tailwindcss";
+	@reference "@/global.css";
 
-    footer {
-        @apply w-full;
-    }
-    .footer-content {
-        @apply bg-zinc-200 pl-6 pr-21 py-4 w-full flex flex-wrap gap-4 justify-between items-center;
-    }
-    .copy {
-        @apply text-sm text-gray-700 font-semibold;
-    }
+	footer {
+		@apply w-full;
+	}
+	.footer-content {
+		@apply flex w-full flex-wrap items-center justify-between gap-4 bg-zinc-200 py-4 pr-21 pl-6;
+	}
+	.copy {
+		@apply text-sm font-semibold text-gray-700;
+	}
 </style>

@@ -4,7 +4,7 @@
 
 <div class="loader loader--active">
 	<svg
-        class="loader__spinner"
+		class="loader__spinner"
 		width="120"
 		height="120"
 		viewBox="0 0 320 320"
@@ -23,22 +23,22 @@
 	@reference "@/global.css";
 
 	.loader {
-		@apply hidden fixed inset-0 z-130 h-dvh w-full items-center justify-center bg-zinc-950;
+		@apply fixed inset-0 z-130 hidden h-dvh w-full items-center justify-center bg-zinc-950;
 	}
-    .loader--active {
-        @apply flex;
-    }
-    .loader__spinner {
-        @apply w-16 h-16;
-        animation: loader 1.5s linear infinite;
-    }
+	.loader--active {
+		@apply flex;
+	}
+	.loader__spinner {
+		@apply h-16 w-16;
+		animation: loader 1.5s linear infinite;
+	}
 
-    @keyframes loader {
-        0% {
-            transform: rotate(0deg);
-        }
-        100% {
-            transform: rotate(360deg);
-        }
-    }
+	@keyframes loader {
+		0% {
+			transform: rotate(0deg);
+		}
+		100% {
+			transform: rotate(360deg);
+		}
+	}
 </style>

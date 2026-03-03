@@ -3,97 +3,128 @@
 ---
 
 <header class="navbar__wrapper">
-    <nav class="navbar">
-        <a href="/" class="text-zinc-100 font-display tracking-widest text-lg uppercase">Música</a>
-        <label for="nav-toggle" class="navbar__checkbox-label">
-            <input type="checkbox" id="nav-toggle" class="navbar__checkbox navbar__checkbox--hidden">
-            <div class="navbar__menu-line navbar__menu-line--1"></div>
-            <div class="navbar__menu-line navbar__menu-line--2"></div>
-        </label>
-    </nav>
+	<nav class="navbar">
+		<a
+			href="/"
+			class="navbar__logo"
+			>Música</a
+		>
+		<label
+			for="nav-toggle"
+			class="navbar__checkbox-label"
+		>
+			<input
+				type="checkbox"
+				id="nav-toggle"
+				class="navbar__checkbox navbar__checkbox--hidden"
+			/>
+			<div class="navbar__menu-line navbar__menu-line--1"></div>
+			<div class="navbar__menu-line navbar__menu-line--2"></div>
+		</label>
+	</nav>
 </header>
 
 <div class="nav-panel">
-    <nav class="nav-panel__nav">
-        <ul class="nav-panel__links">
-            <li><a href="/" class="nav-panel__link">Inicio</a></li>
-            <li><a href="/artists" class="nav-panel__link">Artistas</a></li>
-        </ul>
-    </nav>
+	<nav class="nav-panel__nav">
+		<ul class="nav-panel__links">
+			<li>
+				<a
+					href="/"
+					class="nav-panel__link"
+					>Inicio</a
+				>
+			</li>
+			<li>
+				<a
+					href="/artists"
+					class="nav-panel__link"
+					>Artistas</a
+				>
+			</li>
+		</ul>
+	</nav>
 </div>
 
 <style>
-    @reference "tailwindcss";
-    @reference "@/global.css";
+	@reference "tailwindcss";
+	@reference "@/global.css";
 
-    .navbar__wrapper {
-        @apply sticky top-0 left-0 w-full z-120 py-3 px-5 border-b border-zinc-800 bg-zinc-900/80 backdrop-blur-sm;
-    }
-    .navbar {
-        @apply flex justify-between items-center;
-    }
-    .navbar__checkbox-label {
-        @apply relative gap-2 cursor-pointer size-9 flex flex-col justify-center items-center;
-    }
-    .navbar__checkbox:checked ~ .navbar__menu-line--1 {
-        @apply -rotate-45;
-        top: initial;
-    }
-    .navbar__checkbox:checked ~ .navbar__menu-line--2 {
-        @apply rotate-45;
-        bottom: initial;
-    }
-    .navbar__wrapper:has(.navbar__checkbox:checked) ~ .nav-panel {
-        transform: translateX(0);
-    }
+	.navbar__wrapper {
+		@apply sticky top-0 left-0 z-120 w-full border-b border-zinc-800 bg-zinc-900/80 px-5 py-3 backdrop-blur-sm;
+	}
+	.navbar {
+		@apply flex items-center justify-between;
+	}
+	.navbar__logo {
+		@apply font-display text-lg tracking-widest text-zinc-100 uppercase;
+		text-box: trim-both cap alphabetic;
+	}
+	.navbar__checkbox-label {
+		@apply relative flex size-9 cursor-pointer flex-col items-center justify-center gap-2;
+	}
+	.navbar__checkbox:checked ~ .navbar__menu-line--1 {
+		@apply -rotate-45;
+		top: initial;
+	}
+	.navbar__checkbox:checked ~ .navbar__menu-line--2 {
+		@apply rotate-45;
+		bottom: initial;
+	}
+	.navbar__wrapper:has(.navbar__checkbox:checked) ~ .nav-panel {
+		transform: translateX(0);
+	}
 
-    .navbar__checkbox--hidden {
-        @apply hidden;
-    }
-    .navbar__menu-line {
-        @apply w-full h-0.5 bg-zinc-200 absolute transition-transform duration-300 ease-in-out;
-    }
-    .navbar__menu-line--1 {
-        @apply top-3;
-    }
-    .navbar__menu-line--2 {
-        @apply bottom-3;
-    }
+	.navbar__checkbox--hidden {
+		@apply hidden;
+	}
+	.navbar__menu-line {
+		@apply absolute h-0.5 w-full bg-zinc-200 transition-transform duration-300 ease-in-out;
+	}
+	.navbar__menu-line--1 {
+		@apply top-3;
+	}
+	.navbar__menu-line--2 {
+		@apply bottom-3;
+	}
 
-    .nav-panel {
-        @apply fixed top-0 right-0 h-screen bg-zinc-900 z-110 transition-transform ease-in-out duration-300;
-        width: min(100%, 600px);
-        transform: translateX(100%);
-    }
+	.nav-panel {
+		@apply fixed top-0 right-0 z-110 h-screen bg-zinc-900 transition-transform duration-300 ease-in-out;
+		width: min(100%, 600px);
+		transform: translateX(100%);
+	}
 
-    .nav-panel__nav {
-        @apply flex items-center justify-center h-full;
-    }
+	.nav-panel__nav {
+		@apply flex h-full items-center justify-center;
+	}
 
-    .nav-panel__links {
-        @apply text-center;
-    }
+	.nav-panel__links {
+		@apply text-center;
+	}
 
-    .nav-panel__link {
-        @apply text-zinc-100 text-3xl font-display hover:underline tracking-widest uppercase block py-4;
-    }
+	.nav-panel__link {
+		@apply font-display block py-4 text-3xl tracking-widest text-zinc-100 uppercase hover:underline;
+	}
 </style>
 
 <script>
 	import { gsap } from 'gsap';
 
-    const navCheckbox = document.getElementById('nav-toggle');
+	const navCheckbox = document.getElementById('nav-toggle');
 	const navLinks = gsap.utils.toArray('.nav-panel__link');
 
 	const tl = gsap.timeline({ paused: true, reversed: true });
 
-	tl.from(navLinks, {
-		y: 50,
-		opacity: 0,
-		duration: 0.5,
-		stagger: 0.1,
-		ease: 'power3.out',
-	}, '-=0.5');
+	tl.from(
+		navLinks,
+		{
+			y: 50,
+			opacity: 0,
+			duration: 0.5,
+			stagger: 0.1,
+			ease: 'power3.out',
+		},
+		'-=0.5'
+	);
 
 	navCheckbox.addEventListener('click', () => {
 		tl.reversed() ? tl.play() : tl.reverse();

@@ -10,7 +10,7 @@ import softBoom from '@/assets/figures/soft-boom.svg';
 		<Image
 			src={softBoom}
 			alt="Soft Boom"
-			class="background-decoration w-auto h-full"
+			class="background-decoration h-full w-auto"
 		/>
 		<h1 class="sr-only">Página no encontrada</h1>
 		<span class="text404">404</span>
@@ -47,10 +47,10 @@ import softBoom from '@/assets/figures/soft-boom.svg';
 	@reference "@/global.css";
 
 	.container {
-		@apply flex min-h-screen w-full flex-col items-center justify-center gap-6 p-6 mx-auto;
+		@apply mx-auto flex min-h-screen w-full flex-col items-center justify-center gap-6 p-6;
 	}
 	.background-decoration {
-		@apply fixed left-1/2 top-1/2 -z-10 opacity-50 -translate-x-1/2 -translate-y-1/2;
+		@apply fixed top-1/2 left-1/2 -z-10 -translate-x-1/2 -translate-y-1/2 opacity-50;
 	}
 	.text404 {
 		@apply font-display not-sr-only text-9xl text-zinc-100;
