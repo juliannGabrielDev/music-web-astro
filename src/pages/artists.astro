@@ -283,15 +283,17 @@ const slides = [...baseSlides, ...baseSlides];
 		@apply py-12;
 	}
 	.container {
-		@apply grid lg:grid-cols-2 mx-auto max-w-7xl gap-6;
-		grid-template-columns: auto 300px;
+		@apply grid mx-auto max-w-7xl;
+
+		@media (width >= 64rem) {
+			grid-template-columns: auto 300px;
+		}
 	}
 	main {
-		@apply space-y-20 border border-zinc-800 lg:mb-6;
+		@apply space-y-20 border border-zinc-800 lg:mb-6 order-2 lg:order-1;
 	}
 	.toc {
-		@apply bg-zinc-200 p-4 rounded-3xl sticky top-22 self-start h-fit;
-
+		@apply bg-zinc-200 p-4 rounded-3xl sticky top-22 self-start h-fit mx-6 order-1 lg:order-2;
 		scroll-target-group: auto;
 
 		a {
