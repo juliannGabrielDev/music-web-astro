@@ -31,14 +31,14 @@ import Loader from '@/components/Loader.astro';
 		<ClientRouter />
 	</head>
 	<body class="bg-zinc-950">
-		<span id="top"></span>
+		<span id="start" aria-hidden="true"></span>
 		<Navbar />
 		<slot />
 		<Footer />
 		<Loader />
 
 		<a
-			href="#top"
+			href="#start"
 			class="back-to-top"
 		>
 			<svg
@@ -64,6 +64,7 @@ import Loader from '@/components/Loader.astro';
 				container-type: scroll-state;
 				container-name: scroller;
 				scroll-behavior: smooth;
+				scroll-padding-top: 80px;
 			}
 
 			.back-to-top {
