@@ -1,4 +1,5 @@
 ---
+import { Image } from 'astro:assets';
 import Layout from '@/layouts/Layout.astro';
 
 // Import all requested organic shapes
@@ -34,6 +35,13 @@ import BritneySpears from '@/assets/artists/britney-spears.webp';
 import Aurora from '@/assets/artists/aurora.webp';
 import ConanGray from '@/assets/artists/conan-gray.webp';
 import KatyPerry from '@/assets/artists/katy-perry.webp';
+
+import AdeleArtist from '@/assets/artists/adele-artist.webp';
+import topArtist from '@/assets/artists/twenty-one-pilots-artist.webp';
+import lanaArtist from '@/assets/artists/lana-del-rey-artist.webp';
+import rayeArtist from '@/assets/artists/raye-artist.webp';
+import katyArtist from '@/assets/artists/katy-perry-artist.webp';
+import AmyArtist from '@/assets/artists/amy-winehouse-artist.webp';
 
 const baseSlides = [
 	{
@@ -186,7 +194,7 @@ const slides = [...baseSlides, ...baseSlides];
 		</div>
 	</section>
 	<div class="container">
-		<main class="mx-auto max-w-6xl p-6">
+		<main class="p-6">
 			<article id="adele">
 				<h2 class="h2">ADELE</h2>
 				<p class="p mb-1">
@@ -197,6 +205,7 @@ const slides = [...baseSlides, ...baseSlides];
 					MySpace. En 2008, lanzó su álbum de estudio debut, 19, el cual se situó en la posición 1 de la lista de
 					álbumes británica y ha sido certificado ocho veces platino en Reino Unido y triple platino en Estados Unidos.
 				</p>
+				<Image src={AdeleArtist} alt="Adele en los Grammys de 2012" class="article__image" />
 			</article>
 			<article id="top">
 				<h2 class="h2">TWENTY ONE PILOTS</h2>
@@ -207,6 +216,7 @@ const slides = [...baseSlides, ...baseSlides];
 					conocido por los sencillos "Stressed Out", "Ride" y "Heathens". El grupo recibió un Premio Grammy al mejor pop
 					de dúo/grupo en los Premios Grammy de 2017.
 				</p>
+				<Image src={topArtist} alt="Twenty One Pilots en Breach" class="article__image" />
 			</article>
 			<article id="lana-del-rey">
 				<h2 class="h2">LANA DEL REY</h2>
@@ -216,6 +226,7 @@ const slides = [...baseSlides, ...baseSlides];
 					su estilo retro y su exploración del romance trágico, el glamur y la melancolía. Con frecuentes referencias a
 					la cultura pop contemporánea y a la época dorada de los años 1950 y 1960 en Estados Unidos.
 				</p>
+				<Image src={lanaArtist} alt="Lana Del Rey en Born To Die" class="article__image" />
 			</article>
 			<article id="raye">
 				<h2 class="h2">RAYE</h2>
@@ -226,6 +237,7 @@ const slides = [...baseSlides, ...baseSlides];
 					Me» junto con Jax Jones, obtuvo aún mayor notoriedad y se situó en la posición 3 en el listado de sencillos
 					británicos.
 				</p>
+				<Image src={rayeArtist} alt="Retrato de Raye" class="article__image" />
 			</article>
 			<article id="katy-perry">
 				<h2 class="h2">KATY PERRY</h2>
@@ -236,6 +248,7 @@ const slides = [...baseSlides, ...baseSlides];
 					mundo. Ha dejado una influencia en la música pop gracias a su estilo camp, por lo que Vogue y Rolling Stone la
 					han apodado la «Reina del Camp».
 				</p>
+				<Image src={katyArtist} alt="Retrato de Katy Perry" class="article__image" />
 			</article>
 			<article id="amy-winehouse">
 				<h2 class="h2">AMY WINEHOUSE</h2>
@@ -247,13 +260,19 @@ const slides = [...baseSlides, ...baseSlides];
 					en la escena musical británica se produjo en 2003 con el álbum Frank, que, aunque elogiado por la crítica
 					musical, inicialmente no logró buenas ventas.
 				</p>
+				<Image src={AmyArtist} alt="Retrato de Amy Winehouse" class="article__image" />
 			</article>
 		</main>
-		<aside>
+		<nav class="toc" aria-label="Índice de artistas">
 			<ul>
-				<li></li>
+				<li><a href="#adele">ADELE</a></li>
+				<li><a href="#top">TWENTY ONE PILOTS</a></li>
+				<li><a href="#lana-del-rey">LANA DEL REY</a></li>
+				<li><a href="#raye">RAYE</a></li>
+				<li><a href="#katy-perry">KATY PERRY</a></li>
+				<li><a href="#amy-winehouse">AMY WINEHOUSE</a></li>
 			</ul>
-		</aside>
+		</nav>
 	</div>
 </Layout>
 
@@ -263,19 +282,40 @@ const slides = [...baseSlides, ...baseSlides];
 	.hero {
 		@apply py-12;
 	}
-	.content {
-		@apply grid lg:grid-cols-2;
+	.container {
+		@apply grid lg:grid-cols-2 mx-auto max-w-7xl gap-6;
+		grid-template-columns: auto 300px;
 	}
 	main {
-		@apply space-y-4 border border-zinc-800 lg:mb-6;
+		@apply space-y-20 border border-zinc-800 lg:mb-6;
 	}
-	aside {
-		@apply bg-red-400;
+	.toc {
+		@apply bg-zinc-200 p-4 rounded-3xl sticky top-22 self-start h-fit;
+
+		scroll-target-group: auto;
+
+		a {
+			@apply block rounded-xl px-3 py-2 text-zinc-700 transition-colors;
+		}
+
+		a:target-current {
+			@apply font-black bg-zinc-800 text-zinc-100;
+		}
+
+		ul {
+			@apply space-y-1;
+		}
 	}
 	article {
-		@apply space-y-3;
+		@apply space-y-6;
+	}
+	.article__image {
+		@apply mx-auto rounded-3xl object-cover;
+		width: min(100%, 600px);
 	}
 	.carousel {
+		container-type: scroll-state;
+		container-name: carousel;
 		@apply grid min-h-65 gap-4 overflow-x-auto md:min-h-105 md:gap-8;
 		grid-auto-flow: column;
 		align-items: center;
@@ -305,7 +345,7 @@ const slides = [...baseSlides, ...baseSlides];
 		}
 
 		&::scroll-button(*) {
-			@apply absolute cursor-pointer border-none bg-zinc-800 px-3 py-2 text-zinc-200;
+			@apply absolute cursor-pointer border-none transition-all bg-zinc-800 px-3 py-2 text-zinc-200;
 			position-anchor: --carousel;
 			border-radius: 28px;
 			corner-shape: squircle;
@@ -315,12 +355,24 @@ const slides = [...baseSlides, ...baseSlides];
 			margin-left: 16px;
 			top: anchor(center);
 			left: anchor(left);
+
+			@container carousel not scroll-state(scrollable: left) {
+				opacity: 0;
+				pointer-events: none;
+				transform: translateX(-10px);
+			}
 		}
 		&::scroll-button(right) {
 			content: '⮕' / 'Scroll Right';
 			margin-right: 16px;
 			top: anchor(center);
 			right: anchor(right);
+
+			@container carousel not scroll-state(scrollable: right) {
+				opacity: 0;
+				pointer-events: none;
+				transform: translateX(10px);
+			}
 		}
 	}
 
