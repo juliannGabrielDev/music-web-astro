@@ -1,9 +1,41 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import HeroImage from '../assets/images/historia-musica-hero.webp';
+import PixelTriangle from '../assets/figures/pixel-triangle.svg';
+import { Image } from 'astro:assets';
 ---
 
 <Layout>
-	<main class="min-h-screen">
-		<h1 class="h1">Historia de la Música</h1>
-	</main>
+	<section class="hero">
+		<div class="hero__content">
+			<h1>
+				<span class="h1 mt-16">Historia</span><br /><span class="text-3xl font-bold text-zinc-200">de la Música</span>
+			</h1>
+			<div
+				class={`artist-figure relative flex h-full items-center justify-center overflow-hidden shadow-2xl transition-shadow duration-300`}
+				style={`mask-image: url(${PixelTriangle.src}); mask-size: contain; mask-repeat: no-repeat; mask-position: center; -webkit-mask-image: url(${PixelTriangle.src}); -webkit-mask-size: contain; -webkit-mask-repeat: no-repeat; -webkit-mask-position: center;`}
+			>
+				<Image
+					src={HeroImage}
+					alt="Imagen de portada"
+					class="pointer-events-none h-full w-full object-contain"
+					draggable="false"
+				/>
+			</div>
+		</div>
+	</section>
+	<main class="min-h-screen"></main>
 </Layout>
+
+<style>
+	@reference 'tailwindcss';
+
+	.hero {
+		@apply p-6;
+
+		.hero__content {
+			@apply mx-auto max-w-7xl rounded-4xl bg-purple-600 p-12 flex justify-between;
+			height: max(300px, 80vh);
+		}
+	}
+</style>
