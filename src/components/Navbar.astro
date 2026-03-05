@@ -74,6 +74,12 @@
 		transform: translateX(0);
 	}
 
+	.navbar__wrapper:has(.navbar__checkbox:checked) ~ .nav-panel .nav-panel__link {
+		opacity: 1;
+		transform: translateY(0);
+		transition-delay: 0.3s;
+	}
+
 	.navbar__checkbox--hidden {
 		@apply hidden;
 	}
@@ -103,30 +109,12 @@
 
 	.nav-panel__link {
 		@apply font-display block py-4 text-3xl tracking-widest text-zinc-100 uppercase hover:underline;
+		opacity: 0;
+		transform: translateY(20px);
+		transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+	}
+
+	.nav-panel__link:nth-child(2) {
+		transition-delay: 0.4s;
 	}
 </style>
-
-<script>
-	import { gsap } from 'gsap';
-
-	const navCheckbox = document.getElementById('nav-toggle');
-	const navLinks = gsap.utils.toArray('.nav-panel__link');
-
-	const tl = gsap.timeline({ paused: true, reversed: true });
-
-	tl.from(
-		navLinks,
-		{
-			y: 50,
-			opacity: 0,
-			duration: 0.5,
-			stagger: 0.1,
-			ease: 'power3.out',
-		},
-		'-=0.5'
-	);
-
-	navCheckbox.addEventListener('click', () => {
-		tl.reversed() ? tl.play() : tl.reverse();
-	});
-</script>

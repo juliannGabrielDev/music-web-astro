@@ -281,6 +281,10 @@ const slides = [...baseSlides, ...baseSlides];
 
 	.hero {
 		@apply py-12;
+
+		h1 {
+			animation: reveal-title 1s cubic-bezier(0.77, 0, 0.175, 1);
+		}
 	}
 	.container {
 		@apply grid mx-auto max-w-7xl gap-6 lg:gap-0;
@@ -424,8 +428,17 @@ const slides = [...baseSlides, ...baseSlides];
 		}
 	}
 
+	@keyframes reveal-title {
+		0% {
+			clip-path: inset(100% 0 0 0);
+		}
+		100% {
+			clip-path: inset(0 0 0 0);
+		}
+	}
+
 	@media (prefers-reduced-motion: reduce) {
-		.article__image {
+		.hero h1, .article__image {
 			animation: none;
 		}
 	}

@@ -1,0 +1,43 @@
+
+---
+import type { ImageMetadata } from 'astro';
+import { Image } from 'astro:assets';
+import { cn } from '../utils/cn';
+import shapegum from '../assets/figures/Gum.svg';
+import defaultImage from '../assets/astro.svg';
+
+interface Props {
+    title: string;
+    className?: string;
+    image?: ImageMetadata;
+    maskImage?: string;
+}
+
+let { title = "Title", className, image = defaultImage, maskImage = shapegum.src }: Props = Astro.props;
+---
+
+<div class={cn("card", className)}>
+    <h3 class="card__title">{title}</h3>
+    <Image
+        src={image}
+        alt={title}
+        class="h-full w-full object-cover"
+        style={{ maskImage: `url(${maskImage})` }}
+    />
+</div>
+
+<style>
+    @reference "tailwindcss";
+
+    .card {
+        @apply bg-zinc-300 rounded-3xl p-4 grid;
+
+        .card__title {
+            @apply font-bold text-lg z-10 row-start-1 col-start-1;
+        }
+
+        :global(img) {
+            @apply row-start-1 col-start-1;
+        }
+    }
+</style>

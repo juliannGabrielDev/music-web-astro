@@ -3,6 +3,7 @@ import Layout from '../layouts/Layout.astro';
 import HeroImage from '../assets/images/historia-musica-hero.webp';
 import PixelTriangle from '../assets/figures/pixel-triangle.svg';
 import { Image } from 'astro:assets';
+import Card from '../components/Card.astro';
 ---
 
 <Layout>
@@ -24,7 +25,9 @@ import { Image } from 'astro:assets';
 			</div>
 		</div>
 	</section>
-	<main class="min-h-screen"></main>
+	<main>
+		<Card title="Contemporánea" />
+	</main>
 </Layout>
 
 <style>
@@ -32,10 +35,22 @@ import { Image } from 'astro:assets';
 
 	.hero {
 		@apply p-6;
+	}
+	.hero__content {
+		@apply mx-auto max-w-7xl rounded-4xl bg-purple-600 p-12 flex flex-col lg:flex-row gap-6 justify-between;
+		height: max(300px, 80vh);
+		animation: reveal-animation 1s cubic-bezier(0.77, 0, 0.175, 1);
+	}
+	main {
+		@apply p-6;
+	}
 
-		.hero__content {
-			@apply mx-auto max-w-7xl rounded-4xl bg-purple-600 p-12 flex justify-between;
-			height: max(300px, 80vh);
+	@keyframes reveal-animation {
+		0% {
+			clip-path: inset(100% 0 0 0);
+		}
+		100% {
+			clip-path: inset(0 0 0 0);
 		}
 	}
 </style>
