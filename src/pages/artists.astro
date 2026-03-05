@@ -47,30 +47,30 @@ const baseSlides = [
 	{
 		type: 'single',
 		shape: shapeCookie12.src,
-		item: { img: Adele.src },
+		img: Adele,
 	},
 	{
 		type: 'single',
 		shape: shapePixelCircle.src,
-		item: { img: Top.src },
+		img: Top,
 	},
 	{
 		type: 'quad',
 		items: [
 			{
-				img: Raye.src,
+				img: Raye,
 				shape: shapeCookie4.src,
 			},
 			{
-				img: AmyWinehouse.src,
+				img: AmyWinehouse,
 				shape: shapeSoftBoom.src,
 			},
 			{
-				img: CarlyRaeJepsen.src,
+				img: CarlyRaeJepsen,
 				shape: shapeFlower.src,
 			},
 			{
-				img: LadyGaga.src,
+				img: LadyGaga,
 				shape: shapeGum.src,
 			},
 		],
@@ -78,25 +78,25 @@ const baseSlides = [
 	{
 		type: 'single',
 		shape: shapeGhost.src,
-		item: { img: LanaDelRey.src },
+		img: LanaDelRey,
 	},
 	{
 		type: 'quad',
 		items: [
 			{
-				img: SpiceGirls.src,
+				img: SpiceGirls,
 				shape: shapeGhost.src,
 			},
 			{
-				img: RobbieWilliams.src,
+				img: RobbieWilliams,
 				shape: shapePill.src,
 			},
 			{
-				img: Pink.src,
+				img: Pink,
 				shape: shapeCircle.src,
 			},
 			{
-				img: ColdPlay.src,
+				img: ColdPlay,
 				shape: shapeSquare.src,
 			},
 		],
@@ -104,30 +104,30 @@ const baseSlides = [
 	{
 		type: 'single',
 		shape: shapeFlower.src,
-		item: { img: OliviaDean.src },
+		img: OliviaDean,
 	},
 	{
 		type: 'single',
 		shape: shapeArrow.src,
-		item: { img: MeghanTrainor.src },
+		img: MeghanTrainor,
 	},
 	{
 		type: 'quad',
 		items: [
 			{
-				img: KatyPerry.src,
+				img: KatyPerry,
 				shape: shapePixelCircle.src,
 			},
 			{
-				img: BritneySpears.src,
+				img: BritneySpears,
 				shape: shapePuffyDiamond.src,
 			},
 			{
-				img: Aurora.src,
+				img: Aurora,
 				shape: shapeCookie12.src,
 			},
 			{
-				img: ConanGray.src,
+				img: ConanGray,
 				shape: shapeTriangle.src,
 			},
 		],
@@ -135,7 +135,7 @@ const baseSlides = [
 	{
 		type: 'single',
 		shape: shapePill.src,
-		item: { img: Twice.src },
+		img: Twice,
 	},
 ];
 
@@ -154,8 +154,8 @@ const slides = [...baseSlides, ...baseSlides];
 								class={`artist-figure relative flex h-full w-full items-center justify-center overflow-hidden shadow-2xl transition-shadow duration-300`}
 								style={`mask-image: url(${slide.shape}); mask-size: contain; mask-repeat: no-repeat; mask-position: center; -webkit-mask-image: url(${slide.shape}); -webkit-mask-size: contain; -webkit-mask-repeat: no-repeat; -webkit-mask-position: center;`}
 							>
-								<img
-									src={slide.item!.img}
+								<Image
+									src={slide.img}
 									alt={`Artist ${index + 1}`}
 									class="pointer-events-none h-full w-full object-cover"
 									draggable="false"
@@ -168,7 +168,7 @@ const slides = [...baseSlides, ...baseSlides];
 										class="artist-figure relative h-full w-full overflow-hidden shadow-lg"
 										style={`mask-image: url(${subItem.shape}); mask-size: contain; mask-repeat: no-repeat; mask-position: center; -webkit-mask-image: url(${subItem.shape}); -webkit-mask-size: contain; -webkit-mask-repeat: no-repeat; -webkit-mask-position: center;`}
 									>
-										<img
+										<Image
 											src={subItem.img}
 											alt={`Artist from group ${index + 1}`}
 											class="pointer-events-none h-full w-full object-cover"
@@ -283,7 +283,7 @@ const slides = [...baseSlides, ...baseSlides];
 		@apply py-12;
 	}
 	.container {
-		@apply grid mx-auto max-w-7xl;
+		@apply grid mx-auto max-w-7xl gap-6 lg:gap-0;
 
 		@media (width >= 64rem) {
 			grid-template-columns: auto 300px;
@@ -293,9 +293,8 @@ const slides = [...baseSlides, ...baseSlides];
 		@apply space-y-20 border border-zinc-800 lg:mb-6 order-2 lg:order-1;
 	}
 	.toc {
-		@apply bg-zinc-200 p-4 rounded-3xl sticky top-22 self-start h-fit mx-6 order-1 lg:order-2;
+		@apply bg-zinc-200 p-4 rounded-3xl lg:sticky lg:top-22 lg:self-start h-fit w-fit ml-6 order-1 lg:order-2;
 		scroll-target-group: auto;
-
 		a {
 			@apply block rounded-xl px-3 py-2 text-zinc-700 transition-colors;
 		}
@@ -314,6 +313,14 @@ const slides = [...baseSlides, ...baseSlides];
 	.article__image {
 		@apply mx-auto rounded-3xl object-cover;
 		width: min(100%, 600px);
+	}
+
+	@supports (animation-timeline: view()) {
+		.article__image {
+			animation: auto linear reveal-image both;
+			animation-timeline: view();
+			animation-range: entry 15% cover 45%;
+		}
 	}
 	.carousel {
 		container-type: scroll-state;
@@ -400,6 +407,26 @@ const slides = [...baseSlides, ...baseSlides];
 
 		50% {
 			transform: scale(1);
+		}
+	}
+
+	@keyframes reveal-image {
+		from {
+			opacity: 0;
+			transform: translateY(18px) scale(0.96);
+			filter: saturate(0.85);
+		}
+
+		to {
+			opacity: 1;
+			transform: translateY(0) scale(1);
+			filter: saturate(1);
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.article__image {
+			animation: none;
 		}
 	}
 </style>
