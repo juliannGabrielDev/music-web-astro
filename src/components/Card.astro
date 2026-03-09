@@ -1,43 +1,75 @@
-
 ---
 import type { ImageMetadata } from 'astro';
 import { Image } from 'astro:assets';
 import { cn } from '../utils/cn';
 import shapegum from '../assets/figures/Gum.svg';
-import defaultImage from '../assets/astro.svg';
+import defaultImage from '../assets/images/historia-musica-hero.webp';
 
 interface Props {
-    title: string;
-    className?: string;
-    image?: ImageMetadata;
-    maskImage?: string;
+	title: string;
+	description?: string;
+	className?: string;
+	image?: ImageMetadata;
+	maskImage?: string;
+	href?: string;
+	transitionName?: string;
 }
 
-let { title = "Title", className, image = defaultImage, maskImage = shapegum.src }: Props = Astro.props;
+let {
+	title = 'Title',
+	description = 'This is a simple card component.',
+	className,
+	image = defaultImage,
+	maskImage = shapegum.src,
+	href,
+	transitionName,
+}: Props = Astro.props;
 ---
 
-<div class={cn("card", className)}>
-    <h3 class="card__title">{title}</h3>
-    <Image
-        src={image}
-        alt={title}
-        class="h-full w-full object-cover"
-        style={{ maskImage: `url(${maskImage})` }}
-    />
-</div>
+<a
+	href={href}
+	class={cn('card', className)}
+>
+	<h3 class="card__title">{title}</h3>
+	<Image
+		src={image}
+		alt={title}
+		class="card__image"
+		transition:name={transitionName}
+		style={{
+			maskImage: `url(${maskImage})`,
+			maskSize: 'cover',
+			maskRepeat: 'no-repeat',
+			maskPosition: 'center',
+			WebkitMaskImage: `url(${maskImage})`,
+			WebkitMaskSize: 'cover',
+			WebkitMaskRepeat: 'no-repeat',
+			WebkitMaskPosition: 'center',
+		}}
+	/>
+	<p class="card__description">{description}</p>
+</a>
 
 <style>
-    @reference "tailwindcss";
+	@reference "tailwindcss";
 
-    .card {
-        @apply bg-zinc-300 rounded-3xl p-4 grid;
+	.card {
+		@apply grid cursor-pointer gap-2 overflow-hidden rounded-3xl bg-zinc-200 p-6 text-left no-underline;
+		max-width: min(240px, 100%);
 
-        .card__title {
-            @apply font-bold text-lg z-10 row-start-1 col-start-1;
-        }
+		.card__title {
+			@apply z-10 col-start-1 row-start-1 text-lg font-bold;
+		}
+		.card__image {
+			@apply block aspect-square w-full object-cover object-center transition-transform duration-300 ease-out;
+		}
 
-        :global(img) {
-            @apply row-start-1 col-start-1;
-        }
-    }
+		:global(img) {
+			@apply col-start-1 row-start-1;
+		}
+
+		&:hover .card__image {
+			@apply scale-95;
+		}
+	}
 </style>

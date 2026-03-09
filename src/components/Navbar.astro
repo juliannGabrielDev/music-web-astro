@@ -41,6 +41,13 @@
 					>Artistas</a
 				>
 			</li>
+			<li>
+				<a
+					href="/genres"
+					class="nav-panel__link"
+					>Géneros</a
+				>
+			</li>
 		</ul>
 	</nav>
 </div>
@@ -114,7 +121,11 @@
 		transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
 	}
 
-	.nav-panel__link:nth-child(2) {
+	li:nth-child(2) .nav-panel__link {
 		transition-delay: 0.4s;
+	}
+
+	li:nth-child(3) .nav-panel__link {
+		transition-delay: 0.5s;
 	}
 </style>

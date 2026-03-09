@@ -1,0 +1,158 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import ShapeCircle from '@/assets/figures/Circle.svg';
+import ShapeFlower from '@/assets/figures/flower.svg';
+import ShapeGhost from '@/assets/figures/ghost-ish.svg';
+import ShapePill from '@/assets/figures/pill.svg';
+import ShapeSoftBoom from '@/assets/figures/soft-boom.svg';
+import { Image } from 'astro:assets';
+import { instruments } from '@/data/instruments';
+
+// Import instrument images
+import ImageLaud from '@/assets/instruments/laud.webp';
+import ImageOrgano from '@/assets/instruments/organo-de-tubos.webp';
+import ImagePiano from '@/assets/instruments/piano.webp';
+import ImageSintetizador from '@/assets/instruments/sintetizador.webp';
+import ImageViolin from '@/assets/instruments/violin.webp';
+
+const instrumentImageMap = {
+	laud: ImageLaud,
+	'organo-de-tubos': ImageOrgano,
+	piano: ImagePiano,
+	sintetizador: ImageSintetizador,
+	violin: ImageViolin,
+};
+
+export function getStaticPaths() {
+	return instruments.map((instrument) => ({
+		params: { id: instrument.id },
+		props: { instrument },
+	}));
+}
+
+const { instrument } = Astro.props;
+
+const maskMap = {
+	circle: ShapeCircle.src,
+	flower: ShapeFlower.src,
+	ghost: ShapeGhost.src,
+	pill: ShapePill.src,
+	softBoom: ShapeSoftBoom.src,
+};
+
+const maskSrc = maskMap[instrument.maskKey];
+const instrumentImg = instrumentImageMap[instrument.imageKey];
+const transitionName = `instrument-${instrument.id}`;
+---
+
+<Layout>
+	<main class="detail-page">
+		<a
+			href="/"
+			class="back-link"
+			>← Volver</a
+		>
+
+		<article class="detail-article">
+			<header class="detail-header">
+				<p class="detail-eyebrow">Instrumento histórico</p>
+				<h1 class="detail-title">{instrument.title}</h1>
+				<div class="detail-meta">
+					<span>{instrument.year}</span>
+					<span>{instrument.region}</span>
+				</div>
+			</header>
+
+			<div class="detail-image-wrap">
+				<Image
+					src={instrumentImg}
+					alt={`Imagen representativa de ${instrument.title}`}
+					class="detail-image"
+					transition:name={transitionName}
+				/>
+				<div
+					class="detail-image-mask"
+					style={`mask-image: url(${maskSrc}); mask-size: contain; mask-repeat: no-repeat; mask-position: center; -webkit-mask-image: url(${maskSrc}); -webkit-mask-size: contain; -webkit-mask-repeat: no-repeat; -webkit-mask-position: center;`}
+				>
+					<Image
+						src={instrumentImg}
+						alt=""
+						aria-hidden="true"
+						class="detail-image-mask__img"
+					/>
+				</div>
+			</div>
+
+			<p class="detail-description">{instrument.description}</p>
+
+			<ul class="detail-highlights">
+				{instrument.highlights.map((point) => <li>{point}</li>)}
+			</ul>
+		</article>
+	</main>
+</Layout>
+
+<style>
+	@reference 'tailwindcss';
+	@reference '@/global.css';
+
+	.detail-page {
+		@apply mx-auto max-w-3xl px-6 py-12;
+	}
+
+	.back-link {
+		@apply mb-8 inline-block font-semibold text-zinc-400 no-underline transition-colors duration-200 hover:text-zinc-100;
+	}
+
+	.detail-article {
+		@apply grid gap-6;
+	}
+
+	.detail-header {
+		@apply grid gap-2;
+	}
+
+	.detail-eyebrow {
+		@apply text-xs font-semibold tracking-widest text-purple-400 uppercase;
+	}
+
+	.detail-title {
+		@apply font-display text-5xl leading-none text-zinc-100 md:text-7xl;
+	}
+
+	.detail-meta {
+		@apply flex flex-wrap gap-2 text-sm font-semibold text-zinc-400;
+	}
+
+	.detail-meta > span {
+		@apply rounded-full bg-zinc-800 px-3 py-1;
+	}
+
+	.detail-image-wrap {
+		@apply relative aspect-video w-full overflow-hidden rounded-3xl;
+	}
+
+	.detail-image {
+		@apply absolute inset-0 h-full w-full object-cover;
+	}
+
+	.detail-image-mask {
+		@apply pointer-events-none absolute inset-0;
+	}
+
+	.detail-image-mask__img {
+		@apply h-full w-full object-cover opacity-30;
+	}
+
+	.detail-description {
+		@apply text-lg leading-relaxed text-zinc-300;
+	}
+
+	.detail-highlights {
+		@apply grid list-disc gap-3 pl-5 text-base text-zinc-400;
+	}
+
+	.detail-highlights > li {
+		@apply leading-relaxed;
+	}
+</style>

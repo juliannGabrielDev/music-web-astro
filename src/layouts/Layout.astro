@@ -31,7 +31,10 @@ import Loader from '@/components/Loader.astro';
 		<ClientRouter />
 	</head>
 	<body class="bg-zinc-950">
-		<span id="start" aria-hidden="true"></span>
+		<span
+			id="start"
+			aria-hidden="true"
+		></span>
 		<Navbar />
 		<slot />
 		<Footer />
@@ -84,19 +87,28 @@ import Loader from '@/components/Loader.astro';
 		</style>
 
 		<script>
-			// Ocultar loader en la carga inicial
+			const scrollMemory: Record<string, number> = {};
+
+			document.addEventListener('astro:before-preparation', () => {
+				// Guardar posición de scroll de la página que se va a dejar
+				scrollMemory[location.href] = window.scrollY;
+
+				const loader = document.querySelector('.loader');
+				if (loader) {
+					loader.classList.add('loader--active');
+				}
+			});
+
 			document.addEventListener('astro:page-load', () => {
 				const loader = document.querySelector('.loader');
 				if (loader) {
 					loader.classList.remove('loader--active');
 				}
-			});
 
-			// Mostrar loader antes de navegar
-			document.addEventListener('astro:before-preparation', () => {
-				const loader = document.querySelector('.loader');
-				if (loader) {
-					loader.classList.add('loader--active');
+				// Restaurar scroll si existe posición guardada para esta URL
+				const saved = scrollMemory[location.href];
+				if (saved) {
+					window.scrollTo({ top: saved, behavior: 'instant' });
 				}
 			});
 		</script>

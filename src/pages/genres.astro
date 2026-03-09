@@ -1,0 +1,160 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import ShapeCircle from '@/assets/figures/Circle.svg';
+import ShapeSquare from '@/assets/figures/Square.svg';
+import ShapeTriangle from '@/assets/figures/triangle.svg';
+import ShapePill from '@/assets/figures/pill.svg';
+import ShapeSoftBoom from '@/assets/figures/soft-boom.svg';
+import ShapePuffyDiamond from '@/assets/figures/puffy-diamond.svg';
+
+const genres = [
+	{
+		title: 'Rock',
+		desc: 'Guitarras eléctricas, ritmo fuerte y actitud rebelde. Este género nació de la fusión rítmica del rhythm and blues y el country americano, forjando una tremenda revolución sonora que trajo consigo la figura estelar del "guitar hero". Desde el clásico rock and roll hasta el grunge moderno, sus bandas legendarias han llenado estadios enteros con himnos generacionales inmortales.',
+		image: 'https://images.unsplash.com/photo-1498038432885-c6f3f1b912ee?w=800&q=80',
+		mask: ShapeSquare.src,
+	},
+	{
+		title: 'Jazz',
+		desc: 'Improvisación, síncopa y acordes complejos con alma de blues y ritmo persistente. Surgió de las comunidades afroamericanas en Nueva Orleans, convirtiéndose rápidamente en el epítome de la libertad musical. Permite que cada intérprete dialogue armónicamente de forma impredecible y exprese sus emociones puras en tiempo real a través del swing visceral, el bebop o el cool jazz.',
+		image: 'https://images.unsplash.com/photo-1511192336575-5a79af67a629?w=800&q=80',
+		mask: ShapeCircle.src,
+	},
+	{
+		title: 'Electrónica',
+		desc: 'Sintetizadores contundentes, sub-bajos hipnóticos y texturas abstractas creadas digitalmente. Desvinculada creativamente de la acústica tradicional y el folclore, esta música se dedicó a transformar radicalmente la noche y la producción moderna, usando los propios algoritmos, samples y loops matemáticos para inducir trances eufóricos, desde el embriagante synth-pop hasta el techno berlinés.',
+		image: 'https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=800&q=80',
+		mask: ShapeSoftBoom.src,
+	},
+	{
+		title: 'Hip-Hop',
+		desc: 'Rimas rítmicas formidables, arte del sampleo y la cruda poética de la cultura urbana. Más que un género, se convirtió en una piedra angular del movimiento social urbano del "ghetto" nacido en el Bronx a finales de los setenta. Utilizando el tocadiscos y ritmos contundentes para dar un poderoso lugar protagónico a la lírica crítica, la denuncia callejera y al talento verborrágico.',
+		image: 'https://images.unsplash.com/photo-1508973379184-7517410fb0bc?w=800&q=80',
+		mask: ShapeTriangle.src,
+	},
+	{
+		title: 'Música Clásica',
+		desc: 'Orquestación espectacular, meticuloso desarrollo temático sinfónico y la constante búsqueda del virtuosismo absoluto. Conformando el pilar académico occidental, explora la perfecta sincronía entre decenas o cientos de instrumentistas en vivo. Obras plasmadas para siempre en majestuosas sinfonías, óperas teatrales y conciertos de exquisita complejidad de texturas y rigurosidad intelectual.',
+		image: 'https://images.unsplash.com/photo-1507838153414-b4b713384a76?w=800&q=80',
+		mask: ShapePuffyDiamond.src,
+	},
+	{
+		title: 'Pop',
+		desc: 'Melodías magnéticas imborrables, estructuras cordiales y una producción exquisitamente brillante y comercial. Pensada magistralmente para cautivar con facilidad a cualquier oyente casual y unir a millones bajo una misma narrativa. Es capaz de absorber orgánicamente influencias de todos los demás géneros (disco, synth, RnB) para empaquetarlas eternamente en la cultura visual pop.',
+		image: 'https://images.unsplash.com/photo-1514320291840-2e0a9bf2a9ae?w=800&q=80',
+		mask: ShapePill.src,
+	},
+];
+---
+
+<Layout>
+	<section class="genres-hero relative overflow-x-clip px-6 pt-20 pb-40 lg:pb-64">
+		<!-- Decorative bg elements -->
+		<div class="absolute right-0 top-0 -z-10 h-96 w-96 rounded-full bg-purple-600/20 blur-[100px]"></div>
+		<div class="absolute bottom-0 left-0 -z-10 h-64 w-64 rounded-full bg-zinc-800/50 blur-[80px]"></div>
+
+		<div class="mx-auto max-w-7xl">
+			<h1 class="h1 hero-title relative z-10 mb-6 text-center uppercase">Géneros Musicales</h1>
+			<p class="hero-subtitle relative z-10 mx-auto mb-16 max-w-2xl text-center text-lg text-zinc-400">
+				Explora la fascinante diversidad de sonidos que han definido culturas, generaciones emocionales y movimientos
+				alrededor de nuestro mundo.
+			</p>
+
+			<div class="genres-list relative z-10 flex flex-col gap-32 mt-12 md:mt-24 overflow-x-clip">
+				{
+					genres.map((genre, index) => {
+						const isEven = index % 2 === 0;
+						return (
+							<article class={`genre-row group flex flex-col md:items-center gap-12 md:gap-20 ${isEven ? 'md:flex-row' : 'md:flex-row-reverse'}`}>
+								<!-- Text Content (Title & Paragraph) -->
+								<div class={`flex-1 w-full space-y-6 flex flex-col ${isEven ? 'md:items-start text-left slide-from-left' : 'md:items-end md:text-right slide-from-right'}`}>
+									<div class="relative">
+										<!-- Decorative Mask Figure behind Title -->
+										<div
+											class={`absolute -top-12 h-32 w-32 bg-purple-500/10 opacity-60 transition-all duration-500 group-hover:rotate-12 group-hover:scale-125 group-hover:bg-purple-500/30 -z-10 ${isEven ? '-left-6' : '-right-6'}`}
+											style={`mask-image: url(${genre.mask}); mask-size: contain; mask-repeat: no-repeat; mask-position: center; -webkit-mask-image: url(${genre.mask}); -webkit-mask-size: contain; -webkit-mask-repeat: no-repeat; -webkit-mask-position: center;`}
+										/>
+										<h2 class="font-display text-6xl text-zinc-100 transition-colors duration-300 group-hover:text-purple-300 md:text-7xl lg:text-8xl">
+											{genre.title}
+										</h2>
+									</div>
+									<p class="max-w-xl text-lg leading-relaxed text-zinc-400 transition-colors duration-300 group-hover:text-zinc-200 md:text-xl">
+										{genre.desc}
+									</p>
+								</div>
+
+								<!-- Image Box -->
+								<div class={`flex-1 w-full w-full max-w-xl aspect-square lg:aspect-[4/3] rounded-[2.5rem] overflow-hidden relative bg-zinc-900 ${isEven ? 'slide-from-right' : 'slide-from-left'}`}>
+									<div
+										class="absolute inset-0 bg-cover bg-center transition-transform duration-700"
+										style={`background-image: url('${genre.image}')`}
+									/>
+									<div class="absolute inset-0 bg-zinc-950/30 mix-blend-multiply opacity-100 transition-opacity duration-500 group-hover:opacity-0" />
+									<div class="absolute inset-0 opacity-40 mix-blend-overlay" style="background-image: linear-gradient(to right, rgba(230, 230, 230, 0.15) 1px, transparent 1px), linear-gradient(to bottom, rgba(230, 230, 230, 0.15) 1px, transparent 1px); background-size: 20px 20px;" />
+								</div>
+							</article>
+						);
+					})
+				}
+			</div>
+		</div>
+	</section>
+</Layout>
+
+<style>
+	@reference 'tailwindcss';
+	@reference '@/global.css';
+
+	.hero-title {
+		animation: reveal-animation 1s cubic-bezier(0.77, 0, 0.175, 1) both;
+	}
+
+	.hero-subtitle {
+		animation: timeline-fade-in 1s ease 0.3s both;
+	}
+
+	@supports (animation-timeline: view()) {
+		.slide-from-left {
+			animation: slide-in-left cubic-bezier(0.4, 0, 0.2, 1) both;
+			animation-timeline: view();
+			animation-range: entry 5% cover 30%;
+		}
+
+		.slide-from-right {
+			animation: slide-in-right cubic-bezier(0.4, 0, 0.2, 1) both;
+			animation-timeline: view();
+			animation-range: entry 5% cover 30%;
+		}
+	}
+
+	@keyframes reveal-animation {
+		0% {
+			clip-path: inset(100% 0 0 0);
+		}
+		100% {
+			clip-path: inset(0 0 0 0);
+		}
+	}
+
+	@keyframes slide-in-left {
+		from {
+			opacity: 0;
+			transform: translateX(-150px);
+		}
+		to {
+			opacity: 1;
+			transform: translateX(0);
+		}
+	}
+
+	@keyframes slide-in-right {
+		from {
+			opacity: 0;
+			transform: translateX(150px);
+		}
+		to {
+			opacity: 1;
+			transform: translateX(0);
+		}
+	}
+</style>
