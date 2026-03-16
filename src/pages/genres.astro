@@ -48,49 +48,91 @@ const genres = [
 ---
 
 <Layout>
-	<section class="genres-hero relative overflow-x-clip px-6 pt-20 pb-40 lg:pb-64">
-		<!-- Decorative bg elements -->
-		<div class="absolute right-0 top-0 -z-10 h-96 w-96 rounded-full bg-purple-600/20 blur-[100px]"></div>
-		<div class="absolute bottom-0 left-0 -z-10 h-64 w-64 rounded-full bg-zinc-800/50 blur-[80px]"></div>
+	<div class="fixed inset-0 pointer-events-none z-[-2] bg-[#0a0a0a]">
+		<!-- Animated background meshes -->
+		<div class="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-purple-900/20 rounded-full blur-[120px] mix-blend-screen animate-pulse-slow"></div>
+		<div class="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] bg-blue-900/20 rounded-full blur-[120px] mix-blend-screen animate-pulse-slow" style="animation-delay: 2s;"></div>
+	</div>
 
-		<div class="mx-auto max-w-7xl">
-			<h1 class="h1 hero-title relative z-10 mb-6 text-center uppercase">Géneros Musicales</h1>
-			<p class="hero-subtitle relative z-10 mx-auto mb-16 max-w-2xl text-center text-lg text-zinc-400">
-				Explora la fascinante diversidad de sonidos que han definido culturas, generaciones emocionales y movimientos
-				alrededor de nuestro mundo.
-			</p>
+	<section class="genres-hero relative overflow-x-clip px-6 pt-32 pb-40 lg:pb-64">
+		<div class="mx-auto max-w-[1400px]">
+			<!-- Hero Header -->
+			<div class="flex flex-col items-center justify-center min-h-[40vh] mb-24 lg:mb-40 relative">
+				<div class="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:24px_24px] pointer-events-none [mask-image:radial-gradient(ellipse_at_center,black_40%,transparent_70%)]"></div>
+				
+				<h1 class="hero-title relative z-10 mb-8 text-center text-transparent bg-clip-text bg-gradient-to-b from-white via-white to-white/50 tracking-[0em] sm:text-7xl md:text-8xl lg:text-9xl font-display font-black drop-shadow-2xl">
+					GÉNEROS<br/><span class="text-purple-400">MUSICALES</span>
+				</h1>
+				<p class="hero-subtitle relative z-10 mx-auto max-w-2xl text-center text-xl md:text-2xl text-zinc-400 font-light leading-relaxed">
+					Explora la fascinante diversidad de sonidos que han definido culturas, generaciones emocionales y movimientos
+					alrededor de nuestro mundo.
+				</p>
 
-			<div class="genres-list relative z-10 flex flex-col gap-32 mt-12 md:mt-24 overflow-x-clip">
+				<!-- Scroll indicator -->
+				<div class="absolute bottom-[-5rem] left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-50 hero-subtitle">
+					<span class="text-xs uppercase tracking-[0.3em] text-zinc-500">Scroll</span>
+					<div class="w-[1px] h-12 bg-gradient-to-b from-zinc-500 to-transparent"></div>
+				</div>
+			</div>
+
+			<!-- Genres Sticky Stack -->
+			<div class="genres-stack">
 				{
 					genres.map((genre, index) => {
 						const isEven = index % 2 === 0;
 						return (
-							<article class={`genre-row group flex flex-col md:items-center gap-12 md:gap-20 ${isEven ? 'md:flex-row' : 'md:flex-row-reverse'}`}>
-								<!-- Text Content (Title & Paragraph) -->
-								<div class={`flex-1 w-full space-y-6 flex flex-col ${isEven ? 'md:items-start text-left slide-from-left' : 'md:items-end md:text-right slide-from-right'}`}>
-									<div class="relative">
-										<!-- Decorative Mask Figure behind Title -->
-										<div
-											class={`absolute -top-12 h-32 w-32 bg-purple-500/10 opacity-60 transition-all duration-500 group-hover:rotate-12 group-hover:scale-125 group-hover:bg-purple-500/30 -z-10 ${isEven ? '-left-6' : '-right-6'}`}
-											style={`mask-image: url(${genre.mask}); mask-size: contain; mask-repeat: no-repeat; mask-position: center; -webkit-mask-image: url(${genre.mask}); -webkit-mask-size: contain; -webkit-mask-repeat: no-repeat; -webkit-mask-position: center;`}
-										/>
-										<h2 class="font-display text-6xl text-zinc-100 transition-colors duration-300 group-hover:text-purple-300 md:text-7xl lg:text-8xl">
-											{genre.title}
-										</h2>
-									</div>
-									<p class="max-w-xl text-lg leading-relaxed text-zinc-400 transition-colors duration-300 group-hover:text-zinc-200 md:text-xl">
-										{genre.desc}
-									</p>
+							<article 
+								class={`genre-card group ${isEven ? 'genre-card--even' : 'genre-card--odd'}`}
+								style={`--index: ${index};`}
+							>
+								<!-- Top Badge -->
+								<div class="genre-card__badge">
+									{String(index + 1).padStart(2, '0')} / {String(genres.length).padStart(2, '0')}
 								</div>
 
-								<!-- Image Box -->
-								<div class={`flex-1 w-full w-full max-w-xl aspect-square lg:aspect-[4/3] rounded-[2.5rem] overflow-hidden relative bg-zinc-900 ${isEven ? 'slide-from-right' : 'slide-from-left'}`}>
-									<div
-										class="absolute inset-0 bg-cover bg-center transition-transform duration-700"
-										style={`background-image: url('${genre.image}')`}
-									/>
-									<div class="absolute inset-0 bg-zinc-950/30 mix-blend-multiply opacity-100 transition-opacity duration-500 group-hover:opacity-0" />
-									<div class="absolute inset-0 opacity-40 mix-blend-overlay" style="background-image: linear-gradient(to right, rgba(230, 230, 230, 0.15) 1px, transparent 1px), linear-gradient(to bottom, rgba(230, 230, 230, 0.15) 1px, transparent 1px); background-size: 20px 20px;" />
+								<!-- Background decorative text -->
+								<div class="genre-card__bg-text">
+									{genre.title}
+								</div>
+
+								<!-- Text Content -->
+								<div class="genre-card__content">
+									<div class="relative mb-6 md:mb-10">
+										<!-- Floating mask shape -->
+										<div class="genre-card__glow"></div>
+										<div class="relative inline-block">
+											<div
+												class="genre-card__shape parallax-shape"
+												style={`mask-image: url(${genre.mask}); -webkit-mask-image: url(${genre.mask});`}
+											/>
+											<h2 class="genre-card__title">
+												{genre.title}
+											</h2>
+										</div>
+									</div>
+									<div class="genre-card__desc-wrapper">
+										<div class="genre-card__desc-line"></div>
+										<p class="genre-card__desc-text">
+											{genre.desc}
+										</p>
+									</div>
+								</div>
+
+								<!-- Image Box with Parallax -->
+								<div class="genre-card__image-box group/image card-container perspective-1000">
+									<div class="genre-card__image-glow"></div>
+									
+									<div class="parallax-wrapper absolute inset-0 rounded-[inherit] overflow-hidden bg-zinc-900">
+										<div
+											class="genre-card__image"
+											style={`background-image: url('${genre.image}')`}
+										/>
+									</div>
+									
+									<!-- Glassmorphism overlay borders -->
+									<div class="genre-card__image-ring"></div>
+									<div class="genre-card__image-shadow"></div>
+									<div class="genre-card__image-grain" style="background-image: url('data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noiseFilter%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.65%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noiseFilter)%22/%3E%3C/svg%3E');"></div>
 								</div>
 							</article>
 						);
@@ -102,29 +144,23 @@ const genres = [
 </Layout>
 
 <style>
-	@reference 'tailwindcss';
-	@reference '@/global.css';
+	@reference "../global.css";
 
 	.hero-title {
 		animation: reveal-animation 1s cubic-bezier(0.77, 0, 0.175, 1) both;
 	}
 
 	.hero-subtitle {
-		animation: timeline-fade-in 1s ease 0.3s both;
+		animation: fade-up 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.4s both;
 	}
 
-	@supports (animation-timeline: view()) {
-		.slide-from-left {
-			animation: slide-in-left cubic-bezier(0.4, 0, 0.2, 1) both;
-			animation-timeline: view();
-			animation-range: entry 5% cover 30%;
-		}
+	.animate-pulse-slow {
+		animation: pulse-slow 8s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+	}
 
-		.slide-from-right {
-			animation: slide-in-right cubic-bezier(0.4, 0, 0.2, 1) both;
-			animation-timeline: view();
-			animation-range: entry 5% cover 30%;
-		}
+	@keyframes pulse-slow {
+		0%, 100% { opacity: 0.5; transform: scale(1); }
+		50% { opacity: 0.8; transform: scale(1.1); }
 	}
 
 	@keyframes reveal-animation {
@@ -136,25 +172,209 @@ const genres = [
 		}
 	}
 
-	@keyframes slide-in-left {
-		from {
-			opacity: 0;
-			transform: translateX(-150px);
-		}
-		to {
-			opacity: 1;
-			transform: translateX(0);
+	.genres-stack {
+		@apply relative z-10 w-full max-w-6xl mx-auto flex flex-col mt-24 pb-[30vh];
+		gap: 15vh;
+	}
+
+	.genre-card {
+		@apply relative flex flex-col items-center gap-6 md:gap-12 p-6 md:p-12 lg:p-16 rounded-[2.5rem] md:rounded-[4rem] bg-zinc-900/60 backdrop-blur-3xl border border-white/10 shadow-[0_30px_100px_rgba(0,0,0,0.6)] overflow-hidden;
+		
+		/* Sticky positioning for the stack effect */
+		position: sticky;
+		top: calc(5vh + (var(--index) * 20px));
+		max-height: calc(92vh - (var(--index) * 20px));
+		transform-origin: top center;
+
+		&--even { @apply md:flex-row; }
+		&--odd { @apply md:flex-row-reverse; }
+	}
+
+	.genre-card__badge {
+		@apply absolute top-8 right-10 text-xl md:text-2xl font-mono font-bold text-white/20 tracking-widest z-30 transition-colors duration-500;
+		.genre-card:hover & { @apply text-purple-400/60; }
+	}
+
+	.genre-card__bg-text {
+		@apply absolute top-1/2 -translate-y-1/2 text-[8rem] md:text-[14rem] font-black text-white/[0.02] pointer-events-none select-none -z-10 whitespace-nowrap blur-[1px] transition-transform duration-1000;
+		.genre-card:hover & { @apply scale-105; }
+		.genre-card--even & { @apply left-0 -translate-x-1/4; }
+		.genre-card--odd & { @apply right-0 translate-x-1/4; }
+	}
+
+	.genre-card__content {
+		@apply flex-1 w-full flex flex-col relative z-20 shrink-0 md:shrink;
+		.genre-card--even & { @apply md:items-start text-left; }
+		.genre-card--odd & { @apply md:items-end md:text-right; }
+	}
+
+	.genre-card__glow {
+		@apply absolute -inset-10 bg-purple-500/10 blur-2xl rounded-full opacity-0 transition-opacity duration-700 -z-10;
+		.genre-card:hover & { @apply opacity-100; }
+	}
+
+	.genre-card__shape {
+		@apply absolute -top-12 -left-12 h-24 w-24 md:h-32 md:w-32 bg-gradient-to-br from-purple-400/40 to-blue-400/40 backdrop-blur-3xl transition-all duration-700 -z-10;
+		mask-size: contain; mask-repeat: no-repeat; mask-position: center;
+		-webkit-mask-size: contain; -webkit-mask-repeat: no-repeat; -webkit-mask-position: center;
+		.genre-card:hover & { @apply rotate-[20deg] scale-[1.4] from-purple-500/60 to-blue-500/60; }
+	}
+
+	.genre-card__title {
+		@apply font-display text-5xl md:text-7xl lg:text-[7rem] font-bold text-zinc-100 transition-all duration-500 leading-none tracking-tight;
+		.genre-card:hover & { @apply text-transparent bg-clip-text bg-gradient-to-r from-white to-purple-300; }
+	}
+
+	.genre-card__desc-wrapper {
+		@apply relative block max-w-xl;
+		.genre-card--even & { @apply mr-auto; }
+		.genre-card--odd & { @apply ml-auto; }
+	}
+
+	.genre-card__desc-line {
+		@apply absolute -left-6 top-0 bottom-0 w-[2px] bg-gradient-to-b from-purple-500 to-transparent opacity-0 transition-opacity duration-500;
+		.genre-card:hover & { @apply opacity-100; }
+		.genre-card--odd & { @apply left-auto -right-6; }
+	}
+
+	.genre-card__desc-text {
+		@apply text-lg md:text-xl leading-relaxed text-zinc-400/90 transition-colors duration-500 font-light;
+		.genre-card:hover & { @apply text-zinc-200; }
+	}
+
+	.genre-card__image-box {
+		@apply w-full max-w-2xl relative aspect-[1] md:aspect-[3/4] lg:aspect-square rounded-[1.5rem] md:rounded-[2.5rem] overflow-hidden z-10 shrink;
+		min-height: 200px;
+	}
+	
+	@media (min-width: 768px) {
+		.genre-card__image-box {
+			@apply flex-1;
 		}
 	}
 
-	@keyframes slide-in-right {
-		from {
+	.genre-card__image-glow {
+		@apply absolute inset-x-0 -bottom-1/2 h-full bg-gradient-to-t from-purple-900/50 to-transparent opacity-0 transition-opacity duration-700 blur-2xl mix-blend-screen z-20 pointer-events-none;
+		.genre-card:hover & { @apply opacity-100; }
+	}
+
+	.genre-card__image {
+		@apply absolute inset-[-15%] bg-cover bg-center transition-transform duration-[1.5s] ease-out;
+		.genre-card:hover & { @apply scale-[1.05]; }
+	}
+
+	.genre-card__image-ring {
+		@apply absolute inset-0 rounded-[inherit] ring-1 ring-inset ring-white/10 z-10 transition-colors duration-500 pointer-events-none;
+		.genre-card:hover & { @apply ring-purple-500/30; }
+	}
+
+	.genre-card__image-shadow {
+		@apply absolute inset-0 rounded-[inherit] shadow-[inset_0_0_80px_rgba(0,0,0,0.8)] z-10 pointer-events-none;
+	}
+
+	.genre-card__image-grain {
+		@apply absolute inset-0 opacity-[0.15] mix-blend-overlay z-10 pointer-events-none;
+	}
+
+	@keyframes fade-up {
+		0% {
 			opacity: 0;
-			transform: translateX(150px);
+			transform: translateY(30px);
 		}
-		to {
+		100% {
 			opacity: 1;
-			transform: translateX(0);
+			transform: translateY(0);
+		}
+	}
+
+	/* Scroll-driven animations using modern CSS */
+	@supports (animation-timeline: view()) {
+		.genre-card {
+			animation: card-stack-shrink linear forwards;
+			animation-timeline: view();
+			/* Animate shrinking as the element's layout rect exits view */
+			animation-range: exit-crossing 0% exit-crossing 100%;
+		}
+
+		@keyframes card-stack-shrink {
+			to {
+				transform: scale(0.9);
+				filter: brightness(0.4) saturate(0.5);
+			}
+		}
+
+		.slide-up-text {
+			animation: slide-up-animation linear both;
+			animation-timeline: view();
+			animation-range: entry 10% cover 40%;
+		}
+
+		.slide-up-image {
+			animation: slide-up-fade linear both;
+			animation-timeline: view();
+			animation-range: entry 5% cover 40%;
+		}
+
+		.parallax-bg {
+			animation: parallax-image linear both;
+			animation-timeline: view();
+			animation-range: entry 0% cover 100%;
+		}
+		
+		.parallax-shape {
+			animation: parallax-shape-anim linear both;
+			animation-timeline: view();
+			animation-range: entry 0% cover 100%;
+		}
+
+		@keyframes slide-up-animation {
+			0% {
+				opacity: 0;
+				transform: translateY(100px);
+			}
+			100% {
+				opacity: 1;
+				transform: translateY(0);
+			}
+		}
+
+		@keyframes slide-up-fade {
+			0% {
+				opacity: 0;
+				transform: translateY(150px) scale(0.9);
+				filter: blur(10px);
+			}
+			100% {
+				opacity: 1;
+				transform: translateY(0) scale(1);
+				filter: blur(0);
+			}
+		}
+
+		@keyframes parallax-image {
+			0% {
+				transform: translateY(-15%);
+			}
+			100% {
+				transform: translateY(15%);
+			}
+		}
+		
+		@keyframes parallax-shape-anim {
+			0% {
+				transform: translateY(-30px) rotate(-10deg);
+			}
+			100% {
+				transform: translateY(30px) rotate(10deg);
+			}
+		}
+	}
+	
+	/* Fallbacks for browsers that don't support view timeline */
+	@supports not (animation-timeline: view()) {
+		.genre-row {
+			opacity: 1 !important;
+			transform: none !important;
 		}
 	}
 </style>

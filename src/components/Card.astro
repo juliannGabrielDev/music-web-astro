@@ -28,48 +28,82 @@ let {
 
 <a
 	href={href}
-	class={cn('card', className)}
+	class={cn('card group', className)}
 >
-	<h3 class="card__title">{title}</h3>
-	<Image
-		src={image}
-		alt={title}
-		class="card__image"
-		transition:name={transitionName}
-		style={{
-			maskImage: `url(${maskImage})`,
-			maskSize: 'cover',
-			maskRepeat: 'no-repeat',
-			maskPosition: 'center',
-			WebkitMaskImage: `url(${maskImage})`,
-			WebkitMaskSize: 'cover',
-			WebkitMaskRepeat: 'no-repeat',
-			WebkitMaskPosition: 'center',
-		}}
-	/>
-	<p class="card__description">{description}</p>
+	<div class="card__glow"></div>
+	<div class="card__content">
+		<h3 class="card__title">{title}</h3>
+		<div
+			class="card__image-container"
+			style={{
+				maskImage: `url(${maskImage})`,
+				maskSize: 'contain',
+				maskRepeat: 'no-repeat',
+				maskPosition: 'center',
+				WebkitMaskImage: `url(${maskImage})`,
+				WebkitMaskSize: 'contain',
+				WebkitMaskRepeat: 'no-repeat',
+				WebkitMaskPosition: 'center',
+			}}
+		>
+			<Image
+				src={image}
+				alt={title}
+				class="card__image"
+				transition:name={transitionName}
+			/>
+		</div>
+		<p class="card__description text-zinc-400 transition-colors group-hover:text-zinc-200">
+			{description}
+		</p>
+	</div>
 </a>
 
 <style>
-	@reference "tailwindcss";
+	@reference "../global.css";
 
 	.card {
-		@apply grid cursor-pointer gap-2 overflow-hidden rounded-3xl bg-zinc-200 p-6 text-left no-underline;
-		max-width: min(240px, 100%);
+		@apply relative cursor-pointer overflow-hidden rounded-4xl bg-zinc-900/40 p-1 backdrop-blur-md border border-zinc-800 transition-all duration-500 no-underline;
+		max-width: min(280px, 100%);
+		min-width: 220px;
+
+		&:hover {
+			@apply -translate-y-2 border-purple-500/50 shadow-[0_20px_40px_-15px_rgba(147,51,234,0.3)];
+		}
+
+		.card__content {
+			@apply relative z-10 flex flex-col gap-4 rounded-[calc(2.5rem-4px)] bg-zinc-950/40 p-6;
+		}
 
 		.card__title {
-			@apply z-10 col-start-1 row-start-1 text-lg font-bold;
-		}
-		.card__image {
-			@apply block aspect-square w-full object-cover object-center transition-transform duration-300 ease-out;
+			@apply font-display text-2xl text-zinc-100 transition-colors group-hover:text-purple-300;
 		}
 
-		:global(img) {
-			@apply col-start-1 row-start-1;
+		.card__image-container {
+			@apply relative aspect-square w-full overflow-hidden;
+		}
+
+		.card__image {
+			@apply block h-full w-full object-cover object-center opacity-80 transition-all duration-700 ease-out group-hover:scale-110 group-hover:rotate-1 group-hover:opacity-100;
+			filter: saturate(0.7) contrast(1.1) brightness(0.9);
 		}
 
 		&:hover .card__image {
-			@apply scale-95;
+			filter: saturate(1.1) contrast(1.1) brightness(1.1);
+		}
+
+		.card__description {
+			@apply font-sans font-medium tracking-wide text-sm uppercase opacity-80;
+		}
+
+		/* Decorative glow effect on hover */
+		.card__glow {
+			@apply absolute -inset-full z-0 bg-linear-to-tr from-transparent via-purple-500/10 to-transparent transition-transform duration-1000 opacity-0 group-hover:opacity-100;
+			transform: rotate(45deg) translateY(100%);
+		}
+
+		&:hover .card__glow {
+			transform: rotate(45deg) translateY(-100%);
 		}
 	}
 </style>

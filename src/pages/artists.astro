@@ -143,9 +143,17 @@ const slides = [...baseSlides, ...baseSlides];
 ---
 
 <Layout>
-	<section class="hero">
-		<h1 class="h1 pointer-events-none relative z-10 mb-12 uppercase">Artistas</h1>
-		<ul class="carousel">
+	<section class="hero relative pt-32 pb-20 overflow-clip">
+		<!-- Ambient glows -->
+		<div class="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-3xl h-[500px] bg-purple-600/20 blur-[120px] rounded-full pointer-events-none -z-10"></div>
+		
+		<div class="text-center mb-16 relative z-10 w-full px-6">
+			<h1 class="hero-title text-transparent bg-clip-text bg-gradient-to-b from-white via-white to-white/40 tracking-[0em] text-7xl md:text-8xl lg:text-[10rem] font-display font-black drop-shadow-2xl uppercase leading-none mx-auto">
+				Artistas
+			</h1>
+		</div>
+
+		<ul class="carousel relative z-10">
 			{
 				slides.map((slide, index) => (
 					<li class="carousel__item">
@@ -182,141 +190,245 @@ const slides = [...baseSlides, ...baseSlides];
 				))
 			}
 		</ul>
-		<div class="mx-auto mt-16 flex w-full max-w-4xl flex-col items-center px-6">
-			<div class="pointer-events-none h-1 w-24 rounded-full bg-yellow-400 opacity-30"></div>
-
-			<p
-				class="pointer-events-none mt-8 max-w-sm text-center text-sm leading-relaxed font-semibold tracking-wide text-zinc-300 md:text-base"
-			>
-				Explora mis artistas favoritos<br />
-				Desliza para descubrir más talento musical
+		<div class="mx-auto mt-20 flex w-full max-w-4xl flex-col items-center px-6 relative z-10">
+			<div class="flex items-center gap-4 opacity-60">
+				<div class="h-[1px] w-12 sm:w-24 bg-gradient-to-r from-transparent to-zinc-400"></div>
+				<span class="text-xs font-bold tracking-[0.3em] uppercase text-zinc-300">Desliza</span>
+				<div class="h-[1px] w-12 sm:w-24 bg-gradient-to-l from-transparent to-zinc-400"></div>
+			</div>
+			<p class="mt-6 max-w-md text-center text-lg leading-relaxed font-light text-zinc-400">
+				Una selección curada de voces y talentos que han definido mis gustos musicales.
 			</p>
 		</div>
 	</section>
 	<div class="container">
-		<main class="p-6">
-			<article id="adele">
-				<h2 class="h2">ADELE</h2>
-				<p class="p mb-1">
-					Adele Laurie Blue Adkins, conocida simplemente como Adele, es una cantautora y multinstrumentista británica.
-					Es una de las artistas musicales con mayores ventas del mundo, con más de 120 millones de ventas entre discos
-					y sencillos. Desde pequeña mostró interés por la música y en 2006 se egresó de la BRIT School, año en el que
-					firmó un contrato con XL Recordings, tras ser descubierta por unos demos que un amigo publicó en la red social
-					MySpace. En 2008, lanzó su álbum de estudio debut, 19, el cual se situó en la posición 1 de la lista de
-					álbumes británica y ha sido certificado ocho veces platino en Reino Unido y triple platino en Estados Unidos.
-				</p>
-				<Image src={AdeleArtist} alt="Adele en los Grammys de 2012" class="article__image" />
+		<main class="w-full flex-1 space-y-32 lg:pb-32">
+			<!-- Adele: Horizontal Split Feature -->
+			<article id="adele" class="relative grid grid-cols-1 lg:grid-cols-12 gap-8 items-center group">
+				<div class="lg:col-span-5 space-y-6 relative z-10 p-6 lg:p-10 rounded-[3rem] bg-zinc-900 border border-zinc-800 shadow-2xl backdrop-blur-xl transition-all duration-500 hover:border-purple-500/30 slide-up-content">
+					<div class="absolute -top-12 -left-8 text-[8rem] font-black text-white/5 pointer-events-none select-none tracking-tighter leading-none z-0 parallax-number">01</div>
+					<h2 class="h2 relative z-10 text-5xl md:text-6xl text-white group-hover:text-purple-300 transition-colors duration-300">ADELE</h2>
+					<p class="p relative z-10 text-zinc-400 leading-relaxed font-light">
+						Adele Laurie Blue Adkins, conocida simplemente como Adele, es una cantautora y multinstrumentista británica.
+						Es una de las artistas musicales con mayores ventas del mundo, con más de 120 millones de ventas entre discos
+						y sencillos. En 2008, lanzó su álbum de estudio debut, 19, el cual se situó en la posición 1 de la lista de
+						álbumes británica.
+					</p>
+					<div class="flex items-center gap-3 pt-4 border-t border-zinc-800/50">
+						<span class="px-4 py-1.5 rounded-full bg-purple-500/10 text-purple-300 text-xs font-bold tracking-widest uppercase border border-purple-500/20">Soul</span>
+						<span class="px-4 py-1.5 rounded-full bg-white/5 text-zinc-300 text-xs font-bold tracking-widest uppercase border border-white/10">Pop</span>
+					</div>
+				</div>
+				<div class="lg:col-span-7 relative h-[400px] lg:h-[600px] w-full rounded-[2.5rem] overflow-clip order-first lg:order-none">
+					<div class="absolute inset-0 bg-purple-900/20 mix-blend-multiply z-10 group-hover:opacity-0 transition-opacity duration-700"></div>
+					<Image src={AdeleArtist} alt="Adele en los Grammys de 2012" class="w-full h-full object-cover article__image scale-100 group-hover:scale-105 transition-transform duration-1000 ease-out" />
+					<!-- Decoration -->
+					<div class="absolute -bottom-10 -right-10 w-40 h-40 bg-purple-500/20 blur-2xl rounded-full mix-blend-screen z-20 pointer-events-none"></div>
+				</div>
 			</article>
-			<article id="top">
-				<h2 class="h2">TWENTY ONE PILOTS</h2>
-				<p class="p">
-					Twenty One Pilots es un dúo musical estadounidense de Columbus, Ohio. La banda se formó en 2009 por el
-					vocalista Tyler Joseph junto con Nick Thomas y Chris Salih, quienes la abandonaron en 2011. Desde su partida,
-					la formación ha consistido en el cantante Tyler Joseph y el baterista Josh Dun. El grupo es principalmente
-					conocido por los sencillos "Stressed Out", "Ride" y "Heathens". El grupo recibió un Premio Grammy al mejor pop
-					de dúo/grupo en los Premios Grammy de 2017.
-				</p>
-				<Image src={topArtist} alt="Twenty One Pilots en Breach" class="article__image" />
+
+			<!-- Twenty One Pilots: Bento Box Grid -->
+			<article id="top" class="relative group">
+				<div class="absolute -top-20 -right-10 text-[10rem] font-black text-white/5 pointer-events-none select-none tracking-tighter leading-none z-0 parallax-number">02</div>
+				<div class="grid grid-cols-1 md:grid-cols-3 gap-4 lg:gap-6 relative z-10">
+					<!-- Main Image Focus -->
+					<div class="md:col-span-2 h-[300px] md:h-[500px] rounded-[2.5rem] overflow-clip relative">
+						<div class="absolute inset-0 bg-gradient-to-t from-zinc-950 via-transparent to-transparent z-10 opacity-60"></div>
+						<Image src={topArtist} alt="Twenty One Pilots en Breach" class="w-full h-full object-cover article__image scale-100 group-hover:scale-105 transition-transform duration-1000 ease-out" />
+						<div class="absolute bottom-6 left-8 z-20">
+							<h2 class="h2 text-6xl md:text-7xl text-white group-hover:text-yellow-400 transition-colors duration-300 drop-shadow-lg">TWENTY ONE PILOTS</h2>
+						</div>
+					</div>
+					<!-- Content Block -->
+					<div class="md:col-span-1 p-8 lg:p-10 rounded-[2.5rem] bg-zinc-900 border border-zinc-800 flex flex-col justify-center space-y-6 transition-all duration-500 hover:border-yellow-400/30 slide-up-content">
+						<p class="p text-zinc-400 font-light leading-relaxed">
+							Dúo musical estadounidense de Columbus, Ohio. La formación consiste en el cantante Tyler Joseph y el baterista Josh Dun. El grupo es principalmente conocido por los sencillos "Stressed Out", "Ride" y "Heathens". El grupo recibió un Premio Grammy.
+						</p>
+						<div class="flex flex-wrap gap-2 pt-6">
+							<span class="px-4 py-1.5 rounded-full bg-yellow-500/10 text-yellow-500 text-xs font-bold tracking-widest uppercase border border-yellow-500/20">Alt Rock</span>
+							<span class="px-4 py-1.5 rounded-full bg-white/5 text-zinc-300 text-xs font-bold tracking-widest uppercase border border-white/10">Indie Pop</span>
+						</div>
+					</div>
+				</div>
 			</article>
-			<article id="lana-del-rey">
-				<h2 class="h2">LANA DEL REY</h2>
-				<p class="p">
-					Elizabeth Woolridge Grant, conocida artísticamente como Lana Del Rey, es una cantante, compositora, modelo,
-					actriz, escritora, productora y poetisa estadounidense. Su música se distingue por su calidad cinematográfica,
-					su estilo retro y su exploración del romance trágico, el glamur y la melancolía. Con frecuentes referencias a
-					la cultura pop contemporánea y a la época dorada de los años 1950 y 1960 en Estados Unidos.
-				</p>
-				<Image src={lanaArtist} alt="Lana Del Rey en Born To Die" class="article__image" />
+
+			<!-- Lana Del Rey: Vertical elegant -->
+			<article id="lana-del-rey" class="relative flex flex-col lg:flex-row items-center gap-12 group">
+				<div class="w-full lg:w-1/2 relative h-[500px] lg:h-[700px] rounded-full overflow-clip shadow-2xl ring-1 ring-white/10 ring-offset-8 ring-offset-zinc-950">
+					<div class="absolute inset-0 bg-orange-900/20 mix-blend-color-burn z-10 group-hover:opacity-0 transition-opacity duration-700"></div>
+					<Image src={lanaArtist} alt="Lana Del Rey en Born To Die" class="w-full h-full object-cover article__image scale-100 group-hover:scale-105 transition-transform duration-1000 ease-out" />
+				</div>
+				<div class="w-full lg:w-1/2 space-y-8 lg:pl-12 relative z-10 slide-up-content">
+					<div class="absolute -top-10 left-0 text-[12rem] font-black text-white/5 pointer-events-none select-none tracking-tighter leading-none z-0 parallax-number">03</div>
+					<h2 class="h2 text-6xl md:text-[5rem] leading-[0.9] text-white group-hover:text-orange-200 transition-colors duration-300">LANA<br/><span class="text-zinc-500">DEL REY</span></h2>
+					<div class="w-12 h-1 bg-gradient-to-r from-orange-300 to-transparent"></div>
+					<p class="p text-xl text-zinc-300 leading-relaxed font-serif italic">
+						"Elizabeth Woolridge Grant, su música se distingue por su calidad cinematográfica, su estilo retro y su exploración del romance trágico, el glamur y la melancolía."
+					</p>
+					<p class="p text-zinc-400 font-light">
+						Con frecuentes referencias a la cultura pop contemporánea y a la época dorada de los años 1950 y 1960 en Estados Unidos. Es una cantante, compositora, modelo, actriz, escritora y poetisa.
+					</p>
+				</div>
 			</article>
-			<article id="raye">
-				<h2 class="h2">RAYE</h2>
-				<p class="p">
-					Rachel Agatha Keen, conocida como RAYE, es una cantante y compositora británica. Alcanzó la fama tras la
-					publicación en 2016 de una canción de Jonas Blue, «By Your Side», en la que participó como vocalista y tuvo
-					gran popularidad en la lista de éxitos musicales de Reino Unido. Su siguiente colaboración, «You Don't Know
-					Me» junto con Jax Jones, obtuvo aún mayor notoriedad y se situó en la posición 3 en el listado de sencillos
-					británicos.
-				</p>
-				<Image src={rayeArtist} alt="Retrato de Raye" class="article__image" />
+
+			<!-- Raye: Collage Block -->
+			<article id="raye" class="relative group mt-24">
+				<div class="absolute -top-16 left-1/2 -translate-x-1/2 text-[8rem] md:text-[15rem] font-black text-white/5 pointer-events-none select-none tracking-tighter leading-none z-0 parallax-number">04</div>
+				<div class="grid grid-cols-1 md:grid-cols-12 gap-6 relative z-10">
+					<div class="md:col-span-5 flex flex-col justify-end space-y-6 p-8 rounded-[3rem] bg-zinc-900 border border-zinc-800 transition-all duration-500 hover:border-red-500/30 slide-up-content">
+						<h2 class="h2 text-7xl text-white group-hover:text-red-400 transition-colors duration-300">RAYE</h2>
+						<p class="p text-zinc-400 font-light leading-relaxed">
+							Rachel Agatha Keen es una cantante y compositora británica. Alcanzó la fama tras la publicación en 2016 de una canción de Jonas Blue, «By Your Side», en la que participó como vocalista y saltó a la popularidad global.
+						</p>
+						<div class="flex flex-wrap gap-2 pt-2">
+							<span class="px-4 py-1.5 rounded-full bg-red-500/10 text-red-400 text-xs font-bold tracking-widest uppercase border border-red-500/20">R&B</span>
+							<span class="px-4 py-1.5 rounded-full bg-white/5 text-zinc-300 text-xs font-bold tracking-widest uppercase border border-white/10">Soul</span>
+						</div>
+					</div>
+					<div class="md:col-span-7 h-[400px] md:h-[500px] rounded-[3rem] overflow-clip relative bg-zinc-800">
+						<div class="absolute inset-0 bg-gradient-to-tr from-red-900/30 to-transparent z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+						<Image src={rayeArtist} alt="Retrato de Raye" class="w-full h-full object-cover article__image object-top scale-100 group-hover:scale-105 transition-transform duration-1000 ease-out" />
+					</div>
+				</div>
 			</article>
-			<article id="katy-perry">
-				<h2 class="h2">KATY PERRY</h2>
-				<p class="p">
-					Katheryn Elizabeth Hudson, conocida artísticamente como Katy Perry, es una cantante, actriz, modelo,
-					productora discográfica, bailarina, compositora, personalidad de televisión y empresaria estadounidense. Es
-					una de las artistas musicales con mayores ventas, con más de 151 millones de unidades vendidas en todo el
-					mundo. Ha dejado una influencia en la música pop gracias a su estilo camp, por lo que Vogue y Rolling Stone la
-					han apodado la «Reina del Camp».
-				</p>
-				<Image src={katyArtist} alt="Retrato de Katy Perry" class="article__image" />
-			</article>
-			<article id="amy-winehouse">
-				<h2 class="h2">AMY WINEHOUSE</h2>
-				<p class="p">
-					Amy Jade Winehouse fue una cantante, compositora y multiinstrumentista británica. Es conocida por su poderosa
-					y profunda voz de contralto y su ecléctica mezcla de géneros musicales, que incluyen soul, jazz, R&B y ritmos
-					caribeños como el ska. Proveniente de una familia con una fuerte tradición musical ligada al jazz, comenzó su
-					carrera artística cuando aún era una adolescente, actuando en pequeños clubes del género en Londres. Su debut
-					en la escena musical británica se produjo en 2003 con el álbum Frank, que, aunque elogiado por la crítica
-					musical, inicialmente no logró buenas ventas.
-				</p>
-				<Image src={AmyArtist} alt="Retrato de Amy Winehouse" class="article__image" />
-			</article>
+
+			<!-- Katy Perry & Amy: Split Screen -->
+			<div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 mt-32">
+				<article id="katy-perry" class="relative group space-y-6">
+					<div class="absolute -top-12 -left-6 text-[8rem] font-black text-white/5 pointer-events-none select-none tracking-tighter leading-none z-0 parallax-number">05</div>
+					<div class="h-[400px] rounded-[3rem] overflow-clip relative">
+						<Image src={katyArtist} alt="Katy Perry" class="w-full h-full object-cover article__image scale-100 group-hover:scale-105 transition-transform duration-1000 ease-out" />
+					</div>
+					<h2 class="h2 text-5xl text-white group-hover:text-pink-400 transition-colors duration-300 relative z-10 slide-up-content">KATY PERRY</h2>
+					<p class="p text-zinc-400 font-light relative z-10 slide-up-content">
+						Es una de las artistas musicales con mayores ventas, con más de 151 millones de unidades vendidas en todo el mundo. Ha dejado una enorme influencia en la música pop gracias a su estilo camp y estética ultra-colorida.
+					</p>
+					<div class="flex gap-2 relative z-10 slide-up-content">
+						<span class="px-4 py-1.5 rounded-full bg-pink-500/10 text-pink-400 text-xs font-bold tracking-widest uppercase border border-pink-500/20">Pop</span>
+					</div>
+				</article>
+
+				<article id="amy-winehouse" class="relative group space-y-6 pt-12 lg:pt-24 lg:-mt-24">
+					<div class="absolute -top-0 -left-6 text-[8rem] font-black text-white/5 pointer-events-none select-none tracking-tighter leading-none z-0 parallax-number">06</div>
+					<div class="h-[400px] rounded-[3rem] overflow-clip relative">
+						<div class="absolute inset-0 bg-stone-900/30 mix-blend-multiply z-10 group-hover:opacity-0 transition-opacity duration-500"></div>
+						<Image src={AmyArtist} alt="Amy Winehouse" class="w-full h-full object-cover article__image scale-100 group-hover:scale-105 transition-transform duration-1000 ease-out grayscale hover:grayscale-0" />
+					</div>
+					<h2 class="h2 text-5xl text-white group-hover:text-stone-300 transition-colors duration-300 relative z-10 slide-up-content">AMY WINEHOUSE</h2>
+					<p class="p text-zinc-400 font-light relative z-10 slide-up-content">
+						Conocida por su poderosa y profunda voz de contralto y su ecléctica mezcla de géneros musicales, que incluyen soul, jazz, R&B y ritmos caribeños como el ska. Debutó con el elogiado álbum Frank.
+					</p>
+					<div class="flex gap-2 relative z-10 slide-up-content">
+						<span class="px-4 py-1.5 rounded-full bg-stone-500/10 text-stone-300 text-xs font-bold tracking-widest uppercase border border-stone-500/20">Jazz / Soul</span>
+					</div>
+				</article>
+			</div>
 		</main>
-		<nav class="toc" aria-label="Índice de artistas">
-			<ul>
-				<li><a href="#adele">ADELE</a></li>
-				<li><a href="#top">TWENTY ONE PILOTS</a></li>
-				<li><a href="#lana-del-rey">LANA DEL REY</a></li>
-				<li><a href="#raye">RAYE</a></li>
-				<li><a href="#katy-perry">KATY PERRY</a></li>
-				<li><a href="#amy-winehouse">AMY WINEHOUSE</a></li>
-			</ul>
-		</nav>
+		<aside class="toc-container order-1 lg:order-2 w-full lg:w-[320px] xl:w-[380px] shrink-0">
+			<nav class="toc" aria-label="Índice de artistas">
+				<div class="flex items-center gap-3 mb-8 px-2">
+					<div class="w-2 h-2 rounded-full bg-purple-500 animate-pulse"></div>
+					<h3 class="text-xs font-bold tracking-[0.2em] text-zinc-400 uppercase">Directorio</h3>
+				</div>
+				<ul>
+					<li>
+						<a href="#adele" class="group">
+							<div class="flex items-center gap-4">
+								<span class="text-xs font-mono text-zinc-500 transition-colors group-hover:text-purple-400">01</span>
+								<span class="font-display tracking-widest text-lg text-zinc-300 transition-colors group-hover:text-white">ADELE</span>
+							</div>
+							<svg class="w-4 h-4 text-zinc-500 opacity-0 -translate-x-2 transition-all duration-300 group-hover:opacity-100 group-hover:translate-x-0 group-hover:text-purple-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+						</a>
+					</li>
+					<li>
+						<a href="#top" class="group">
+							<div class="flex items-center gap-4">
+								<span class="text-xs font-mono text-zinc-500 transition-colors group-hover:text-yellow-400">02</span>
+								<span class="font-display tracking-widest text-lg text-zinc-300 transition-colors group-hover:text-white">TWENTY ONE PILOTS</span>
+							</div>
+							<svg class="w-4 h-4 text-zinc-500 opacity-0 -translate-x-2 transition-all duration-300 group-hover:opacity-100 group-hover:translate-x-0 group-hover:text-yellow-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+						</a>
+					</li>
+					<li>
+						<a href="#lana-del-rey" class="group">
+							<div class="flex items-center gap-4">
+								<span class="text-xs font-mono text-zinc-500 transition-colors group-hover:text-orange-300">03</span>
+								<span class="font-display tracking-widest text-lg text-zinc-300 transition-colors group-hover:text-white">LANA DEL REY</span>
+							</div>
+							<svg class="w-4 h-4 text-zinc-500 opacity-0 -translate-x-2 transition-all duration-300 group-hover:opacity-100 group-hover:translate-x-0 group-hover:text-orange-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+						</a>
+					</li>
+					<li>
+						<a href="#raye" class="group">
+							<div class="flex items-center gap-4">
+								<span class="text-xs font-mono text-zinc-500 transition-colors group-hover:text-red-400">04</span>
+								<span class="font-display tracking-widest text-lg text-zinc-300 transition-colors group-hover:text-white">RAYE</span>
+							</div>
+							<svg class="w-4 h-4 text-zinc-500 opacity-0 -translate-x-2 transition-all duration-300 group-hover:opacity-100 group-hover:translate-x-0 group-hover:text-red-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+						</a>
+					</li>
+					<li>
+						<a href="#katy-perry" class="group">
+							<div class="flex items-center gap-4">
+								<span class="text-xs font-mono text-zinc-500 transition-colors group-hover:text-pink-400">05</span>
+								<span class="font-display tracking-widest text-lg text-zinc-300 transition-colors group-hover:text-white">KATY PERRY</span>
+							</div>
+							<svg class="w-4 h-4 text-zinc-500 opacity-0 -translate-x-2 transition-all duration-300 group-hover:opacity-100 group-hover:translate-x-0 group-hover:text-pink-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+						</a>
+					</li>
+					<li>
+						<a href="#amy-winehouse" class="group">
+							<div class="flex items-center gap-4">
+								<span class="text-xs font-mono text-zinc-500 transition-colors group-hover:text-stone-400">06</span>
+								<span class="font-display tracking-widest text-lg text-zinc-300 transition-colors group-hover:text-white">AMY WINEHOUSE</span>
+							</div>
+							<svg class="w-4 h-4 text-zinc-500 opacity-0 -translate-x-2 transition-all duration-300 group-hover:opacity-100 group-hover:translate-x-0 group-hover:text-stone-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+						</a>
+					</li>
+				</ul>
+			</nav>
+		</aside>
 	</div>
 </Layout>
 
 <style>
-	@reference "tailwindcss";
+	@reference "../global.css";
 
 	.hero {
-		@apply py-12;
-
-		h1 {
-			animation: reveal-title 1s cubic-bezier(0.77, 0, 0.175, 1);
+		.hero-title {
+			animation: reveal-title 1.2s cubic-bezier(0.16, 1, 0.3, 1) both;
 		}
 	}
 	.container {
-		@apply grid mx-auto max-w-7xl gap-6 lg:gap-0;
-
-		@media (width >= 64rem) {
-			grid-template-columns: auto 300px;
-		}
-	}
-	main {
-		@apply space-y-20 border border-zinc-800 lg:mb-6 order-2 lg:order-1;
+		@apply flex flex-col lg:flex-row gap-12 max-w-[1400px] mx-auto px-6 pb-24;
 	}
 	.toc {
-		@apply bg-zinc-200 p-4 rounded-3xl lg:sticky lg:top-22 lg:self-start h-fit w-fit ml-6 order-1 lg:order-2;
 		scroll-target-group: auto;
+		@apply bg-zinc-900/40 backdrop-blur-3xl p-8 rounded-[2.5rem] border border-white/5 lg:sticky lg:top-28 shadow-2xl;
+		ul {
+			@apply flex flex-col gap-2;
+		}
 		a {
-			@apply block rounded-xl px-3 py-2 text-zinc-700 transition-colors;
+			@apply w-full flex items-center justify-between rounded-2xl px-4 py-3 transition-all duration-300 border border-transparent;
+		}
+
+		a:hover {
+			@apply bg-white/5 border-white/10 pl-6;
 		}
 
 		a:target-current {
-			@apply font-black bg-zinc-800 text-zinc-100;
+			@apply bg-white/10 border-white/10;
 		}
 
-		ul {
-			@apply space-y-1;
+		a:target-current span.font-display {
+			@apply text-white;
 		}
 	}
 	article {
-		@apply space-y-6;
+		scroll-margin-top: 6rem;
 	}
 	.article__image {
-		@apply mx-auto rounded-3xl object-cover;
-		width: min(100%, 600px);
+		@apply w-full h-full object-cover;
 	}
 
 	@supports (animation-timeline: view()) {
@@ -324,6 +436,34 @@ const slides = [...baseSlides, ...baseSlides];
 			animation: auto linear reveal-image both;
 			animation-timeline: view();
 			animation-range: entry 15% cover 45%;
+		}
+
+		.slide-up-content {
+			animation: slide-up-anim linear both;
+			animation-timeline: view();
+			animation-range: entry 10% cover 30%;
+		}
+
+		.parallax-number {
+			animation: parallax-number-anim linear both;
+			animation-timeline: view();
+			animation-range: entry 0% cover 100%;
+		}
+
+		@keyframes slide-up-anim {
+			0% {
+				opacity: 0;
+				transform: translateY(60px);
+			}
+			100% {
+				opacity: 1;
+				transform: translateY(0);
+			}
+		}
+
+		@keyframes parallax-number-anim {
+			0% { transform: translateY(-50px); }
+			100% { transform: translateY(50px); }
 		}
 	}
 	.carousel {

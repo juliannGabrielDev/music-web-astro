@@ -71,28 +71,56 @@ const maskMap = {
 ---
 
 <Layout>
-	<section class="hero">
-		<div class="hero__content">
-			<h1 class="text-center md:text-left hero-title">
-				<span class="h1 mt-16">Historia</span><br /><span class="text-2xl font-bold text-zinc-200 md:text-3xl"
-					>de la Música</span
-				>
-			</h1>
-			<div
-				class={`artist-figure relative flex h-full items-center justify-center overflow-hidden shadow-2xl transition-shadow duration-300`}
-				style={`mask-image: url(${PixelTriangle.src}); mask-size: contain; mask-repeat: no-repeat; mask-position: center; -webkit-mask-image: url(${PixelTriangle.src}); -webkit-mask-size: contain; -webkit-mask-repeat: no-repeat; -webkit-mask-position: center;`}
-			>
-				<Image
-					src={HeroImage}
-					alt="Imagen de portada"
-					class="pointer-events-none h-full w-full object-contain"
-					draggable="false"
-				/>
+	<section class="hero relative flex mx-auto max-w-[1440px] items-center justify-center min-h-[90vh] overflow-clip pt-24 pb-12 px-4 sm:px-6">
+		<div class="hero__content relative z-10 w-full rounded-[3rem] bg-purple-600 h-full flex flex-col items-center justify-center px-6 py-16 lg:px-16 overflow-clip shadow-[0_20px_60px_-15px_rgba(147,51,234,0.4)]">
+			<!-- Background Glows Inside Card -->
+			<div class="absolute inset-0 pointer-events-none z-0">
+				<div class="absolute top-[-20%] right-[-10%] w-[60%] h-[60%] bg-white/10 mix-blend-overlay rounded-full blur-[120px] animate-pulse-slow"></div>
+				<div class="absolute bottom-[-20%] left-[-10%] w-[50%] h-[50%] bg-purple-400/20 mix-blend-screen rounded-full blur-[100px] animate-pulse-slow" style="animation-delay: 2s;"></div>
+				<!-- Grid Pattern Inside Card -->
+				<div class="absolute inset-x-0 bottom-0 h-full bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.06)_1px,transparent_1px)] bg-[size:32px_32px] pointer-events-none [mask-image:radial-gradient(ellipse_at_bottom,black_40%,transparent_70%)] -z-10"></div>
+			</div>
+
+			<div class="text-center relative w-full mb-8 z-20">
+				<h1 class="hero-title font-display font-black tracking-tighter uppercase leading-[0.85] drop-shadow-2xl text-white">
+					<span class="block text-5xl sm:text-7xl md:text-8xl lg:text-[9rem]">HISTORIA</span>
+					<span class="block text-4xl sm:text-6xl md:text-7xl lg:text-[8rem] text-purple-200 mt-2 md:mt-0 opacity-80 mix-blend-luminosity">DE LA MÚSICA</span>
+				</h1>
+			</div>
+
+			<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 w-full items-center mt-12 md:mt-20 z-20">
+				<div class="lg:col-span-6 order-2 lg:order-1 flex flex-col items-center lg:items-start space-y-8">
+					<p class="text-lg md:text-xl text-purple-100 font-medium leading-relaxed text-center lg:text-left max-w-lg hero-subtitle opacity-0 drop-shadow-md">
+						Un viaje a través del tiempo explorando la evolución sónica de la humanidad. Desde los primeros ecos de la antigüedad hasta los ritmos digitales del siglo XXI.
+					</p>
+					
+					<div class="flex items-center gap-4 hero-subtitle opacity-0" style="animation-delay: 0.6s;">
+						<a href="#timeline" class="px-8 py-4 rounded-full bg-zinc-950 text-white font-bold tracking-widest uppercase text-sm hover:bg-zinc-800 hover:scale-105 hover:shadow-xl transition-all duration-300 flex items-center gap-3">
+							Explorar Eras
+							<svg width="16" height="16" viewBox="0 0 24 24" fill="none" class="animate-bounce"><path d="M12 5v14M5 12l7 7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+						</a>
+					</div>
+				</div>
+
+				<div class="lg:col-span-6 order-1 lg:order-2 w-full h-[350px] md:h-[450px] relative hero-image opacity-0 rounded-4xl overflow-hidden">
+						<Image
+							src={HeroImage}
+							alt="Collage de la historia de la música"
+							class="pointer-events-none w-full h-full object-cover opacity-90 transition-all duration-1000 scale-100 hover:scale-110"
+							draggable="false"
+						/>
+						<div class="absolute inset-0 opacity-[0.25] mix-blend-overlay pointer-events-none bg-[radial-gradient(ellipse_at_center,transparent_0%,black_100%)]"></div>
+					</div>
+					
+					<!-- Floating decorative elements over the purple background -->
+					<div class="absolute -top-12 -right-8 w-32 h-32 md:w-48 md:h-48 bg-white/20 backdrop-blur-2xl rounded-[3rem] z-10 animate-float shadow-xl border border-white/20" style={`mask-image: url(${ShapeCookie4.src}); mask-size: contain; mask-repeat: no-repeat; mask-position: center; -webkit-mask-image: url(${ShapeCookie4.src}); -webkit-mask-size: contain; -webkit-mask-repeat: no-repeat; -webkit-mask-position: center;`}></div>
+					<div class="absolute -bottom-12 -left-8 w-24 h-24 md:w-32 md:h-32 bg-purple-300/30 backdrop-blur-2xl rounded-full z-10 animate-float-delayed shadow-xl border border-white/20" style={`mask-image: url(${ShapeFlower.src}); mask-size: contain; mask-repeat: no-repeat; mask-position: center; -webkit-mask-image: url(${ShapeFlower.src}); -webkit-mask-size: contain; -webkit-mask-repeat: no-repeat; -webkit-mask-position: center;`}></div>
+				</div>
 			</div>
 		</div>
 	</section>
-	<main>
-		<section class="timeline-section relative py-20 overflow-hidden">
+	<main id="timeline">
+		<section class="timeline-section relative py-20 overflow-clip">
 			<!-- Decorative background elements -->
 			<div class="absolute top-1/4 left-0 w-64 h-64 bg-purple-900/10 rounded-full blur-3xl -z-10 pointer-events-none"></div>
 			<div class="absolute bottom-1/4 right-0 w-96 h-96 bg-purple-800/10 rounded-full blur-3xl -z-10 pointer-events-none"></div>
@@ -116,7 +144,7 @@ const maskMap = {
 								
 								<!-- Content Card -->
 								<a href={`/eras/${era.id}`} class={`w-full md:w-[45%] flex flex-col ${isEven ? 'items-center md:items-end text-center md:text-right' : 'items-center md:items-start text-center md:text-left'} relative z-10 group no-underline block focus:outline-none`}>
-									<div class="w-full max-w-md p-8 rounded-4xl bg-zinc-900/40 backdrop-blur-md border border-zinc-800 transition-all duration-300 group-hover:-translate-y-2 group-hover:border-purple-500/50 group-hover:shadow-[0_10px_30px_-15px_rgba(147,51,234,0.3)] relative overflow-hidden flex flex-col cursor-pointer">
+									<div class="w-full max-w-md p-8 rounded-4xl bg-zinc-900/40 backdrop-blur-md border border-zinc-800 transition-all duration-300 group-hover:-translate-y-2 group-hover:border-purple-500/50 group-hover:shadow-[0_10px_30px_-15px_rgba(147,51,234,0.3)] relative overflow-clip flex flex-col cursor-pointer">
 										
 										<!-- Background Image & Grid Overlay (Visible on Hover) -->
 										<div class="absolute inset-0 z-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100">
@@ -147,7 +175,7 @@ const maskMap = {
 			</div>
 		</section>
 
-		<section class="instrument-section relative space-y-5 overflow-hidden rounded-4xl bg-zinc-900 px-6 py-18">
+		<section class="instrument-section relative space-y-5 overflow-clip rounded-4xl bg-zinc-900 px-6 py-18">
 			<div
 				class="cookie-deco"
 				style={`mask-image: url(${ShapeCookie4.src}); -webkit-mask-image: url(${ShapeCookie4.src});`}
@@ -157,7 +185,7 @@ const maskMap = {
 			<p class="p mx-auto max-w-3xl text-center">
 				Explora instrumentos que marcaron cambios técnicos, estéticos y culturales a lo largo de la historia.
 			</p>
-			<div class="instrument-list flex flex-wrap justify-center gap-4">
+			<div class="instrument-grid grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 px-4 max-w-7xl mx-auto">
 				{
 					instruments.map((instrument) => (
 						<Card
@@ -177,17 +205,84 @@ const maskMap = {
 </Layout>
 
 <style>
-	@reference 'tailwindcss';
+	@reference '../global.css';
 
-	.hero {
-		@apply p-6;
-	}
 	.hero__content {
-		@apply mx-auto flex max-w-7xl flex-col justify-between gap-6 rounded-4xl bg-purple-600 p-12 lg:flex-row;
-		min-height: max(300px, 80vh);
-		height: max(300px, 80vh);
 		animation: reveal-animation 1s cubic-bezier(0.77, 0, 0.175, 1);
 	}
+	
+	.hero-title {
+		animation: title-reveal 1.2s cubic-bezier(0.16, 1, 0.3, 1) both;
+	}
+	
+	.hero-subtitle {
+		animation: fade-up 1s cubic-bezier(0.16, 1, 0.3, 1) 0.4s both;
+	}
+	
+	.hero-image {
+		animation: fade-scale-up 1.5s cubic-bezier(0.16, 1, 0.3, 1) 0.2s both;
+	}
+
+	.animate-float {
+		animation: float 6s ease-in-out infinite;
+	}
+
+	.animate-float-delayed {
+		animation: float 7s ease-in-out 3s infinite;
+	}
+
+	.animate-pulse-slow {
+		animation: pulse-op 8s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+	}
+
+	@keyframes float {
+		0% { transform: translateY(0px) rotate(0deg); }
+		50% { transform: translateY(-20px) rotate(5deg); }
+		100% { transform: translateY(0px) rotate(0deg); }
+	}
+
+	@keyframes pulse-op {
+		0%, 100% { opacity: 0.5; transform: scale(1); }
+		50% { opacity: 0.8; transform: scale(1.05); }
+	}
+
+	@keyframes fade-scale-up {
+		0% {
+			opacity: 0;
+			transform: scale(0.95) translateY(30px);
+			filter: blur(10px);
+		}
+		100% {
+			opacity: 1;
+			transform: scale(1) translateY(0);
+			filter: blur(0);
+		}
+	}
+
+	@keyframes fade-up {
+		0% {
+			opacity: 0;
+			transform: translateY(20px);
+		}
+		100% {
+			opacity: 1;
+			transform: translateY(0);
+		}
+	}
+
+	@keyframes title-reveal {
+		0% {
+			opacity: 0;
+			transform: translateY(40px) scale(0.98);
+			filter: blur(10px);
+		}
+		100% {
+			opacity: 1;
+			transform: translateY(0) scale(1);
+			filter: blur(0);
+		}
+	}
+
 	main {
 		@apply p-6;
 	}
@@ -197,32 +292,32 @@ const maskMap = {
 	}
 
 	/* Fallback: visibles sin animacion en navegadores sin soporte */
-	.instrument-list > :global(.instrument-card) {
+	.instrument-grid > :global(.instrument-card) {
 		opacity: 1;
 	}
 
 	@supports (animation-timeline: view()) {
-		.instrument-list > :global(.instrument-card) {
+		.instrument-grid > :global(.instrument-card) {
 			animation: pop-in ease both;
 			/* Enlazamos a la visibilidad de toda la seccion en lugar de la tarjeta individual */
 			animation-timeline: --section-timeline;
 		}
 
-		/* Escalonado exagerado: cada tarjeta entra con un delay de scroll mucho mayor */
-		.instrument-list > :global(.instrument-card):nth-child(1) {
-			animation-range: entry 20% entry 55%;
+		/* Escalonado: cada tarjeta entra con un delay de scroll */
+		.instrument-grid > :global(.instrument-card):nth-child(1) {
+			animation-range: entry 5% entry 30%;
 		}
-		.instrument-list > :global(.instrument-card):nth-child(2) {
-			animation-range: entry 35% entry 70%;
+		.instrument-grid > :global(.instrument-card):nth-child(2) {
+			animation-range: entry 10% entry 35%;
 		}
-		.instrument-list > :global(.instrument-card):nth-child(3) {
-			animation-range: entry 50% entry 85%;
+		.instrument-grid > :global(.instrument-card):nth-child(3) {
+			animation-range: entry 15% entry 40%;
 		}
-		.instrument-list > :global(.instrument-card):nth-child(4) {
-			animation-range: entry 65% entry 100%;
+		.instrument-grid > :global(.instrument-card):nth-child(4) {
+			animation-range: entry 20% entry 45%;
 		}
-		.instrument-list > :global(.instrument-card):nth-child(5) {
-			animation-range: entry 80% entry 115%;
+		.instrument-grid > :global(.instrument-card):nth-child(5) {
+			animation-range: entry 25% entry 50%;
 		}
 	}
 
@@ -290,9 +385,5 @@ const maskMap = {
 			opacity: 1;
 			transform: translateY(0) scale(1);
 		}
-	}
-
-	.hero-title {
-		animation: reveal-animation 1s cubic-bezier(0.77, 0, 0.175, 1) 0.5s both;
 	}
 </style>
