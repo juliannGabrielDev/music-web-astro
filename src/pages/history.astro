@@ -1,0 +1,389 @@
+---
+import Layout from '../layouts/Layout.astro';
+import HeroImage from '../assets/images/historia-musica-hero.webp';
+import PixelTriangle from '../assets/figures/pixel-triangle.svg';
+import ShapeCircle from '../assets/figures/Circle.svg';
+import ShapeFlower from '../assets/figures/flower.svg';
+import ShapeGhost from '../assets/figures/ghost-ish.svg';
+import ShapePill from '../assets/figures/pill.svg';
+import ShapeSoftBoom from '../assets/figures/soft-boom.svg';
+import ShapeCookie4 from '../assets/figures/sided-cookie-4.svg';
+import ShapeSquare from '../assets/figures/Square.svg';
+import ShapeTriangle from '../assets/figures/triangle.svg';
+import ShapePuffyDiamond from '../assets/figures/puffy-diamond.svg';
+import ShapePixelCircle from '../assets/figures/pixel-circle.svg';
+import { Image } from 'astro:assets';
+import Card from '../components/Card.astro';
+import { instruments } from '../data/instruments';
+import { eras } from '../data/eras';
+
+// Import instrument images
+import ImageLaud from '../assets/instruments/laud.webp';
+import ImageOrgano from '../assets/instruments/organo-de-tubos.webp';
+import ImagePiano from '../assets/instruments/piano.webp';
+import ImageSintetizador from '../assets/instruments/sintetizador.webp';
+import ImageViolin from '../assets/instruments/violin.webp';
+
+// Import era images
+import EraAntiguedad from '../assets/eras/musica-antiguedad.webp';
+import EraEdadMedia from '../assets/eras/musica-edad-media.webp';
+import EraRenacimiento from '../assets/eras/musica-renacimiento.webp';
+import EraBarroco from '../assets/eras/musica-barroco.webp';
+import EraClasicismo from '../assets/eras/musica-clasicismo.webp';
+import EraRomanticismo from '../assets/eras/musica-romanticismo.webp';
+import EraSigloXX from '../assets/eras/musica-siglo-xx.webp';
+
+const eraImageMap = {
+	'musica-antiguedad': EraAntiguedad,
+	'musica-edad-media': EraEdadMedia,
+	'musica-renacimiento': EraRenacimiento,
+	'musica-barroco': EraBarroco,
+	'musica-clasicismo': EraClasicismo,
+	'musica-romanticismo': EraRomanticismo,
+	'musica-siglo-xx': EraSigloXX,
+};
+
+const instrumentImageMap = {
+	laud: ImageLaud,
+	'organo-de-tubos': ImageOrgano,
+	piano: ImagePiano,
+	sintetizador: ImageSintetizador,
+	violin: ImageViolin,
+};
+
+const eraMaskMap = {
+	circle: ShapeCircle.src,
+	square: ShapeSquare.src,
+	triangle: ShapeTriangle.src,
+	puffyDiamond: ShapePuffyDiamond.src,
+	pixelCircle: ShapePixelCircle.src,
+	flower: ShapeFlower.src,
+	softBoom: ShapeSoftBoom.src,
+};
+
+const maskMap = {
+	circle: ShapeCircle.src,
+	flower: ShapeFlower.src,
+	ghost: ShapeGhost.src,
+	pill: ShapePill.src,
+	softBoom: ShapeSoftBoom.src,
+};
+---
+
+<Layout>
+	<section class="hero relative flex mx-auto max-w-[1440px] items-center justify-center min-h-[90vh] overflow-clip pt-24 pb-12 px-4 sm:px-6">
+		<div class="hero__content relative z-10 w-full rounded-[3rem] bg-purple-600 h-full flex flex-col items-center justify-center px-6 py-16 lg:px-16 overflow-clip shadow-[0_20px_60px_-15px_rgba(147,51,234,0.4)]">
+			<!-- Background Glows Inside Card -->
+			<div class="absolute inset-0 pointer-events-none z-0">
+				<div class="absolute top-[-20%] right-[-10%] w-[60%] h-[60%] bg-white/10 mix-blend-overlay rounded-full blur-[120px] animate-pulse-slow"></div>
+				<div class="absolute bottom-[-20%] left-[-10%] w-[50%] h-[50%] bg-purple-400/20 mix-blend-screen rounded-full blur-[100px] animate-pulse-slow" style="animation-delay: 2s;"></div>
+				<!-- Grid Pattern Inside Card -->
+				<div class="absolute inset-x-0 bottom-0 h-full bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.06)_1px,transparent_1px)] bg-[size:32px_32px] pointer-events-none [mask-image:radial-gradient(ellipse_at_bottom,black_40%,transparent_70%)] -z-10"></div>
+			</div>
+
+			<div class="text-center relative w-full mb-8 z-20">
+				<h1 class="hero-title font-display font-black tracking-normal uppercase leading-[0.85] drop-shadow-2xl text-white">
+					<span class="block text-5xl sm:text-7xl md:text-8xl lg:text-[9rem]">HISTORIA</span>
+					<span class="block text-4xl sm:text-6xl md:text-7xl lg:text-[8rem] text-purple-200 mt-2 md:mt-0 opacity-80 mix-blend-luminosity">DE LA MÚSICA</span>
+				</h1>
+			</div>
+
+			<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 w-full items-center mt-12 md:mt-20 z-20">
+				<div class="lg:col-span-6 order-2 lg:order-1 flex flex-col items-center lg:items-start space-y-8">
+					<p class="text-lg md:text-xl text-purple-100 font-medium leading-relaxed text-center lg:text-left max-w-lg hero-subtitle opacity-0 drop-shadow-md">
+						Un viaje a través del tiempo explorando la evolución sónica de la humanidad. Desde los primeros ecos de la antigüedad hasta los ritmos digitales del siglo XXI.
+					</p>
+					
+					<div class="flex items-center gap-4 hero-subtitle opacity-0" style="animation-delay: 0.6s;">
+						<a href="#timeline" class="px-8 py-4 rounded-full bg-zinc-950 text-white font-bold tracking-widest uppercase text-sm hover:bg-zinc-800 hover:scale-105 hover:shadow-xl transition-all duration-300 flex items-center gap-3">
+							Explorar Eras
+							<svg width="16" height="16" viewBox="0 0 24 24" fill="none" class="animate-bounce"><path d="M12 5v14M5 12l7 7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+						</a>
+					</div>
+				</div>
+
+				<div class="lg:col-span-6 order-1 lg:order-2 w-full h-[350px] md:h-[450px] relative hero-image opacity-0 rounded-4xl overflow-hidden">
+						<Image
+							src={HeroImage}
+							alt="Collage de la historia de la música"
+							class="pointer-events-none w-full h-full object-cover opacity-90 transition-all duration-1000 scale-100 hover:scale-110"
+							draggable="false"
+						/>
+						<div class="absolute inset-0 opacity-[0.25] mix-blend-overlay pointer-events-none bg-[radial-gradient(ellipse_at_center,transparent_0%,black_100%)]"></div>
+					</div>
+					
+					<!-- Floating decorative elements over the purple background -->
+					<div class="absolute -top-12 -right-8 w-32 h-32 md:w-48 md:h-48 bg-white/20 backdrop-blur-2xl rounded-[3rem] z-10 animate-float shadow-xl border border-white/20" style={`mask-image: url(${ShapeCookie4.src}); mask-size: contain; mask-repeat: no-repeat; mask-position: center; -webkit-mask-image: url(${ShapeCookie4.src}); -webkit-mask-size: contain; -webkit-mask-repeat: no-repeat; -webkit-mask-position: center;`}></div>
+					<div class="absolute -bottom-12 -left-8 w-24 h-24 md:w-32 md:h-32 bg-purple-300/30 backdrop-blur-2xl rounded-full z-10 animate-float-delayed shadow-xl border border-white/20" style={`mask-image: url(${ShapeFlower.src}); mask-size: contain; mask-repeat: no-repeat; mask-position: center; -webkit-mask-image: url(${ShapeFlower.src}); -webkit-mask-size: contain; -webkit-mask-repeat: no-repeat; -webkit-mask-position: center;`}></div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<main id="timeline">
+		<section class="timeline-section relative py-20 overflow-clip">
+			<!-- Decorative background elements -->
+			<div class="absolute top-1/4 left-0 w-64 h-64 bg-purple-900/10 rounded-full blur-3xl -z-10 pointer-events-none"></div>
+			<div class="absolute bottom-1/4 right-0 w-96 h-96 bg-purple-800/10 rounded-full blur-3xl -z-10 pointer-events-none"></div>
+			
+			<h2 class="font-display text-center text-5xl text-zinc-100 mb-16 relative z-10">Eras Musicales</h2>
+			
+			<div class="timeline-container relative mx-auto max-w-6xl px-6">
+				<!-- Central Line -->
+				<div class="absolute left-1/2 top-4 bottom-4 w-1 bg-linear-to-b from-purple-800/20 via-purple-600/50 to-purple-800/20 -translate-x-1/2 hidden md:block z-0"></div>
+				
+				<div class="space-y-16">
+					{eras.map((era, index) => {
+						const isEven = index % 2 === 0;
+						const maskSrc = eraMaskMap[era.maskKey];
+						return (
+							<div class={`timeline-item relative flex flex-col md:flex-row items-center justify-between gap-8 ${isEven ? '' : 'md:flex-row-reverse'}`}>
+								<!-- Node Point in Center -->
+								<div class="hidden md:flex absolute left-1/2 -translate-x-1/2 w-10 h-10 bg-zinc-950 rounded-full z-10 items-center justify-center border-2 border-purple-500 shadow-[0_0_15px_rgba(147,51,234,0.3)]">
+									<div class="w-3 h-3 bg-purple-400 rounded-full"></div>
+								</div>
+								
+								<!-- Content Card -->
+								<a href={`/eras/${era.id}`} class={`w-full md:w-[45%] flex flex-col ${isEven ? 'items-center md:items-end text-center md:text-right' : 'items-center md:items-start text-center md:text-left'} relative z-10 group no-underline block focus:outline-none`}>
+									<div class="w-full max-w-md p-8 rounded-4xl bg-zinc-900/40 backdrop-blur-md border border-zinc-800 transition-all duration-300 group-hover:-translate-y-2 group-hover:border-purple-500/50 group-hover:shadow-[0_10px_30px_-15px_rgba(147,51,234,0.3)] relative overflow-clip flex flex-col cursor-pointer">
+										
+										<!-- Background Image & Grid Overlay (Visible on Hover) -->
+										<div class="absolute inset-0 z-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100">
+											<!-- Image with transition name to animate expansion -->
+											<div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 scale-100 group-hover:scale-110" style={`background-image: url('${eraImageMap[era.imageKey].src}');`} transition:name={`era-${era.id}`}></div>
+											<!-- Dark Gradient to preserve text readability -->
+											<div class="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-900/90 to-purple-900/30"></div>
+											<!-- CSS Grid Pattern over image -->
+											<div class="absolute inset-0 opacity-40 mix-blend-overlay" style="background-image: linear-gradient(to right, rgba(230, 230, 230, 0.15) 1px, transparent 1px), linear-gradient(to bottom, rgba(230, 230, 230, 0.15) 1px, transparent 1px); background-size: 20px 20px;"></div>
+										</div>
+
+										<!-- Inner Content -->
+										<div class={`relative z-10 flex flex-col w-full h-full ${isEven ? 'items-center md:items-end' : 'items-center md:items-start'}`}>
+											<div class="w-16 h-16 mb-6 bg-purple-500 transition-transform duration-500 group-hover:scale-110 group-hover:rotate-12 group-hover:bg-purple-400 group-hover:shadow-[0_0_20px_rgba(168,85,247,0.4)]" style={`mask-image: url(${maskSrc}); mask-size: contain; mask-repeat: no-repeat; mask-position: center; -webkit-mask-image: url(${maskSrc}); -webkit-mask-size: contain; -webkit-mask-repeat: no-repeat; -webkit-mask-position: center;`}></div>
+											<span class="text-purple-400 font-bold tracking-widest text-xs uppercase mb-3 drop-shadow-md">{era.years}</span>
+											<h3 class="font-display text-3xl text-zinc-100 mb-4 drop-shadow-lg group-hover:text-purple-300 transition-colors duration-300">{era.name}</h3>
+											<p class="text-zinc-400 group-hover:text-zinc-200 transition-colors duration-300 leading-relaxed text-sm md:text-base drop-shadow-md">{era.desc}</p>
+										</div>
+									</div>
+								</a>
+								
+								<!-- Empty space for the other half -->
+								<div class="hidden md:block w-[45%]"></div>
+							</div>
+						);
+					})}
+				</div>
+			</div>
+		</section>
+
+		<section class="instrument-section relative space-y-5 overflow-clip rounded-4xl bg-zinc-900 px-6 py-18">
+			<div
+				class="cookie-deco"
+				style={`mask-image: url(${ShapeCookie4.src}); -webkit-mask-image: url(${ShapeCookie4.src});`}
+			>
+			</div>
+			<h2 class="font-display text-center text-5xl text-zinc-100">Instrumentos</h2>
+			<p class="p mx-auto max-w-3xl text-center">
+				Explora instrumentos que marcaron cambios técnicos, estéticos y culturales a lo largo de la historia.
+			</p>
+			<div class="instrument-grid grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 px-4 max-w-7xl mx-auto">
+				{
+					instruments.map((instrument) => (
+						<Card
+							title={instrument.title}
+							description={instrument.year}
+							maskImage={maskMap[instrument.maskKey]}
+							image={instrumentImageMap[instrument.imageKey]}
+							className="instrument-card"
+							href={`/instruments/${instrument.id}`}
+							transitionName={`instrument-${instrument.id}`}
+						/>
+					))
+				}
+			</div>
+		</section>
+	</main>
+</Layout>
+
+<style>
+	@reference '../global.css';
+
+	.hero__content {
+		animation: reveal-animation 1s cubic-bezier(0.77, 0, 0.175, 1);
+	}
+	
+	.hero-title {
+		animation: title-reveal 1.2s cubic-bezier(0.16, 1, 0.3, 1) both;
+	}
+	
+	.hero-subtitle {
+		animation: fade-up 1s cubic-bezier(0.16, 1, 0.3, 1) 0.4s both;
+	}
+	
+	.hero-image {
+		animation: fade-scale-up 1.5s cubic-bezier(0.16, 1, 0.3, 1) 0.2s both;
+	}
+
+	.animate-float {
+		animation: float 6s ease-in-out infinite;
+	}
+
+	.animate-float-delayed {
+		animation: float 7s ease-in-out 3s infinite;
+	}
+
+	.animate-pulse-slow {
+		animation: pulse-op 8s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+	}
+
+	@keyframes float {
+		0% { transform: translateY(0px) rotate(0deg); }
+		50% { transform: translateY(-20px) rotate(5deg); }
+		100% { transform: translateY(0px) rotate(0deg); }
+	}
+
+	@keyframes pulse-op {
+		0%, 100% { opacity: 0.5; transform: scale(1); }
+		50% { opacity: 0.8; transform: scale(1.05); }
+	}
+
+	@keyframes fade-scale-up {
+		0% {
+			opacity: 0;
+			transform: scale(0.95) translateY(30px);
+			filter: blur(10px);
+		}
+		100% {
+			opacity: 1;
+			transform: scale(1) translateY(0);
+			filter: blur(0);
+		}
+	}
+
+	@keyframes fade-up {
+		0% {
+			opacity: 0;
+			transform: translateY(20px);
+		}
+		100% {
+			opacity: 1;
+			transform: translateY(0);
+		}
+	}
+
+	@keyframes title-reveal {
+		0% {
+			opacity: 0;
+			transform: translateY(40px) scale(0.98);
+			filter: blur(10px);
+		}
+		100% {
+			opacity: 1;
+			transform: translateY(0) scale(1);
+			filter: blur(0);
+		}
+	}
+
+	main {
+		@apply p-6;
+	}
+
+	.instrument-section {
+		view-timeline-name: --section-timeline;
+	}
+
+	/* Fallback: visibles sin animacion en navegadores sin soporte */
+	.instrument-grid > :global(.instrument-card) {
+		opacity: 1;
+	}
+
+	@supports (animation-timeline: view()) {
+		.instrument-grid > :global(.instrument-card) {
+			animation: pop-in ease both;
+			/* Enlazamos a la visibilidad de toda la seccion en lugar de la tarjeta individual */
+			animation-timeline: --section-timeline;
+		}
+
+		/* Escalonado: cada tarjeta entra con un delay de scroll */
+		.instrument-grid > :global(.instrument-card):nth-child(1) {
+			animation-range: entry 5% entry 30%;
+		}
+		.instrument-grid > :global(.instrument-card):nth-child(2) {
+			animation-range: entry 10% entry 35%;
+		}
+		.instrument-grid > :global(.instrument-card):nth-child(3) {
+			animation-range: entry 15% entry 40%;
+		}
+		.instrument-grid > :global(.instrument-card):nth-child(4) {
+			animation-range: entry 20% entry 45%;
+		}
+		.instrument-grid > :global(.instrument-card):nth-child(5) {
+			animation-range: entry 25% entry 50%;
+		}
+	}
+
+	.cookie-deco {
+		position: absolute;
+		bottom: -10%;
+		right: -8%;
+		width: clamp(280px, 40vw, 560px);
+		aspect-ratio: 1;
+		background-color: var(--color-purple-600);
+		mask-size: contain;
+		mask-repeat: no-repeat;
+		mask-position: center;
+		-webkit-mask-size: contain;
+		-webkit-mask-repeat: no-repeat;
+		-webkit-mask-position: center;
+		opacity: 0.3;
+		animation: cookie-spin 28s linear infinite;
+		pointer-events: none;
+	}
+
+	@keyframes cookie-spin {
+		from {
+			transform: rotate(0deg);
+		}
+		to {
+			transform: rotate(360deg);
+		}
+	}
+
+	@keyframes reveal-animation {
+		0% {
+			clip-path: inset(100% 0 0 0);
+		}
+		100% {
+			clip-path: inset(0 0 0 0);
+		}
+	}
+
+	@keyframes pop-in {
+		from {
+			opacity: 0;
+			transform: translateY(24px) scale(0.96);
+		}
+		to {
+			opacity: 1;
+			transform: translateY(0) scale(1);
+		}
+	}
+
+	@supports (animation-timeline: view()) {
+		.timeline-item {
+			animation: timeline-fade-in ease both;
+			animation-timeline: view();
+			animation-range: entry 5% cover 30%;
+		}
+	}
+
+	@keyframes timeline-fade-in {
+		from {
+			opacity: 0;
+			transform: translateY(40px) scale(0.95);
+		}
+		to {
+			opacity: 1;
+			transform: translateY(0) scale(1);
+		}
+	}
+</style>

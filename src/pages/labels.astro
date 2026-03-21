@@ -1,0 +1,345 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import motownLogo from '@/assets/logos/motown.svg';
+import columbiaLogo from '@/assets/logos/columbia.svg';
+import defjamLogo from '@/assets/logos/defjam.svg';
+import warpLogo from '@/assets/logos/warp.png';
+import bluenoteLogo from '@/assets/logos/bluenote.svg';
+
+const labels = [
+    {
+        id: 'motown',
+        name: 'Motown',
+        tagline: 'The Sound of Young America',
+        founded: '1959',
+        founder: 'Berry Gordy Jr.',
+        hq: 'Detroit, Míchigan',
+        genres: ['Soul', 'R&B', 'Pop', 'Funk'],
+        parent: 'Universal Music Group',
+        color: 'from-orange-600 to-amber-900',
+        accent: 'text-orange-400',
+        bgAccent: 'bg-orange-400',
+        bgGlow: 'bg-orange-600/30',
+        logo: motownLogo.src,
+        history: 'Fundada con un préstamo familiar de $800 dólares, Motown no fue solo una disquera; fue un motor fenomenal de integración racial y cultural en Estados Unidos. Berry Gordy adaptó el concepto de las líneas de ensamblaje de la automotriz Lincoln-Mercury para crear una auténtica "fábrica de éxitos" puliendo la presentación y composición de artistas totalmente desconocidos e impulsándolos a la fama global.',
+        legacy: 'Rompió irreversiblemente las barreras raciales en las estaciones de radio de todo el mundo, definió el sonido distintivo de los años 60 y estableció el estándar oro de éxito comercial del R&B en la música pop.',
+        topArtists: [
+            { name: 'Stevie Wonder', role: 'Genio creativo y prodigio sonoro' },
+            { name: 'Marvin Gaye', role: 'La voz de la consciencia soul' },
+            { name: 'The Supremes', role: 'El grupo femenino más influyente' },
+            { name: 'The Jackson 5', role: 'Fenómeno adolescente internacional' }
+        ],
+        iconicAlbums: ['What\'s Going On (1971)', 'Songs in the Key of Life (1976)'],
+        quote: '"No hacemos música para un público en particular, hacemos música global para personas." – Berry Gordy'
+    },
+    {
+        id: 'columbia',
+        name: 'Columbia Records',
+        tagline: 'La Institución Musical Definitiva',
+        founded: '1887',
+        founder: 'Edward Easton',
+        hq: 'Parcialmente global (Sede en NY)',
+        genres: ['Pop', 'Rock', 'Jazz', 'Clásica'],
+        parent: 'Sony Music Entertainment',
+        color: 'from-blue-700 to-zinc-950',
+        accent: 'text-blue-400',
+        bgAccent: 'bg-blue-400',
+        bgGlow: 'bg-blue-600/30',
+        logo: columbiaLogo.src,
+        history: 'Inició vendiendo fonógrafos y cilindros de cera a finales del siglo XIX, convirtiéndose en la marca sobreviviente de grabación sonora más antigua del mundo. Introdujo revolucionariamente el formato LP (Long Play) de 33⅓ rpm en 1948, el estándar que transformó los limitados sencillos de 3 minutos en viajes artísticos y conceptuales completos.',
+        legacy: 'Pioneros absolutos en la alta fidelidad, inventores del formato LP comercial y hogar de las principales figuras literarias, vocales y musicales del establishment moderno.',
+        topArtists: [
+            { name: 'Bob Dylan', role: 'El venerado poeta del rock' },
+            { name: 'Miles Davis', role: 'El arquitecto del jazz contemporáneo' },
+            { name: 'Bruce Springsteen', role: 'El jefe del heartland' },
+            { name: 'Adele', role: 'La imponente voz del siglo XXI' }
+        ],
+        iconicAlbums: ['Kind of Blue (1959)', 'The Wall (1979)'],
+        quote: '"Para ser un buen artista de verdad tienes que ser completamente telegrafiado y absorbido por tu entorno." – Bob Dylan'
+    },
+    {
+        id: 'defjam',
+        name: 'Def Jam Recordings',
+        tagline: 'La Voz de la Cultura Urbana',
+        founded: '1984',
+        founder: 'Rick Rubin & Russell Simmons',
+        hq: 'Manhattan, Nueva York',
+        genres: ['Hip Hop', 'R&B', 'Urban'],
+        parent: 'Universal Music Group',
+        color: 'from-red-800 to-zinc-950',
+        accent: 'text-red-500',
+        bgAccent: 'bg-red-500',
+        bgGlow: 'bg-red-700/30',
+        logo: defjamLogo.src,
+        history: 'Nacida orgánicamente en el dormitorio universitario 712 del Weinstein Hall en la Universidad de Nueva York, Def Jam sacó al joven género del hip hop de las calles de la ciudad y las fiestas underground para inyectarle la agresiva estética y la pura actitud rebelde del movimiento punk rock.',
+        legacy: 'Catapultó agresivamente el Hip Hop como un estilo de vida mundial y un poderoso motor financiero, probando su infinita viabilidad comercial a largo plazo.',
+        topArtists: [
+            { name: 'Public Enemy', role: 'Guerrilleros y activistas sonoros' },
+            { name: 'Beastie Boys', role: 'Reyes descarados del rap-rock' },
+            { name: 'LL Cool J', role: 'Primer gran ídolo de las masas' },
+            { name: 'Jay-Z', role: 'Magnate, poeta y el rey definitivo del rap' }
+        ],
+        iconicAlbums: ['It Takes a Nation of Millions... (1988)', 'Licensed to Ill (1986)'],
+        quote: '"Def Jam no es solo un disco, es la autenticidad pura y salvaje del artista sin compromisos."'
+    },
+    {
+        id: 'warp',
+        name: 'Warp Records',
+        tagline: 'Vanguardia y Futuro Digital',
+        founded: '1989',
+        founder: 'S. Beckett, R. Mitchell',
+        hq: 'Singularmente británico (Sheffield/Londres)',
+        genres: ['Electrónica', 'IDM', 'Experimental'],
+        parent: 'Totalmente Independiente',
+        color: 'from-purple-600 to-emerald-950',
+        accent: 'text-emerald-400',
+        bgAccent: 'bg-emerald-400',
+        bgGlow: 'bg-emerald-500/30',
+        logo: warpLogo.src,
+        history: 'Mientras casi el resto de todo el Reino Unido bailaba eufóricamente las rítmicas repetitivas del acid house en campos abiertos y pistas oscuras, una modesta tienda de discos independiente de Sheffield decidió lanzar su enigmática serie de vanguardia para concentrarse en una electrónica hiper-minimalista.',
+        legacy: 'Cimentó la radical Intelligent Dance Music (IDM), elevando a solitarios y excéntricos productores de ordenadores en deidades de composición seria y manipulación fractal extrema.',
+        topArtists: [
+            { name: 'Aphex Twin', role: 'El elusivo alienígena de las máquinas' },
+            { name: 'Boards of Canada', role: 'Creadores de nostalgia magnética' },
+            { name: 'Squarepusher', role: 'Virtuoso absoluto del ritmo caótico' },
+            { name: 'Autechre', role: 'Programadores y arquitectos abstractos' }
+        ],
+        iconicAlbums: ['Selected Ambient Works 85-92 (1992)', 'Music Has the Right to Children (1998)'],
+        quote: '"Lanzamos música codificada que fue intensamente diseñada para explorar pasillos de la mente, no conformidades para cuerpos en movimiento."'
+    },
+    {
+        id: 'bluenote',
+        name: 'Blue Note Records',
+        tagline: 'El Arte Brillante del Jazz',
+        founded: '1939',
+        founder: 'Alfred Lion',
+        hq: 'Nueva York, NY',
+        genres: ['Jazz', 'Hard Bop', 'Soul'],
+        parent: 'Universal Music',
+        color: 'from-blue-900 to-zinc-950',
+        accent: 'text-blue-300',
+        bgAccent: 'bg-blue-300',
+        bgGlow: 'bg-blue-800/30',
+        logo: bluenoteLogo.src,
+        history: 'Fundada por inmigrantes alemanes fanáticos del jazz. Blue Note documentó e inventó gran parte de la historia del jazz moderno, redefiniendo la grabación y la experiencia sonora de los músicos.',
+        legacy: 'Estableció la identidad visual definitiva del jazz moderno gracias a sus legendarias portadas de álbumes diseñadas por Reid Miles.',
+        topArtists: [
+            { name: 'John Coltrane', role: 'El místico del saxofón' },
+            { name: 'Miles Davis', role: 'Genio de la trompeta' },
+            { name: 'Thelonious Monk', role: 'Arquitecto asimétrico' },
+            { name: 'Norah Jones', role: 'Estrella global' }
+        ],
+        iconicAlbums: ['Blue Train (1958)', 'Come Away with Me (2002)'],
+        quote: '"Debe haber un sentimiento innegable, un impulso y una autenticidad rítmica sin compromisos."'
+    }
+];
+---
+
+<Layout title="Disqueras | Timeline">
+    <div class="bg-zinc-950 font-sans selection:bg-white/20 text-white min-h-screen">
+        
+        <!-- Fresh Ultra Hero Section -->
+        <section class="relative min-h-screen w-full flex flex-col justify-center overflow-hidden pt-32 pb-20 border-b border-white/5">
+            <!-- Architectural Lines Bg -->
+            <div class="absolute inset-0 pointer-events-none opacity-[0.15]">
+                <div class="absolute left-1/4 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-white to-transparent"></div>
+                <div class="absolute left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-white to-transparent"></div>
+                <div class="absolute right-1/4 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-white to-transparent"></div>
+                
+                <!-- Glowing horizontal line -->
+                <div class="absolute top-[20%] left-0 right-0 h-px bg-gradient-to-r from-transparent via-white to-transparent"></div>
+            </div>
+
+            <!-- Massive Ambient Light -->
+            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[70vw] h-[40vw] rounded-[100%] bg-zinc-800/40 blur-[130px] -z-10 mix-blend-screen pointer-events-none"></div>
+
+            <div class="relative z-10 w-full max-w-360 mx-auto px-6 sm:px-12 flex flex-col justify-center h-full">
+                <div class="overflow-hidden mb-6 sm:mb-10">
+                    <span class="inline-block text-xs sm:text-sm tracking-[0.4em] sm:tracking-[0.5em] uppercase text-zinc-400 font-medium py-2 px-4 rounded-full border border-white/10 bg-white/5">
+                        DISQUERAS
+                    </span>
+                </div>
+                
+                <h1 class="text-[4rem] sm:text-[6rem] md:text-[8rem] lg:text-[11rem] leading-none md:leading-[0.95] font-black font-display text-white tracking-normal uppercase w-full max-w-6xl">
+                    <span class="block drop-shadow-2xl">IMPERIOS</span>
+                    <div class="flex items-center gap-4 md:gap-8 mt-2 md:mt-0 w-full">
+                        <span class="block text-zinc-300">DEL</span>
+                        <div class="h-[2px] w-full md:w-1/3 bg-zinc-300 mt-2"></div>
+                    </div>
+                    <span class="block bg-clip-text text-transparent bg-gradient-to-r from-white via-zinc-400 to-zinc-600 pb-4">SONIDO.</span>
+                </h1>
+
+                <div class="grid grid-cols-1 md:grid-cols-12 mt-16 md:mt-24 gap-12 border-t border-white/10 pt-12">
+                    <div class="md:col-span-8 lg:col-span-6">
+                        <p class="text-lg md:text-2xl text-zinc-400 font-light leading-relaxed">
+                            Una base de datos hiperdetallada de las corporaciones y los sellos independientes de vanguardia que estructuraron la banda sonora de la humanidad, construyeron ídolos y redefinieron géneros enteros desafiando todo pronóstico comercial y tecnológico.
+                        </p>
+                    </div>
+                    <div class="mt-8 md:mt-0 md:col-span-4 lg:col-span-6 flex flex-col md:items-end justify-center">
+                        <a href="#catalogo" class="group inline-flex items-center justify-between w-full md:w-auto md:gap-8 p-6 lg:p-8 rounded-full border border-white/10 hover:border-white/40 bg-white/5 hover:bg-white/10 transition-all duration-500 shadow-xl">
+                            <span class="text-sm uppercase tracking-widest font-bold">Navegar al Archivo Completo</span>
+                            <div class="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center group-hover:bg-white group-hover:text-black transition-colors duration-500 shrink-0">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="absolute bottom-0 left-0 w-full h-[30vh] bg-gradient-to-t from-zinc-950 to-transparent pointer-events-none"></div>
+        </section>
+
+        <!-- Dynamic Registry Section -->
+        <main id="catalogo" class="w-full relative z-20 pb-40">
+            {labels.map((label, index) => (
+                <section class="relative w-full min-h-screen py-24 lg:py-40 px-6 sm:px-12 border-b border-white/5 flex flex-col items-center">
+                    
+                    <!-- Atmospheric Background Glow per Label -->
+                    <div class="absolute inset-0 overflow-hidden pointer-events-none">
+                        <div class={`absolute top-1/2 left-0 sm:left-1/4 -translate-y-1/2 w-[120vw] h-[120vw] sm:w-[60vw] sm:h-[60vw] ${label.bgGlow} rounded-full blur-[100px] sm:blur-[150px] mix-blend-screen opacity-50`}></div>
+                    </div>
+
+                    <div class="relative z-10 w-full max-w-[90rem] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24">
+                        
+                        <!-- Left Pillar: Visual & Identifiers (Sticky Behavior allowed in column) -->
+                        <div class="lg:col-span-4 flex flex-col">
+                            <div class="lg:sticky lg:top-32 flex flex-col gap-10">
+                                
+                                <!-- Identity Logo Card -->
+                                <div class="w-full aspect-square relative flex items-center justify-center p-12 bg-zinc-900/50 rounded-[2.5rem] border border-white/10 backdrop-blur-2xl overflow-hidden group shadow-2xl">
+                                    <div class={`absolute inset-0 bg-gradient-to-br ${label.color} opacity-20 group-hover:opacity-60 transition-opacity duration-700`}></div>
+                                    <img 
+                                        src={label.logo} 
+                                        alt={`Logo absoluto de ${label.name}`} 
+                                        class="w-full h-auto object-contain mix-blend-screen drop-shadow-[0_0_30px_rgba(255,255,255,0.2)] z-10 transition-transform duration-[1s] group-hover:scale-[1.15]" 
+                                        style="filter: invert(1); max-height: 80%; max-width: 80%;" 
+                                    />
+                                    <div class="absolute inset-0 ring-1 ring-inset ring-white/10 rounded-[2.5rem]"></div>
+                                </div>
+
+                                <!-- Presentation Title -->
+                                <div class="space-y-4">
+                                    <h2 class="text-5xl sm:text-6xl font-black text-white tracking-normal uppercase font-display leading-[0.9]">{label.name}</h2>
+                                    <p class={`text-xl sm:text-2xl font-light ${label.accent} italic`}>"{label.tagline}"</p>
+                                </div>
+
+                                <!-- Bold Quote Callout (Hidden on Mobile for pacing) -->
+                                <div class="hidden lg:block mt-6 p-8 relative overflow-hidden rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm shadow-xl">
+                                    <div class={`absolute top-0 right-0 w-32 h-32 ${label.bgGlow} rounded-full blur-[40px] opacity-40 mix-blend-screen -z-10`}></div>
+                                    <svg class={`w-12 h-12 ${label.accent} opacity-20 absolute top-4 left-4`} fill="currentColor" viewBox="0 0 24 24"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/></svg>
+                                    <p class="text-white/80 font-serif text-lg lg:text-xl leading-relaxed relative z-10 mt-6 font-medium">
+                                        {label.quote}
+                                    </p>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <!-- Right Pillar: Deep Knowledge DB Data -->
+                        <div class="lg:col-span-8 flex flex-col gap-12 sm:gap-16">
+                            
+                            <!-- Tactical Fast Facts Grid (4x Metric Cards) -->
+                            <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+                                <div class="p-6 rounded-2xl bg-zinc-900/40 border border-white/10 backdrop-blur-md shadow-lg shadow-black/50">
+                                    <span class="block text-xs uppercase tracking-widest text-zinc-500 border-b border-white/10 pb-2 mb-3 font-semibold">Fundación</span>
+                                    <span class="block text-2xl lg:text-3xl font-bold text-white tracking-tight">{label.founded}</span>
+                                </div>
+                                <div class="p-6 rounded-2xl bg-zinc-900/40 border border-white/10 backdrop-blur-md shadow-lg shadow-black/50">
+                                    <span class="block text-[0.65rem] sm:text-xs uppercase tracking-[0.2em] text-zinc-500 border-b border-white/10 pb-2 mb-3 font-semibold">Fundador(es)</span>
+                                    <span class="block text-sm lg:text-base font-medium text-white leading-tight">{label.founder}</span>
+                                </div>
+                                <div class="p-6 rounded-2xl bg-zinc-900/40 border border-white/10 backdrop-blur-md shadow-lg shadow-black/50">
+                                    <span class="block text-xs uppercase tracking-widest text-zinc-500 border-b border-white/10 pb-2 mb-3 font-semibold">Capital / Sede</span>
+                                    <span class="block text-sm lg:text-base font-medium text-white leading-tight">{label.hq}</span>
+                                </div>
+                                <div class="p-6 rounded-2xl bg-zinc-900/40 border border-white/10 backdrop-blur-md shadow-lg shadow-black/50">
+                                    <span class="block text-xs uppercase tracking-widest text-zinc-500 border-b border-white/10 pb-2 mb-3 font-semibold">Empresa Matriz</span>
+                                    <span class="block text-sm font-medium text-white leading-tight uppercase tracking-wide">{label.parent}</span>
+                                </div>
+                            </div>
+
+                            <!-- Mega History Narration -->
+                            <div class="space-y-6">
+                                <div class="flex items-center gap-4 border-b border-white/10 pb-4">
+                                    <div class={`w-2 h-2 ${label.bgAccent} rounded-full`}></div>
+                                    <h3 class="text-sm font-bold tracking-[0.3em] uppercase text-zinc-400">La Crónica Oficial</h3>
+                                </div>
+                                <p class="text-xl sm:text-2xl lg:text-[1.7rem] text-zinc-300 leading-[1.6] font-light">
+                                    {label.history}
+                                </p>
+                            </div>
+
+                            <!-- The Legacy Panel -->
+                            <div class="p-8 sm:p-10 rounded-3xl bg-zinc-800/30 border border-white/10 relative overflow-hidden backdrop-blur-xl">
+                                <div class={`absolute -bottom-10 -right-10 w-64 h-64 ${label.bgGlow} rounded-full blur-[80px] opacity-70`}></div>
+                                <h3 class="relative z-10 text-sm font-black tracking-[0.2em] uppercase text-white mb-6 flex items-center gap-3">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class={`${label.accent}`}><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                                    Impacto a la Humanidad & Legado
+                                </h3>
+                                <p class="relative z-10 text-lg sm:text-xl text-white/90 font-medium leading-relaxed max-w-4xl">
+                                    {label.legacy}
+                                </p>
+                            </div>
+
+                            <!-- Icons Roster (Top Performers) -->
+                            <div class="mt-4">
+                                <h3 class="text-sm font-bold tracking-[0.3em] uppercase text-zinc-400 mb-8 border-b border-white/10 pb-4">Artistas Estandartes</h3>
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                    {label.topArtists.map(artist => (
+                                        <div class="group flex flex-col p-6 bg-white/[0.03] rounded-2xl border border-white/[0.05] hover:border-white/20 hover:bg-white/5 transition-all duration-300">
+                                            <span class={`text-[0.65rem] uppercase tracking-widest text-zinc-500 font-bold mb-2 group-hover:${label.accent} transition-colors`}>{artist.role}</span>
+                                            <span class="text-xl font-black text-white">{artist.name}</span>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-12 mt-6 p-8 lg:p-10 rounded-3xl border border-white/10 bg-zinc-900/60 shadow-inner">
+                                <div class="flex flex-col gap-6">
+                                    <h4 class="text-xs font-bold tracking-[0.2em] uppercase text-zinc-500 flex items-center gap-2"><div class={`w-1.5 h-1.5 rounded-full ${label.bgAccent}`}></div> Espectro de Frecuencias</h4>
+                                    <div class="flex flex-wrap gap-2">
+                                        {label.genres.map(genre => (
+                                            <span class="px-4 py-2 rounded-xl bg-white/5 text-zinc-300 text-sm font-bold uppercase tracking-widest border border-white/10 hover:bg-white/10 transition-colors">
+                                                {genre}
+                                            </span>
+                                        ))}
+                                    </div>
+                                </div>
+                                <div class="flex flex-col gap-6">
+                                    <h4 class="text-xs font-bold tracking-[0.2em] uppercase text-zinc-500 flex items-center gap-2"><div class={`w-1.5 h-1.5 rounded-full ${label.bgAccent}`}></div> Discos Trascendentales</h4>
+                                    <ul class="space-y-4">
+                                        {label.iconicAlbums.map(album => (
+                                            <li class="p-4 rounded-xl bg-gradient-to-r from-white/5 to-transparent text-white font-medium text-base sm:text-lg border-l-2 border-white/20 hover:border-white/60 transition-colors">
+                                                {album}
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <!-- Mobile Quote Reveal -->
+                            <div class="block lg:hidden mt-8 p-6 relative overflow-hidden rounded-2xl bg-gradient-to-br from-white/10 to-transparent border border-white/20">
+                                <p class="text-white font-serif text-lg italic leading-relaxed font-medium">
+                                    {label.quote}
+                                </p>
+                            </div>
+
+                        </div>
+                    </div>
+                </section>
+            ))}
+        </main>
+        
+        <section class="w-full h-screen flex flex-col items-center justify-center text-center px-4 relative z-10 bg-zinc-950">
+            <h2 class="text-5xl md:text-8xl lg:text-[10rem] font-black font-display text-white uppercase tracking-normal">EL FIN DEL<br/><span class="text-zinc-600">DISCO.</span></h2>
+            <p class="mt-8 text-zinc-500 tracking-widest uppercase font-medium text-sm">Fin del Archivo</p>
+        </section>
+    </div>
+</Layout>
+
+<style>
+    @reference "../global.css";
+
+    /* Scroll animations and specific behaviors are mostly defined via tailwind inline, 
+       but if any custom view timeline magic is needed, we could add here. */
+</style>

@@ -1,0 +1,525 @@
+---
+import { Image } from 'astro:assets';
+import Layout from '@/layouts/Layout.astro';
+
+// Import requested organic shapes
+import shapeSoftBoom from '@/assets/figures/soft-boom.svg';
+import shapeFlower from '@/assets/figures/flower.svg';
+import shapeGum from '@/assets/figures/Gum.svg';
+import shapePixelCircle from '@/assets/figures/pixel-circle.svg';
+import shapeCookie12 from '@/assets/figures/sided-cookie-12.svg';
+
+// Import instrument images
+import pianoImg from '@/assets/instruments/piano.webp';
+import violinImg from '@/assets/instruments/violin.webp';
+import organoImg from '@/assets/instruments/organo-de-tubos.webp';
+import laudImg from '@/assets/instruments/laud.webp';
+import sintetizadorImg from '@/assets/instruments/sintetizador.webp';
+
+const baseSlides = [
+	{
+		type: 'single',
+		shape: shapeCookie12.src,
+		img: pianoImg,
+	},
+	{
+		type: 'single',
+		shape: shapeFlower.src,
+		img: violinImg,
+	},
+	{
+		type: 'single',
+		shape: shapeGum.src,
+		img: organoImg,
+	},
+	{
+		type: 'single',
+		shape: shapeSoftBoom.src,
+		img: laudImg,
+	},
+	{
+		type: 'single',
+		shape: shapePixelCircle.src,
+		img: sintetizadorImg,
+	},
+];
+
+const slides = [...baseSlides, ...baseSlides];
+---
+
+<Layout>
+	<section class="hero relative pt-32 pb-20 overflow-clip">
+		<!-- Ambient glows -->
+		<div class="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-3xl h-[500px] bg-emerald-600/20 blur-[120px] rounded-full pointer-events-none -z-10"></div>
+		
+		<div class="text-center mb-16 relative z-10 w-full px-6">
+			<h1 class="hero-title text-transparent bg-clip-text bg-linear-to-b from-white via-emerald-100 to-emerald-900/40 tracking-[0em] text-5xl md:text-8xl lg:text-[10rem] font-display font-black drop-shadow-2xl uppercase leading-none mx-auto">
+				Instrumentos
+			</h1>
+		</div>
+
+		<ul class="carousel relative z-10">
+			{
+				slides.map((slide, index) => (
+					<li class="carousel__item">
+						<div
+							class={`artist-figure relative flex h-full w-full items-center justify-center overflow-hidden shadow-2xl transition-shadow duration-300`}
+							style={`mask-image: url(${slide.shape}); mask-size: contain; mask-repeat: no-repeat; mask-position: center; -webkit-mask-image: url(${slide.shape}); -webkit-mask-size: contain; -webkit-mask-repeat: no-repeat; -webkit-mask-position: center;`}
+						>
+							<Image
+								src={slide.img}
+								alt={`Instrument ${index + 1}`}
+								class="pointer-events-none h-full w-full object-cover"
+								draggable="false"
+							/>
+						</div>
+					</li>
+				))
+			}
+		</ul>
+		<div class="mx-auto mt-20 flex w-full max-w-4xl flex-col items-center px-6 relative z-10">
+			<div class="flex items-center gap-4 opacity-60">
+				<div class="h-px w-12 sm:w-24 bg-linear-to-r from-transparent to-emerald-400"></div>
+				<span class="text-xs font-bold tracking-[0.3em] uppercase text-emerald-300">Explora</span>
+				<div class="h-px w-12 sm:w-24 bg-linear-to-l from-transparent to-emerald-400"></div>
+			</div>
+			<p class="mt-6 max-w-md text-center text-lg leading-relaxed font-light text-zinc-400">
+				Una colección visual de las herramientas musicales empapadas de historia y arte sonoro.
+			</p>
+		</div>
+	</section>
+
+	<!-- Interstitial Big Text -->
+	<section class="relative w-full py-24 md:py-32 overflow-hidden flex flex-col items-center justify-center my-12">
+		<!-- Huge backdrop text -->
+		<div class="absolute inset-0 flex items-center justify-center pointer-events-none opacity-[0.03]">
+			<span class="text-[20vw] font-black uppercase whitespace-nowrap">Resonancia</span>
+		</div>
+		<div class="relative z-10 max-w-5xl mx-auto px-6 text-center slide-up-content">
+			<h2 class="text-4xl md:text-5xl lg:text-7xl font-display font-black text-white leading-tight uppercase">
+				La música empieza <br/> <span class="text-transparent bg-clip-text bg-linear-to-r from-emerald-400 to-cyan-400">donde termina el habla.</span>
+			</h2>
+			<div class="mt-8 flex items-center justify-center gap-4 opacity-60">
+				<div class="h-px w-8 bg-zinc-500"></div>
+				<p class="text-sm md:text-base text-zinc-400 font-serif italic tracking-widest">— E.T.A. Hoffmann</p>
+				<div class="h-px w-8 bg-zinc-500"></div>
+			</div>
+		</div>
+	</section>
+
+	<div class="container">
+		<main class="w-full flex-1 space-y-32 lg:pb-32">
+			
+			<!-- 1. Piano: Horizontal Split Feature (Classic Elegance) -->
+			<article id="piano" class="relative grid grid-cols-1 lg:grid-cols-12 gap-8 items-center group">
+				<div class="absolute -top-12 -right-8 text-[8rem] font-black text-white/5 pointer-events-none select-none tracking-tighter leading-none z-0 parallax-number">01</div>
+				<div class="lg:col-span-7 relative h-[400px] lg:h-[600px] w-full rounded-[2.5rem] overflow-hidden order-first">
+					<div class="absolute inset-0 bg-blue-900/20 mix-blend-multiply z-10 group-hover:opacity-0 transition-opacity duration-700"></div>
+					<div 
+						class="w-full h-full relative z-10"
+						style={`mask-image: url(${shapeCookie12.src}); mask-size: cover; mask-repeat: no-repeat; mask-position: center; -webkit-mask-image: url(${shapeCookie12.src}); -webkit-mask-size: cover; -webkit-mask-repeat: no-repeat; -webkit-mask-position: center;`}
+					>
+						<Image src={pianoImg} alt="Piano clásico" class="w-full h-full object-cover article__image scale-100 group-hover:scale-110 transition-transform duration-1000 ease-out" />
+					</div>
+					<!-- Decoration -->
+					<div class="absolute -bottom-10 -left-10 w-40 h-40 bg-blue-500/20 blur-2xl rounded-full mix-blend-screen z-20 pointer-events-none"></div>
+				</div>
+				<div class="lg:col-span-5 space-y-6 relative z-10 p-6 lg:p-10 rounded-[3rem] bg-zinc-900/80 backdrop-blur-xl border border-zinc-800 shadow-2xl transition-all duration-500 hover:border-blue-500/30 slide-up-content lg:-ml-16">
+					<h2 class="h2 relative z-10 text-5xl md:text-6xl text-white group-hover:text-blue-300 transition-colors duration-300 font-serif italic">El Piano</h2>
+					<p class="p relative z-10 text-zinc-400 leading-relaxed font-light">
+						Distinguiéndose como un instrumento de cuerda percutida, el piano es una maravilla de la ingeniería musical. Teclas sensibles accionan martillos envueltos en fieltro, permitiendo una inmensa gama dinámica capaz de sostener una orquesta entera.
+					</p>
+					<div class="flex items-center gap-3 pt-4 border-t border-zinc-800/50">
+						<span class="px-4 py-1.5 rounded-full bg-blue-500/10 text-blue-300 text-xs font-bold tracking-widest uppercase border border-blue-500/20">Clásico</span>
+						<span class="px-4 py-1.5 rounded-full bg-white/5 text-zinc-300 text-xs font-bold tracking-widest uppercase border border-white/10">Cuerda Percutida</span>
+					</div>
+				</div>
+			</article>
+
+			<!-- 2. Violín: Vertical Elegant with Delicate Shape -->
+			<article id="violin" class="relative flex flex-col lg:flex-row items-center gap-12 group">
+				<div class="w-full lg:w-5/12 space-y-8 lg:pl-12 relative z-10 slide-up-content order-last lg:order-first">
+					<div class="absolute -top-10 -left-10 text-[12rem] font-black text-rose-500/10 pointer-events-none select-none tracking-tighter leading-none z-0 parallax-number">02</div>
+					<h2 class="h2 text-6xl md:text-[5rem] leading-[0.9] text-white group-hover:text-rose-200 transition-colors duration-300">VIO<br/><span class="text-zinc-500">LÍN</span></h2>
+					<div class="w-12 h-1 bg-linear-to-r from-rose-400 to-transparent"></div>
+					<p class="p text-xl text-zinc-300 leading-relaxed font-serif italic">
+						"Un brillante líder melódico forjado en la vibración pura de sus cuerdas."
+					</p>
+					<p class="p text-zinc-400 font-light">
+						Apreciado por su resonancia y expresividad, el violín es el alma de las secciones de cuerdas en los ensambles orquestales. Su arco deslizado da vida a legatos y staccatos que lloran y cantan casi como voces humanas.
+					</p>
+				</div>
+				<div class="w-full lg:w-7/12 relative h-[500px] lg:h-[700px] overflow-visible">
+					<div 
+						class="w-full h-full rounded-2xl bg-zinc-800 shadow-2xl ring-1 ring-white/10 ring-offset-4 ring-offset-zinc-950 transition-all duration-700 relative z-10"
+						style={`mask-image: url(${shapeFlower.src}); mask-size: contain; mask-repeat: no-repeat; mask-position: center; -webkit-mask-image: url(${shapeFlower.src}); -webkit-mask-size: contain; -webkit-mask-repeat: no-repeat; -webkit-mask-position: center;`}
+					>
+						<div class="absolute inset-0 bg-rose-900/30 mix-blend-color-burn z-20 group-hover:opacity-0 transition-opacity duration-700 pointer-events-none"></div>
+						<Image src={violinImg} alt="Violín clásico" class="w-full h-full object-cover article__image scale-100 group-hover:scale-105 transition-transform duration-1000 ease-out" />
+					</div>
+				</div>
+			</article>
+
+			<!-- 3. Órgano de tubos: Grand Monolith Collage Block -->
+			<article id="organo" class="relative group mt-24">
+				<div class="absolute -top-16 left-1/2 -translate-x-1/2 text-[8rem] md:text-[15rem] font-black text-white/5 pointer-events-none select-none tracking-tighter leading-none z-0 parallax-number">03</div>
+				<div class="grid grid-cols-1 lg:grid-cols-12 relative z-10">
+					<!-- Grand backdrop image -->
+					<div class="lg:col-span-12 h-[600px] rounded-[3rem] overflow-clip relative bg-zinc-900 border border-zinc-800/50">
+						<div class="absolute inset-0 bg-linear-to-t from-zinc-950 via-zinc-900/60 to-transparent z-10"></div>
+						<div 
+							class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-[150%] opacity-40 group-hover:opacity-70 transition-opacity duration-1000"
+							style={`mask-image: url(${shapeGum.src}); mask-size: cover; mask-repeat: no-repeat; mask-position: center; -webkit-mask-image: url(${shapeGum.src}); -webkit-mask-size: cover; -webkit-mask-repeat: no-repeat; -webkit-mask-position: center;`}	
+						>
+							<Image src={organoImg} alt="Órgano de tubos imponente" class="w-full h-full object-cover article__image object-top scale-100 group-hover:scale-105 transition-transform duration-1000 ease-out" />
+						</div>
+					</div>
+					
+					<!-- Content Block floating overlay -->
+					<div class="lg:col-span-8 lg:col-start-3 -mt-32 lg:-mt-48 relative z-20 flex flex-col items-center text-center space-y-6 p-8 lg:p-12 rounded-[3rem] bg-zinc-900/90 backdrop-blur-2xl border border-zinc-800 shadow-2xl transition-all duration-500 hover:border-amber-500/30 slide-up-content mx-4">
+						<h2 class="h2 text-5xl md:text-7xl text-white group-hover:text-amber-400 transition-colors duration-300">ÓRGANO DE TUBOS</h2>
+						<p class="p text-zinc-300 font-light leading-relaxed max-w-2xl">
+							Conocido como el "rey de los instrumentos". Produce sus magistrales tonos al enviar aire presurizado a través de tubos masivos. Su impresionante escala y fachada arquitectónica lo convierten en una construcción majestuosa, usualmente habitando las catedrales más formidables del mundo.
+						</p>
+						<div class="flex flex-wrap gap-2 pt-2 justify-center">
+							<span class="px-4 py-1.5 rounded-full bg-amber-500/10 text-amber-400 text-xs font-bold tracking-widest uppercase border border-amber-500/20">Viento</span>
+							<span class="px-4 py-1.5 rounded-full bg-white/5 text-zinc-300 text-xs font-bold tracking-widest uppercase border border-white/10">Monumental</span>
+						</div>
+					</div>
+				</div>
+			</article>
+
+			<!-- Marquee Section -->
+			<section class="relative w-screen left-1/2 right-1/2 -mx-[50vw] overflow-hidden py-16 bg-zinc-900 border-y border-zinc-800 my-24 flex items-center">
+				<div class="marquee-container flex overflow-hidden w-full">
+					<div class="marquee-content flex gap-8 md:gap-16 whitespace-nowrap items-center text-5xl md:text-8xl font-black font-display uppercase tracking-normal text-zinc-800">
+						<span>Acústico</span><span class="text-emerald-500/20">✖</span>
+						<span>Digital</span><span class="text-cyan-500/20">✖</span>
+						<span>Orgánico</span><span class="text-emerald-500/20">✖</span>
+						<span>Sintético</span><span class="text-cyan-500/20">✖</span>
+						<span>Acústico</span><span class="text-emerald-500/20">✖</span>
+						<span>Digital</span><span class="text-cyan-500/20">✖</span>
+						<span>Orgánico</span><span class="text-emerald-500/20">✖</span>
+						<span>Sintético</span><span class="text-cyan-500/20">✖</span>
+					</div>
+					<div class="marquee-content flex gap-8 md:gap-16 whitespace-nowrap items-center text-5xl md:text-8xl font-black font-display uppercase tracking-normal text-zinc-800" aria-hidden="true">
+						<span>Acústico</span><span class="text-emerald-500/20">✖</span>
+						<span>Digital</span><span class="text-cyan-500/20">✖</span>
+						<span>Orgánico</span><span class="text-emerald-500/20">✖</span>
+						<span>Sintético</span><span class="text-cyan-500/20">✖</span>
+						<span>Acústico</span><span class="text-emerald-500/20">✖</span>
+						<span>Digital</span><span class="text-cyan-500/20">✖</span>
+						<span>Orgánico</span><span class="text-emerald-500/20">✖</span>
+						<span>Sintético</span><span class="text-cyan-500/20">✖</span>
+					</div>
+				</div>
+			</section>
+
+			<!-- 4. Laúd: Historical Bento Box Grid -->
+			<article id="laud" class="relative group mt-32">
+				<div class="absolute -top-10 -right-10 text-[10rem] font-black text-white/5 pointer-events-none select-none tracking-tighter leading-none z-0 parallax-number">04</div>
+				<div class="grid grid-cols-1 md:grid-cols-3 gap-4 lg:gap-6 relative z-10">
+					<!-- Content Block -->
+					<div class="md:col-span-1 p-8 lg:p-10 rounded-[2.5rem] bg-stone-900 border border-stone-800 flex flex-col justify-center space-y-6 transition-all duration-500 hover:border-orange-400/30 slide-up-content">
+						<h2 class="h2 text-5xl text-white group-hover:text-orange-300 transition-colors duration-300">EL LAÚD</h2>
+						<p class="p text-stone-300 font-light leading-relaxed">
+							Protagonista en su época. Con su vientre abombado como una pera y el clavijero plegado hacia atrás, el laúd fue coronado rey de la música renacentista europea y embajador de complejas polifonías palaciegas.
+						</p>
+						<div class="flex flex-wrap gap-2 pt-6">
+							<span class="px-4 py-1.5 rounded-full bg-orange-500/10 text-orange-400 text-xs font-bold tracking-widest uppercase border border-orange-500/20">Cuerda Pulsada</span>
+							<span class="px-4 py-1.5 rounded-full bg-white/5 text-zinc-300 text-xs font-bold tracking-widest uppercase border border-white/10">Renacimiento</span>
+						</div>
+					</div>
+					
+					<!-- Main Masked Image Focus -->
+					<div class="md:col-span-2 h-[400px] md:h-[500px] rounded-[2.5rem] bg-zinc-950 flex items-center justify-center p-8 relative overflow-hidden group">
+						<div class="absolute inset-0 bg-gradient-radial from-stone-800/20 to-zinc-950 z-0 opacity-60"></div>
+						<div 
+							class="w-full h-full relative z-10 transition-transform duration-700 group-hover:scale-105"
+							style={`mask-image: url(${shapeSoftBoom.src}); mask-size: contain; mask-repeat: no-repeat; mask-position: center; -webkit-mask-image: url(${shapeSoftBoom.src}); -webkit-mask-size: contain; -webkit-mask-repeat: no-repeat; -webkit-mask-position: center;`}
+						>
+							<Image src={laudImg} alt="El Laúd histórico" class="w-full h-full object-cover article__image object-center grayscale group-hover:grayscale-0 transition-all duration-1000" />
+						</div>
+					</div>
+				</div>
+			</article>
+
+			<!-- 5. Sintetizador: Modern/Electronic Layout -->
+			<article id="sintetizador" class="relative group mt-32">
+				<div class="absolute -top-12 -left-6 text-[8rem] font-black text-emerald-500/10 pointer-events-none select-none tracking-tighter leading-none z-0 parallax-number">05</div>
+				<h2 class="h2 text-5xl md:text-7xl text-white group-hover:text-emerald-400 transition-colors duration-300 relative z-20 slide-up-content text-center mb-12">SINTETIZADOR</h2>
+				
+				<div class="relative w-full h-[500px] md:h-[600px] rounded-[3rem] bg-zinc-950 border border-zinc-800/50 p-6 md:p-12 overflow-hidden flex items-center justify-center">
+					<!-- Geometric Neon Accents -->
+					<div class="absolute top-0 right-0 w-96 h-96 bg-emerald-500/20 blur-[100px] rounded-full mix-blend-screen z-0 pointer-events-none"></div>
+					<div class="absolute bottom-0 left-0 w-96 h-96 bg-cyan-500/20 blur-[100px] rounded-full mix-blend-screen z-0 pointer-events-none"></div>
+					
+					<div 
+						class="w-full h-full lg:w-4/5 relative z-10 transition-transform duration-1000 hover:scale-105"
+						style={`mask-image: url(${shapePixelCircle.src}); mask-size: cover; mask-repeat: no-repeat; mask-position: center; -webkit-mask-image: url(${shapePixelCircle.src}); -webkit-mask-size: cover; -webkit-mask-repeat: no-repeat; -webkit-mask-position: center;`}
+					>
+						<Image src={sintetizadorImg} alt="Sintetizador electrónico moderno" class="w-full h-full object-cover article__image" />
+					</div>
+
+					<div class="absolute bottom-8 right-8 z-20 max-w-sm p-6 rounded-3xl bg-zinc-900/80 backdrop-blur-xl border border-emerald-500/30 shadow-[0_0_50px_rgba(16,185,129,0.1)] slide-up-content hidden md:block">
+						<p class="p text-zinc-300 font-mono text-sm leading-relaxed">
+							Creador de texturas irreales. Modula circuitos para sintetizar ondas infinitas formando el ADN de toda una revolución musical sintética.
+						</p>
+						<div class="flex gap-2 pt-4">
+							<span class="px-3 py-1 bg-emerald-500/20 text-emerald-400 text-[10px] uppercase font-bold tracking-widest rounded-sm border border-emerald-500/30">Electrónico</span>
+							<span class="px-3 py-1 bg-cyan-500/20 text-cyan-400 text-[10px] uppercase font-bold tracking-widest rounded-sm border border-cyan-500/30">Contemporáneo</span>
+						</div>
+					</div>
+				</div>
+			</article>
+
+		</main>
+		
+		<aside class="toc-container order-1 lg:order-2 w-full lg:w-[320px] xl:w-[380px] shrink-0">
+			<nav class="toc" aria-label="Índice de instrumentos">
+				<div class="flex items-center gap-3 mb-8 px-2">
+					<div class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></div>
+					<h3 class="text-xs font-bold tracking-[0.2em] text-zinc-400 uppercase">Directorio</h3>
+				</div>
+				<ul>
+					<li>
+						<a href="#piano" class="group">
+							<div class="flex items-center gap-4">
+								<span class="text-xs font-mono text-zinc-500 transition-colors group-hover:text-blue-400">01</span>
+								<span class="font-display tracking-widest text-lg text-zinc-300 transition-colors group-hover:text-white">PIANO</span>
+							</div>
+							<svg class="w-4 h-4 text-zinc-500 opacity-0 -translate-x-2 transition-all duration-300 group-hover:opacity-100 group-hover:translate-x-0 group-hover:text-blue-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+						</a>
+					</li>
+					<li>
+						<a href="#violin" class="group">
+							<div class="flex items-center gap-4">
+								<span class="text-xs font-mono text-zinc-500 transition-colors group-hover:text-rose-400">02</span>
+								<span class="font-display tracking-widest text-lg text-zinc-300 transition-colors group-hover:text-white">VIOLÍN</span>
+							</div>
+							<svg class="w-4 h-4 text-zinc-500 opacity-0 -translate-x-2 transition-all duration-300 group-hover:opacity-100 group-hover:translate-x-0 group-hover:text-rose-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+						</a>
+					</li>
+					<li>
+						<a href="#organo" class="group">
+							<div class="flex items-center gap-4">
+								<span class="text-xs font-mono text-zinc-500 transition-colors group-hover:text-amber-400">03</span>
+								<span class="font-display tracking-widest text-lg text-zinc-300 transition-colors group-hover:text-white">ÓRGANO DE TUBOS</span>
+							</div>
+							<svg class="w-4 h-4 text-zinc-500 opacity-0 -translate-x-2 transition-all duration-300 group-hover:opacity-100 group-hover:translate-x-0 group-hover:text-amber-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+						</a>
+					</li>
+					<li>
+						<a href="#laud" class="group">
+							<div class="flex items-center gap-4">
+								<span class="text-xs font-mono text-zinc-500 transition-colors group-hover:text-orange-400">04</span>
+								<span class="font-display tracking-widest text-lg text-zinc-300 transition-colors group-hover:text-white">LAÚD</span>
+							</div>
+							<svg class="w-4 h-4 text-zinc-500 opacity-0 -translate-x-2 transition-all duration-300 group-hover:opacity-100 group-hover:translate-x-0 group-hover:text-orange-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+						</a>
+					</li>
+					<li>
+						<a href="#sintetizador" class="group">
+							<div class="flex items-center gap-4">
+								<span class="text-xs font-mono text-zinc-500 transition-colors group-hover:text-emerald-400">05</span>
+								<span class="font-display tracking-widest text-lg text-zinc-300 transition-colors group-hover:text-white">SINTETIZADOR</span>
+							</div>
+							<svg class="w-4 h-4 text-zinc-500 opacity-0 -translate-x-2 transition-all duration-300 group-hover:opacity-100 group-hover:translate-x-0 group-hover:text-emerald-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+						</a>
+					</li>
+				</ul>
+			</nav>
+		</aside>
+	</div>
+</Layout>
+
+<style>
+	@reference "../global.css";
+
+	.hero {
+		.hero-title {
+			animation: reveal-title 1.2s cubic-bezier(0.16, 1, 0.3, 1) both;
+		}
+	}
+	.container {
+		@apply flex flex-col lg:flex-row gap-12 max-w-[1400px] mx-auto px-6 pb-24;
+	}
+	.toc {
+		scroll-target-group: auto;
+		@apply bg-zinc-900/40 backdrop-blur-3xl p-8 rounded-[2.5rem] border border-white/5 lg:sticky lg:top-28 shadow-2xl;
+		ul {
+			@apply flex flex-col gap-2;
+		}
+		a {
+			@apply w-full flex items-center justify-between rounded-2xl px-4 py-3 transition-all duration-300 border border-transparent;
+		}
+
+		a:hover {
+			@apply bg-white/5 border-white/10 pl-6;
+		}
+
+		a:target-current {
+			@apply bg-white/10 border-white/10;
+		}
+
+		a:target-current span.font-display {
+			@apply text-white;
+		}
+	}
+	article {
+		scroll-margin-top: 6rem;
+	}
+	.article__image {
+		@apply w-full h-full object-cover;
+	}
+
+	@supports (animation-timeline: view()) {
+		.article__image {
+			animation: auto linear reveal-image both;
+			animation-timeline: view();
+			animation-range: entry 15% cover 45%;
+		}
+
+		.slide-up-content {
+			animation: slide-up-anim linear both;
+			animation-timeline: view();
+			animation-range: entry 10% cover 30%;
+		}
+
+		.parallax-number {
+			animation: parallax-number-anim linear both;
+			animation-timeline: view();
+			animation-range: entry 0% cover 100%;
+		}
+
+		@keyframes slide-up-anim {
+			0% {
+				opacity: 0;
+				transform: translateY(60px);
+			}
+			100% {
+				opacity: 1;
+				transform: translateY(0);
+			}
+		}
+
+		@keyframes parallax-number-anim {
+			0% { transform: translateY(-50px); }
+			100% { transform: translateY(50px); }
+		}
+	}
+	
+	.carousel {
+		container-type: scroll-state;
+		container-name: carousel;
+		@apply grid min-h-65 gap-4 overflow-x-auto md:min-h-105 md:gap-8;
+		grid-auto-flow: column;
+		align-items: center;
+		overscroll-behavior-x: contain;
+		scrollbar-width: none;
+		scroll-snap-type: x mandatory;
+		scroll-behavior: smooth;
+		anchor-name: --carousel;
+		padding-inline: calc(50% - 125px);
+
+		@media (width > 768px) {
+			padding-inline: calc(50% - 200px);
+		}
+
+		> .carousel__item {
+			@apply size-60 md:size-100;
+			scroll-snap-align: center;
+			scroll-snap-stop: always;
+
+			:where(.carousel) & {
+				animation:
+					offscreen-inert linear both,
+					resize linear both;
+				animation-timeline: view(x);
+			}
+		}
+
+		&::scroll-button(*) {
+			@apply absolute cursor-pointer border-none transition-all bg-zinc-800 px-3 py-2 text-zinc-200;
+			position-anchor: --carousel;
+			border-radius: 28px;
+			corner-shape: squircle;
+		}
+		&::scroll-button(left) {
+			content: '⬅' / 'Scroll Left';
+			margin-left: 16px;
+			top: anchor(center);
+			left: anchor(left);
+
+			@container carousel not scroll-state(scrollable: left) {
+				opacity: 0;
+				pointer-events: none;
+				transform: translateX(-10px);
+			}
+		}
+		&::scroll-button(right) {
+			content: '⮕' / 'Scroll Right';
+			margin-right: 16px;
+			top: anchor(center);
+			right: anchor(right);
+
+			@container carousel not scroll-state(scrollable: right) {
+				opacity: 0;
+				pointer-events: none;
+				transform: translateX(10px);
+			}
+		}
+	}
+
+	@keyframes offscreen-inert {
+		entry 0%, exit 100% { interactivity: inert; }
+		entry 100%, exit 0% { interactivity: auto; }
+	}
+
+	@keyframes resize {
+		entry 0%, 35%, 65%, 100% { transform: scale(0.6); }
+		50% { transform: scale(1); }
+	}
+
+	@keyframes reveal-image {
+		from {
+			opacity: 0;
+			transform: translateY(18px) scale(0.96);
+			filter: saturate(0.85);
+		}
+		to {
+			opacity: 1;
+			transform: translateY(0) scale(1);
+			filter: saturate(1);
+		}
+	}
+
+	@keyframes reveal-title {
+		0% { clip-path: inset(100% 0 0 0); }
+		100% { clip-path: inset(0 0 0 0); }
+	}
+
+	@keyframes marquee-scroll {
+		0% { transform: translateX(0); }
+		100% { transform: translateX(calc(-100% - 2rem)); }
+	}
+
+	.marquee-content {
+		animation: marquee-scroll 30s linear infinite;
+		padding-right: 2rem;
+	}
+	@media (min-width: 768px) {
+		@keyframes marquee-scroll-md {
+			0% { transform: translateX(0); }
+			100% { transform: translateX(calc(-100% - 4rem)); }
+		}
+		.marquee-content {
+			animation: marquee-scroll-md 30s linear infinite;
+			padding-right: 4rem;
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.hero h1, .article__image { animation: none; }
+	}
+</style>
