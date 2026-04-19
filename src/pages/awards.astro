@@ -1,0 +1,1030 @@
+---
+import { Image } from 'astro:assets';
+import Layout from '@/layouts/Layout.astro';
+
+// Artist images
+import beyonceImg from '@/assets/awards/beyonce.jpg';
+import soltiImg from '@/assets/awards/georg-solti.jpg';
+import quincyImg from '@/assets/awards/quincy-jones.jpg';
+import alisonImg from '@/assets/awards/alison-krauss.jpg';
+import chickImg from '@/assets/awards/chick-corea.jpg';
+import rockHallImg from '@/assets/awards/rock-hall-of-fame.jpg';
+import shapeCookie12 from '@/assets/figures/sided-cookie-12.svg';
+import shapeFlower from '@/assets/figures/flower.svg';
+import shapeGum from '@/assets/figures/Gum.svg';
+import shapeSoftBoom from '@/assets/figures/soft-boom.svg';
+import shapeGhost from '@/assets/figures/ghost-ish.svg';
+import shapePixelCircle from '@/assets/figures/pixel-circle.svg';
+
+// Moment & Speech images
+import firstGrammysMoment from '@/assets/awards/speeches/first-grammys.jpg';
+import beatlesMoment from '@/assets/awards/speeches/1964-the-beatles.jpg';
+import stevieMoment from '@/assets/awards/speeches/1975-stevie-wonder.jpg';
+import mjMoment from '@/assets/awards/speeches/1984-michel-jackson.jpg';
+import madonnaMoment from '@/assets/awards/speeches/1984-madona.webp';
+import rockHallMoment from '@/assets/awards/speeches/1986-rock-hall.webp';
+import beyonce2003Moment from '@/assets/awards/speeches/2003-beyonce.jpg';
+import gagaMoment from '@/assets/awards/speeches/2010-lady-gaga.webp';
+import kendrick2018Moment from '@/assets/awards/speeches/2018-kendrick-lamar.webp';
+import beyonce2023Moment from '@/assets/awards/speeches/2023-beyonce.jpg';
+
+import kendrickSpeechImg from '@/assets/awards/speeches/kendrick-lamar.jpg';
+import billieSpeechImg from '@/assets/awards/speeches/billie-eilish.jpg';
+import beyonceSpeechImg from '@/assets/awards/speeches/beyonce.jpg';
+import whitneySpeechImg from '@/assets/awards/speeches/whitney-huston.jpg';
+import taylorSpeechImg from '@/assets/awards/speeches/taylor-swift-grammys-2016-stage-billboard-1548.webp';
+import bowieSpeechImg from '@/assets/awards/speeches/david-bowie.jpg';
+
+const marqueeItems = [
+  'Grammy Awards', 'Billboard Music Awards', 'MTV Video Music Awards',
+  'Rock & Roll Hall of Fame', 'American Music Awards', 'Brit Awards',
+  'Mercury Prize', 'Latin Grammy', 'Pulitzer Prize', 'iHeartRadio Awards',
+];
+
+const recordHolders = [
+  {
+    rank: '01',
+    name: 'Beyoncé',
+    count: 32,
+    label: 'Premios Grammy',
+    note: 'Artista con más Grammys en la historia',
+    genres: ['R&B', 'Pop', 'Soul', 'Country', 'Rap'],
+    color: 'amber',
+    size: 'lg',
+    image: beyonceImg,
+    shape: shapeCookie12,
+  },
+  {
+    rank: '02',
+    name: 'Georg Solti',
+    count: 31,
+    label: 'Premios Grammy',
+    note: 'Director de orquesta húngaro-británico',
+    genres: ['Clásica'],
+    color: 'blue',
+    size: 'sm',
+    image: soltiImg,
+    shape: shapeFlower,
+  },
+  {
+    rank: '03',
+    name: 'Quincy Jones',
+    count: 28,
+    label: 'Premios Grammy',
+    note: 'Grammy Legend Award & Lifetime Achievement',
+    genres: ['Jazz', 'Pop', 'Producción'],
+    color: 'emerald',
+    size: 'sm',
+    image: quincyImg,
+    shape: shapeGum,
+  },
+  {
+    rank: '04',
+    name: 'Alison Krauss',
+    count: 27,
+    label: 'Premios Grammy',
+    note: 'Artista femenina más premiada en la historia',
+    genres: ['Country', 'Bluegrass'],
+    color: 'rose',
+    size: 'sm',
+    image: alisonImg,
+    shape: shapeGhost,
+  },
+  {
+    rank: '05',
+    name: 'Chick Corea',
+    count: 23,
+    label: 'Premios Grammy',
+    note: 'Grammy Lifetime Achievement Award',
+    genres: ['Jazz', 'Fusión'],
+    color: 'orange',
+    size: 'sm',
+    image: chickImg,
+    shape: shapeSoftBoom,
+  },
+];
+
+const grammyCategories = [
+  {
+    name: 'Álbum del Año',
+    icon: '◉',
+    recentTitle: 'Cowboy Carter',
+    recentArtist: 'Beyoncé',
+    year: '2025',
+    description: 'El galardón más prestigioso. Reconoce la excelencia artística completa de un álbum.',
+    winners: ['The Beatles', 'Stevie Wonder', 'Michael Jackson', 'Adele', 'Taylor Swift'],
+    color: 'amber',
+  },
+  {
+    name: 'Grabación del Año',
+    icon: '◈',
+    recentTitle: 'Not Like Us',
+    recentArtist: 'Kendrick Lamar',
+    year: '2025',
+    description: 'Premia la canción grabada, incluyendo la interpretación del artista y la producción.',
+    winners: ['Frank Sinatra', 'Simon & Garfunkel', 'Michael Jackson', 'Billie Eilish'],
+    color: 'purple',
+  },
+  {
+    name: 'Canción del Año',
+    icon: '◇',
+    recentTitle: 'Please Please Please',
+    recentArtist: 'Sabrina Carpenter',
+    year: '2025',
+    description: 'Reconoce a los compositores por crear una canción de impacto cultural duradero.',
+    winners: ['Sam Cooke', 'Carole King', 'Sting', 'Beyoncé'],
+    color: 'blue',
+  },
+  {
+    name: 'Mejor Artista Nuevo',
+    icon: '◆',
+    recentTitle: 'Chappell Roan',
+    recentArtist: 'Chappell Roan',
+    year: '2025',
+    description: 'Celebra a los artistas emergentes que han demostrado un talento excepcional.',
+    winners: ['The Beatles', 'Mariah Carey', 'Alicia Keys', 'Billie Eilish'],
+    color: 'emerald',
+  },
+  {
+    name: 'Mejor Álbum Pop',
+    icon: '◐',
+    recentTitle: 'Short n\' Sweet',
+    recentArtist: 'Sabrina Carpenter',
+    year: '2025',
+    description: 'Reconoce la excelencia en el género pop, el más escuchado del mundo.',
+    winners: ['Madonna', 'Janet Jackson', 'Robbie Williams', 'Adele'],
+    color: 'pink',
+  },
+  {
+    name: 'Mejor Álbum de R&B',
+    icon: '◑',
+    recentTitle: 'Chromakopia',
+    recentArtist: 'Tyler, The Creator',
+    year: '2025',
+    description: 'Celebra el soul, el funk y el R&B en sus formas más contemporáneas.',
+    winners: ['Stevie Wonder', 'Marvin Gaye', "D'Angelo", 'Beyoncé'],
+    color: 'orange',
+  },
+];
+
+const milestones = [
+  {
+    year: '1959',
+    event: 'Nace el Grammy',
+    description: 'La Academia de Artes y Ciencias de la Grabación entrega los primeros Grammys. Domenico Modugno gana con "Volare".',
+    category: 'Grammy',
+    color: 'amber',
+    image: firstGrammysMoment,
+  },
+  {
+    year: '1964',
+    event: 'The Beatles conquistan',
+    description: 'The Beatles arrasan con los premios musicales tras su invasión de EE.UU., redefiniendo el rock para siempre.',
+    category: 'Billboard',
+    color: 'blue',
+    image: beatlesMoment,
+  },
+  {
+    year: '1975',
+    event: 'Stevie Wonder domina',
+    description: '"Fulfillingness\' First Finale" gana Álbum del Año. Stevie acumularía 25 Grammys a lo largo de su carrera.',
+    category: 'Grammy',
+    color: 'purple',
+    image: stevieMoment,
+  },
+  {
+    year: '1984',
+    event: 'Michael Jackson: 8 en una noche',
+    description: 'Thriller conquista 8 Grammys en una sola noche, récord que se mantendría durante décadas. La perfección hecha música.',
+    category: 'Grammy',
+    color: 'red',
+    image: mjMoment,
+  },
+  {
+    year: '1984',
+    event: 'Madonna en los VMAs',
+    description: 'La actuación de Madonna cantando "Like a Virgin" redefine los premios MTV y la cultura pop para siempre.',
+    category: 'VMAs',
+    color: 'pink',
+    image: madonnaMoment,
+  },
+  {
+    year: '1986',
+    event: 'Rock Hall of Fame: primera clase',
+    description: 'Chuck Berry, Elvis Presley, Little Richard y Ray Charles son los primeros inductos del Rock and Roll Hall of Fame.',
+    category: 'Hall of Fame',
+    color: 'orange',
+    image: rockHallMoment,
+  },
+  {
+    year: '2003',
+    event: 'Beyoncé emerge',
+    description: 'Gana su primer Grammy por "Crazy in Love". Iniciaría su camino hacia ser la artista más premiada de la historia.',
+    category: 'Grammy',
+    color: 'amber',
+    image: beyonce2003Moment,
+  },
+  {
+    year: '2010',
+    event: 'Lady Gaga: 8 VMAs',
+    description: 'Lady Gaga gana 8 VMAs en una noche con el icónico vestido de carne, redefiniendo el espectáculo en premios.',
+    category: 'VMAs',
+    color: 'emerald',
+    image: gagaMoment,
+  },
+  {
+    year: '2018',
+    event: 'Kendrick & el Pulitzer',
+    description: '"DAMN." de Kendrick Lamar gana el Premio Pulitzer, primera vez en la historia para un trabajo no clásico.',
+    category: 'Pulitzer',
+    color: 'cyan',
+    image: kendrick2018Moment,
+  },
+  {
+    year: '2023',
+    event: 'Beyoncé: récord absoluto',
+    description: 'Con "Renaissance", Beyoncé supera a Georg Solti con 32 Grammys, convirtiéndose en la artista más premiada de todos los tiempos.',
+    category: 'Grammy',
+    color: 'amber',
+    image: beyonce2023Moment,
+  },
+];
+
+const speeches = [
+  {
+    quote: 'Esto no es solo un trofeo. Es la prueba de que el arte importa. De que la música, incluso cuando es difícil, puede cambiar el mundo.',
+    artist: 'Kendrick Lamar',
+    award: 'Premio Pulitzer · 2018',
+    color: 'red',
+    image: kendrickSpeechImg,
+  },
+  {
+    quote: 'Solo quiero tomar este momento para dedicar esto a todos los soñadores que nunca se rindieron consigo mismos.',
+    artist: 'Billie Eilish',
+    award: 'Premios Grammy · 2020',
+    color: 'emerald',
+    image: billieSpeechImg,
+  },
+  {
+    quote: 'Esto es historia negra. Esto es para mis hijos, mi nietos. Para cada niña que alguna vez soñó así de grande.',
+    artist: 'Beyoncé',
+    award: 'Premios Grammy · 2023',
+    color: 'amber',
+    image: beyonceSpeechImg,
+  },
+  {
+    quote: 'Nunca dejes que nadie te haga pensar que eres menos de lo que eres.',
+    artist: 'Whitney Houston',
+    award: 'American Music Awards · 1994',
+    color: 'purple',
+    image: whitneySpeechImg,
+  },
+  {
+    quote: 'Gracias por escribir canciones conmigo, por estar en los escenarios conmigo. Esto es de todos nosotros.',
+    artist: 'Taylor Swift',
+    award: 'Premios Grammy · 2016',
+    color: 'blue',
+    image: taylorSpeechImg,
+  },
+  {
+    quote: 'A los jóvenes de todas partes: nunca dejen de crear. El mundo necesita su voz, incluso cuando sientan que nadie está escuchando.',
+    artist: 'David Bowie',
+    award: 'Brit Award · 1996',
+    color: 'cyan',
+    image: bowieSpeechImg,
+  },
+];
+
+const hallOfFameDecades = [
+  {
+    decade: '1950s',
+    label: 'Los Pioneros',
+    acts: ['Chuck Berry', 'Little Richard', 'Elvis Presley', 'Buddy Holly', 'Ray Charles', 'Fats Domino'],
+    color: 'amber',
+  },
+  {
+    decade: '1970s',
+    label: 'La Era Dorada',
+    acts: ['Led Zeppelin', 'The Doors', 'The Who', 'David Bowie', 'Elton John', 'Pink Floyd'],
+    color: 'orange',
+  },
+  {
+    decade: '1980s',
+    label: 'Pop & New Wave',
+    acts: ['Michael Jackson', 'Prince', 'Madonna', 'U2', 'R.E.M.', 'The Clash'],
+    color: 'purple',
+  },
+  {
+    decade: '1990s',
+    label: 'Alternative & Hip-Hop',
+    acts: ['Nirvana', 'Pearl Jam', 'Jay-Z', 'The Notorious B.I.G.', 'Dr. Dre', 'Tupac Shakur'],
+    color: 'blue',
+  },
+  {
+    decade: '2000s–2020s',
+    label: 'Era Digital',
+    acts: ['Radiohead', 'Eminem', 'Beyoncé', 'Kendrick Lamar', 'Arcade Fire', 'LCD Soundsystem'],
+    color: 'emerald',
+  },
+];
+---
+
+<Layout title="Premios | Música">
+  <!-- ─── HERO ─────────────────────────────────────────────── -->
+  <section class="relative min-h-screen flex flex-col items-center justify-center overflow-hidden px-6 py-24">
+    <!-- Atmospheric glows -->
+    <div class="absolute top-1/4 left-1/3 w-[700px] h-[700px] bg-amber-500/15 blur-[150px] rounded-full pointer-events-none mix-blend-screen -z-10"></div>
+    <div class="absolute bottom-1/4 right-1/3 w-[500px] h-[500px] bg-yellow-600/10 blur-[130px] rounded-full pointer-events-none mix-blend-screen -z-10"></div>
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[400px] bg-amber-600/8 blur-[120px] rounded-full pointer-events-none mix-blend-screen -z-10"></div>
+
+    <!-- Grid dot overlay -->
+    <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:24px_24px] [mask-image:radial-gradient(ellipse_at_center,black_40%,transparent_70%)] -z-10"></div>
+
+    <!-- Vertical hairlines -->
+    <div class="absolute left-1/4 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-white to-transparent opacity-[0.07] -z-10"></div>
+    <div class="absolute left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-white to-transparent opacity-[0.07] -z-10"></div>
+    <div class="absolute left-3/4 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-white to-transparent opacity-[0.07] -z-10"></div>
+
+    <!-- Large decorative star -->
+    <div class="absolute top-12 right-12 text-[20rem] font-black text-amber-400/[0.03] pointer-events-none select-none leading-none -z-10">★</div>
+
+    <!-- Eyebrow -->
+    <div class="hero-eyebrow mb-6 z-10">
+      <div class="flex items-center gap-4">
+        <div class="h-px w-16 bg-gradient-to-r from-transparent to-amber-400"></div>
+        <span class="text-xs font-bold tracking-widest uppercase text-amber-400">Reconocimientos & Legado</span>
+        <div class="h-px w-16 bg-gradient-to-l from-transparent to-amber-400"></div>
+      </div>
+    </div>
+
+    <!-- Main title -->
+    <div class="hero-title z-10 text-center">
+      <h1 class="font-display font-black uppercase leading-none text-7xl md:text-[10rem] lg:text-[13rem] text-transparent bg-clip-text bg-gradient-to-b from-amber-200 via-zinc-100 to-zinc-500 tracking-tight">
+        AWARDS
+      </h1>
+    </div>
+
+    <!-- Subtitle -->
+    <p class="hero-subtitle z-10 mt-6 text-center text-xl text-zinc-400 font-light max-w-xl leading-relaxed">
+      Los galardones que definieron eras, consagraron artistas y escribieron la historia de la música.
+    </p>
+
+    <!-- Stats strip -->
+    <div class="hero-stats z-10 mt-16 grid grid-cols-2 md:grid-cols-4 gap-4 w-full max-w-4xl">
+      <div class="stat-card p-5 rounded-2xl bg-zinc-900/40 border border-white/5 backdrop-blur-md text-center">
+        <span class="block text-3xl font-black font-display text-amber-300">32</span>
+        <span class="block text-xs font-bold tracking-widest uppercase text-zinc-500 mt-1">Récord de Grammys</span>
+        <span class="block text-xs text-zinc-600 mt-0.5">Beyoncé</span>
+      </div>
+      <div class="stat-card p-5 rounded-2xl bg-zinc-900/40 border border-white/5 backdrop-blur-md text-center">
+        <span class="block text-3xl font-black font-display text-amber-300">66</span>
+        <span class="block text-xs font-bold tracking-widest uppercase text-zinc-500 mt-1">Años de historia</span>
+        <span class="block text-xs text-zinc-600 mt-0.5">Grammy Awards</span>
+      </div>
+      <div class="stat-card p-5 rounded-2xl bg-zinc-900/40 border border-white/5 backdrop-blur-md text-center">
+        <span class="block text-3xl font-black font-display text-amber-300">900+</span>
+        <span class="block text-xs font-bold tracking-widest uppercase text-zinc-500 mt-1">Hall of Fame</span>
+        <span class="block text-xs text-zinc-600 mt-0.5">Inductees</span>
+      </div>
+      <div class="stat-card p-5 rounded-2xl bg-zinc-900/40 border border-white/5 backdrop-blur-md text-center">
+        <span class="block text-3xl font-black font-display text-amber-300">∞</span>
+        <span class="block text-xs font-bold tracking-widest uppercase text-zinc-500 mt-1">Legado musical</span>
+        <span class="block text-xs text-zinc-600 mt-0.5">Para siempre</span>
+      </div>
+    </div>
+
+    <!-- Scroll indicator -->
+    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-40">
+      <span class="text-xs font-bold tracking-widest uppercase text-zinc-500">Scroll</span>
+      <div class="w-px h-12 bg-gradient-to-b from-zinc-500 to-transparent"></div>
+    </div>
+  </section>
+
+  <!-- ─── MARQUEE ───────────────────────────────────────────── -->
+  <div class="relative w-screen left-1/2 right-1/2 -mx-[50vw] overflow-hidden py-8 bg-zinc-900/80 border-y border-white/5">
+    <div class="flex items-center marquee-wrapper">
+      <div class="flex gap-12 items-center shrink-0 marquee-content">
+        {marqueeItems.map((name) => (
+          <span class="flex items-center gap-10 text-5xl font-black font-display uppercase text-zinc-800 whitespace-nowrap">
+            {name}
+            <span class="text-amber-500/30 text-2xl select-none">★</span>
+          </span>
+        ))}
+      </div>
+      <div class="flex gap-12 items-center shrink-0 marquee-content" aria-hidden="true">
+        {marqueeItems.map((name) => (
+          <span class="flex items-center gap-10 text-5xl font-black font-display uppercase text-zinc-800 whitespace-nowrap">
+            {name}
+            <span class="text-amber-500/30 text-2xl select-none">★</span>
+          </span>
+        ))}
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── RECORD HOLDERS BENTO ──────────────────────────────── -->
+  <section class="relative px-6 py-32 max-w-[1400px] mx-auto">
+    <div class="absolute top-1/3 right-0 w-[500px] h-[500px] bg-amber-600/8 blur-[130px] rounded-full pointer-events-none mix-blend-screen -z-10"></div>
+
+    <div class="mb-16 slide-up-content">
+      <span class="text-xs font-bold tracking-widest uppercase text-amber-400 mb-3 block">Récords Históricos</span>
+      <h2 class="font-display font-black uppercase text-6xl md:text-8xl text-zinc-100 leading-none">
+        LOS MÁS<br />
+        <span class="text-transparent bg-clip-text bg-gradient-to-r from-amber-300 to-amber-600">PREMIADOS</span>
+      </h2>
+    </div>
+
+    <!-- Bento: 1 large + 4 smaller cards -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-4">
+
+      <!-- Beyoncé — featured large -->
+      <div class="lg:col-span-7 group relative rounded-[2.5rem] bg-zinc-900/60 border border-white/5 hover:border-amber-500/30 overflow-hidden transition-all duration-500 hover:-translate-y-2 p-8 md:p-12 min-h-[400px] flex flex-col md:flex-row gap-8 slide-up-content">
+        <div class="absolute top-0 right-0 w-[400px] h-[400px] bg-amber-500/10 blur-[100px] rounded-full opacity-50 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"></div>
+        <div class="absolute -bottom-6 -right-4 text-[14rem] font-black text-amber-400/[0.04] pointer-events-none select-none leading-none font-display">★</div>
+
+        <!-- Text content -->
+        <div class="flex-1 flex flex-col justify-between relative z-10">
+          <div>
+            <div class="flex items-start justify-between mb-6">
+              <span class="px-3 py-1 rounded-full bg-amber-500/10 text-amber-300 text-xs font-bold tracking-widest uppercase border border-amber-500/20">#1 · Récord Mundial</span>
+              <span class="text-xs font-mono text-zinc-600">01 / 05</span>
+            </div>
+            <div class="flex items-end gap-4 mb-4">
+              <span class="font-display font-black text-[6rem] leading-none text-transparent bg-clip-text bg-gradient-to-b from-amber-200 to-amber-500">32</span>
+              <div class="mb-4">
+                <span class="block text-sm font-bold tracking-widest uppercase text-zinc-500">Premios Grammy</span>
+                <span class="block text-xs text-zinc-600 mt-0.5">Más que cualquier artista en la historia</span>
+              </div>
+            </div>
+            <h3 class="font-display font-black uppercase text-4xl text-zinc-100 group-hover:text-amber-200 transition-colors duration-500">Beyoncé</h3>
+            <p class="text-zinc-400 mt-3 font-light leading-relaxed">
+              Con 32 premios Grammy, Beyoncé es la artista más galardonada en la historia. Sus victorias abarcan R&B, pop, country y hip-hop, consolidando un legado sin precedentes.
+            </p>
+          </div>
+          <div class="flex flex-wrap gap-2 mt-6">
+            {recordHolders[0].genres.map((g) => (
+              <span class="px-3 py-1 rounded-full bg-white/5 text-zinc-300 text-xs font-bold tracking-wide uppercase border border-white/10">{g}</span>
+            ))}
+          </div>
+        </div>
+
+        <!-- Photo -->
+        <div class="shrink-0 self-center w-55 h-65 md:w-65 md:h-80 relative z-10"
+          style={`mask-image: url(${shapeCookie12.src}); mask-size: contain; mask-repeat: no-repeat; mask-position: center; -webkit-mask-image: url(${shapeCookie12.src}); -webkit-mask-size: contain; -webkit-mask-repeat: no-repeat; -webkit-mask-position: center;`}>
+          <Image
+            src={beyonceImg}
+            alt="Beyoncé"
+            class="w-full h-full object-cover object-top filter saturate-[0.8] contrast-[1.05] group-hover:saturate-100 transition-all duration-1000"
+          />
+        </div>
+      </div>
+
+      <!-- Right column: 4 smaller cards -->
+      <div class="lg:col-span-5 grid grid-cols-1 sm:grid-cols-2 gap-4">
+        {recordHolders.slice(1).map((holder) => (
+          <div class={`group relative rounded-[2rem] bg-zinc-900/60 border border-white/5 overflow-hidden transition-all duration-500 hover:-translate-y-2 p-7 flex flex-col gap-4 slide-up-content holder-card-${holder.color}`}>
+            <div class={`absolute top-0 right-0 w-[200px] h-[200px] blur-[80px] rounded-full opacity-40 group-hover:opacity-80 transition-opacity duration-700 pointer-events-none holder-glow-${holder.color}`}></div>
+
+            <!-- Photo + rank row -->
+            <div class="flex items-start justify-between relative z-10">
+              <span class={`px-2.5 py-1 rounded-full text-xs font-bold tracking-widest uppercase border holder-badge-${holder.color}`}>
+                {holder.genres[0]}
+              </span>
+              <div class="w-16 h-16 shrink-0"
+                style={`mask-image: url(${holder.shape.src}); mask-size: contain; mask-repeat: no-repeat; mask-position: center; -webkit-mask-image: url(${holder.shape.src}); -webkit-mask-size: contain; -webkit-mask-repeat: no-repeat; -webkit-mask-position: center;`}>
+                <Image
+                  src={holder.image}
+                  alt={holder.name}
+                  class="w-full h-full object-cover object-top filter saturate-75 group-hover:saturate-100 transition-all duration-700"
+                />
+              </div>
+            </div>
+
+            <div class="relative z-10">
+              <div class="flex items-end gap-2 mb-1.5">
+                <span class={`font-display font-black text-[3.5rem] leading-none holder-count-${holder.color}`}>{holder.count}</span>
+                <span class="text-xs font-bold tracking-widest uppercase text-zinc-600 mb-3">Grammy</span>
+              </div>
+              <h3 class={`font-display font-black uppercase text-xl text-zinc-100 transition-colors duration-500 holder-name-${holder.color}`}>
+                {holder.name}
+              </h3>
+              <p class="text-zinc-600 mt-1 text-xs leading-relaxed">{holder.note}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── GRAMMY CATEGORIES ─────────────────────────────────── -->
+  <section class="relative py-32 px-6 overflow-hidden border-y border-white/5 bg-zinc-900/20">
+    <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:24px_24px] pointer-events-none"></div>
+    <div class="absolute top-1/2 left-1/4 w-[600px] h-[600px] bg-amber-600/6 blur-[150px] rounded-full pointer-events-none mix-blend-screen -translate-y-1/2"></div>
+
+    <div class="relative max-w-[1400px] mx-auto">
+      <div class="mb-16 slide-up-content">
+        <span class="text-xs font-bold tracking-widest uppercase text-amber-400 mb-3 block">Categorías Principales</span>
+        <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
+          <h2 class="font-display font-black uppercase text-6xl md:text-8xl text-zinc-100 leading-none">
+            GRAMMY<br />
+            <span class="text-transparent bg-clip-text bg-gradient-to-r from-zinc-300 to-zinc-600">AWARDS</span>
+          </h2>
+          <p class="text-zinc-400 font-light text-base leading-relaxed max-w-xs md:max-w-sm md:text-right">
+            Fundados en 1959 por la Academia Nacional de Artes y Ciencias de la Grabación. El mayor honor de la industria musical.
+          </p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+        {grammyCategories.map((cat, i) => (
+          <div class={`group relative rounded-[2rem] bg-zinc-900/40 border border-white/5 overflow-hidden transition-all duration-500 hover:-translate-y-2 p-8 slide-up-content cat-card-${cat.color}`}>
+            <!-- Ghost number -->
+            <div class={`absolute -bottom-4 -right-2 text-[7rem] font-black pointer-events-none select-none leading-none font-display cat-num-${cat.color}`}>
+              {String(i + 1).padStart(2, '0')}
+            </div>
+            <!-- Hover glow overlay -->
+            <div class={`absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none rounded-[2rem] cat-glow-${cat.color}`}></div>
+
+            <div class="relative z-10">
+              <div class="flex items-center justify-between mb-5">
+                <span class={`text-2xl cat-icon-${cat.color}`}>{cat.icon}</span>
+                <div class={`px-3 py-1 rounded-full border cat-badge-${cat.color}`}>
+                  <span class={`text-xs font-bold tracking-widest uppercase cat-year-${cat.color}`}>{cat.year}</span>
+                </div>
+              </div>
+
+              <h3 class={`font-display font-black uppercase text-xl text-zinc-100 transition-colors duration-500 mb-2 cat-title-${cat.color}`}>
+                {cat.name}
+              </h3>
+              <p class="text-zinc-500 text-base leading-relaxed mb-5">{cat.description}</p>
+
+              <!-- Recent winner -->
+              <div class={`p-4 rounded-xl mb-4 cat-recent-${cat.color}`}>
+                <span class="block text-xs font-bold tracking-widest uppercase text-zinc-600 mb-1">Último ganador ({cat.year})</span>
+                <span class={`block text-sm font-bold cat-recent-title-${cat.color}`}>{cat.recentTitle}</span>
+                <span class="block text-xs text-zinc-500">{cat.recentArtist}</span>
+              </div>
+
+              <!-- Iconic past winners -->
+              <div>
+                <span class="text-xs font-bold tracking-widest uppercase text-zinc-700 mb-2 block">Ganadores icónicos</span>
+                <div class="flex flex-wrap gap-1.5">
+                  {cat.winners.map((w) => (
+                    <span class="px-2 py-0.5 rounded-full bg-white/5 text-zinc-400 text-xs font-medium border border-white/5">{w}</span>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── HISTORIC MILESTONES (horizontal scroll) ───────────── -->
+  <section class="relative py-32 overflow-hidden">
+    <div class="px-6 max-w-[1400px] mx-auto mb-12 slide-up-content">
+      <span class="text-xs font-bold tracking-widest uppercase text-amber-400 mb-3 block">A través del tiempo</span>
+      <h2 class="font-display font-black uppercase text-6xl md:text-8xl text-zinc-100 leading-none">
+        MOMENTOS<br />
+        <span class="text-transparent bg-clip-text bg-gradient-to-r from-amber-300 to-amber-700">HISTÓRICOS</span>
+      </h2>
+    </div>
+
+    <div class="relative">
+      <!-- Fade edges -->
+      <div class="absolute left-0 top-0 bottom-8 w-20 bg-gradient-to-r from-zinc-950 to-transparent pointer-events-none z-10"></div>
+      <div class="absolute right-0 top-0 bottom-8 w-20 bg-gradient-to-l from-zinc-950 to-transparent pointer-events-none z-10"></div>
+
+      <div class="overflow-x-auto scrollbar-hide pb-4">
+        <div class="flex gap-5 px-6 w-max">
+          {milestones.map((m, i) => (
+            <div class={`group relative w-[320px] shrink-0 rounded-[2.5rem] bg-zinc-900/60 border border-white/5 overflow-hidden transition-all duration-500 hover:-translate-y-2 p-6 flex flex-col gap-5 milestone-card-${m.color}`}>
+              <div class={`absolute top-0 right-0 w-[200px] h-[200px] blur-[80px] rounded-full opacity-40 group-hover:opacity-80 transition-opacity duration-700 pointer-events-none milestone-glow-${m.color}`}></div>
+
+              <!-- Explicit Milestone Image -->
+              <div class="relative w-full h-40 rounded-2xl overflow-hidden border border-white/5 z-10 transition-transform duration-700 group-hover:scale-[1.02]">
+                <Image 
+                  src={m.image} 
+                  alt={m.event} 
+                  class="w-full h-full object-cover filter saturate-[0.8] group-hover:saturate-100 transition-all duration-700" 
+                />
+                <div class="absolute inset-0 bg-gradient-to-t from-zinc-950/40 to-transparent"></div>
+              </div>
+
+              <div class="flex items-center justify-between relative z-10">
+                <span class={`px-3 py-1 rounded-full text-xs font-bold tracking-widest uppercase border milestone-badge-${m.color}`}>
+                  {m.category}
+                </span>
+                <span class="font-display font-black text-xl text-zinc-700">{m.year}</span>
+              </div>
+
+              <div class="relative z-10">
+                <h3 class={`font-display font-black uppercase text-lg text-zinc-100 transition-colors duration-500 mb-2 milestone-title-${m.color}`}>
+                  {m.event}
+                </h3>
+                <p class="text-zinc-500 text-base leading-relaxed">{m.description}</p>
+              </div>
+
+              <div class={`mt-auto h-px relative z-10 milestone-line-${m.color}`}></div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── ICONIC SPEECHES ───────────────────────────────────── -->
+  <section class="relative px-6 py-32 max-w-[1400px] mx-auto">
+    <div class="absolute bottom-0 right-0 w-[500px] h-[500px] bg-purple-600/8 blur-[130px] rounded-full pointer-events-none mix-blend-screen -z-10"></div>
+
+    <div class="mb-16 slide-up-content">
+      <span class="text-xs font-bold tracking-widest uppercase text-amber-400 mb-3 block">Palabras que Resuenan</span>
+      <h2 class="font-display font-black uppercase text-6xl md:text-8xl text-zinc-100 leading-none">
+        DISCURSOS<br />
+        <span class="text-transparent bg-clip-text bg-gradient-to-r from-zinc-300 to-zinc-600">LEGENDARIOS</span>
+      </h2>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+      {speeches.map((s) => (
+        <div class={`group relative rounded-[2.5rem] bg-zinc-900/40 border border-white/5 overflow-hidden transition-all duration-500 hover:-translate-y-2 p-8 slide-up-content speech-card-${s.color}`}>
+          <div class={`absolute -top-4 -left-4 w-[180px] h-[180px] blur-[80px] rounded-full opacity-40 group-hover:opacity-70 transition-opacity duration-700 pointer-events-none speech-glow-${s.color}`}></div>
+
+          <div class="flex flex-col gap-6 relative z-10">
+            <!-- Explicit Speech Moment Image -->
+            <div class="relative w-full h-44 rounded-2xl overflow-hidden border border-white/5"
+                 style={`mask-image: url(${shapePixelCircle.src}); mask-size: cover; -webkit-mask-image: url(${shapePixelCircle.src}); -webkit-mask-size: cover;`}>
+              <Image 
+                src={s.image} 
+                alt={s.artist} 
+                class="w-full h-full object-cover filter saturate-[0.7] group-hover:saturate-100 transition-all duration-1000 group-hover:scale-110" 
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-zinc-950/60 to-transparent"></div>
+            </div>
+
+            <div>
+              <!-- Big quote mark -->
+              <div class={`text-7xl font-display font-black leading-none mb-3 select-none speech-quote-${s.color}`}>"</div>
+
+              <blockquote class="text-zinc-300 font-light text-base leading-relaxed italic mb-6">
+                "{s.quote}"
+              </blockquote>
+
+              <div class="flex items-center gap-4">
+                <div class={`w-6 h-px speech-line-${s.color}`}></div>
+                <div>
+                  <span class={`block font-bold text-sm speech-name-${s.color}`}>{s.artist}</span>
+                  <span class="block text-xs text-zinc-600">{s.award}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- ─── ROCK & ROLL HALL OF FAME ─────────────────────────── -->
+  <section class="relative py-32 px-6 bg-zinc-900/20 border-y border-white/5 overflow-hidden">
+    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-amber-500/6 blur-[130px] rounded-full pointer-events-none mix-blend-screen"></div>
+
+    <div class="max-w-[1400px] mx-auto">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+
+        <!-- Left: description + stats -->
+        <div class="slide-up-content">
+          <span class="text-xs font-bold tracking-widest uppercase text-amber-400 mb-3 block">Inmortalidad Musical</span>
+          <h2 class="font-display font-black uppercase text-5xl md:text-6xl text-zinc-100 leading-none mb-8">
+            ROCK & ROLL<br />
+            <span class="text-transparent bg-clip-text bg-gradient-to-r from-amber-300 to-amber-600">HALL OF FAME</span>
+          </h2>
+          <p class="text-zinc-400 font-light text-lg leading-relaxed mb-10">
+            Fundado en 1983, el Rock and Roll Hall of Fame es el mayor honor que puede recibir un artista. Los nominados son elegibles 25 años después de su primer lanzamiento discográfico.
+          </p>
+
+          <div class="grid grid-cols-2 gap-4 mb-8">
+            <div class="p-6 rounded-2xl bg-zinc-900/60 border border-white/5">
+              <span class="block text-3xl font-black font-display text-amber-300">1986</span>
+              <span class="block text-xs font-bold tracking-widest uppercase text-zinc-500 mt-1">Primera ceremonia</span>
+            </div>
+            <div class="p-6 rounded-2xl bg-zinc-900/60 border border-white/5">
+              <span class="block text-3xl font-black font-display text-amber-300">900+</span>
+              <span class="block text-xs font-bold tracking-widest uppercase text-zinc-500 mt-1">Inductees</span>
+            </div>
+            <div class="rounded-2xl overflow-hidden col-span-2 h-36 relative"
+              style={`mask-image: url(${shapePixelCircle.src}); mask-size: cover; mask-repeat: no-repeat; mask-position: center; -webkit-mask-image: url(${shapePixelCircle.src}); -webkit-mask-size: cover; -webkit-mask-repeat: no-repeat; -webkit-mask-position: center;`}>
+              <Image src={rockHallImg} alt="Rock and Roll Hall of Fame building" class="w-full h-full object-cover filter saturate-50 group-hover:saturate-100 transition-all duration-1000" />
+              <div class="absolute inset-0 bg-gradient-to-t from-zinc-950/50 via-zinc-950/20 to-transparent flex items-end p-4">
+                <div>
+                  <span class="block text-lg font-black font-display text-amber-300">Cleveland, Ohio</span>
+                  <span class="block text-xs font-bold tracking-widest uppercase text-zinc-500">Sede del museo · EE.UU.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Divider -->
+          <div class="flex items-center gap-4 opacity-50">
+            <div class="h-px flex-1 bg-gradient-to-r from-transparent to-zinc-600"></div>
+            <span class="text-xs font-bold tracking-widest uppercase text-zinc-500">Por décadas</span>
+            <div class="h-px flex-1 bg-gradient-to-l from-transparent to-zinc-600"></div>
+          </div>
+        </div>
+
+        <!-- Right: decade groups -->
+        <div class="space-y-3 slide-up-content">
+          {hallOfFameDecades.map((group) => (
+            <div class={`group relative rounded-2xl bg-zinc-900/40 border border-white/5 overflow-hidden transition-all duration-300 hover:-translate-y-1 p-6 hof-card-${group.color}`}>
+              <div class="flex items-center gap-4 mb-3">
+                <span class={`font-display font-black text-lg hof-decade-${group.color}`}>{group.decade}</span>
+                <span class="text-xs font-bold tracking-widest uppercase text-zinc-600">{group.label}</span>
+              </div>
+              <div class="flex flex-wrap gap-2">
+                {group.acts.map((act) => (
+                  <span class={`px-2.5 py-0.5 rounded-full text-xs font-medium border transition-colors duration-300 hof-act-${group.color}`}>{act}</span>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── EXPLORE MORE CTA ──────────────────────────────────── -->
+  <section class="relative py-32 px-6 overflow-hidden">
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-amber-500/10 blur-[130px] rounded-full pointer-events-none mix-blend-screen"></div>
+
+    <div class="relative max-w-4xl mx-auto text-center slide-up-content">
+      <div class="flex items-center justify-center gap-4 mb-6">
+        <div class="h-px w-20 bg-gradient-to-r from-transparent to-amber-400"></div>
+        <span class="text-xs font-bold tracking-widest uppercase text-amber-400">Explorar más</span>
+        <div class="h-px w-20 bg-gradient-to-l from-transparent to-amber-400"></div>
+      </div>
+
+      <h2 class="font-display font-black uppercase text-6xl md:text-8xl text-transparent bg-clip-text bg-gradient-to-b from-white to-zinc-600 leading-none mb-8">
+        DESCUBRE<br />MÁS MÚSICA
+      </h2>
+
+      <div class="flex flex-wrap justify-center gap-4 mt-10">
+        {[
+          { href: '/history', label: 'Historia' },
+          { href: '/artists', label: 'Artistas' },
+          { href: '/genres', label: 'Géneros' },
+          { href: '/instruments', label: 'Instrumentos' },
+          { href: '/labels', label: 'Disqueras' },
+        ].map((link) => (
+          <a
+            href={link.href}
+            class="px-6 py-3 rounded-full bg-zinc-800 hover:bg-zinc-700 border border-white/10 hover:border-white/20 text-zinc-200 font-bold tracking-widest uppercase text-xs transition-all duration-300 hover:-translate-y-1"
+          >
+            {link.label}
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  /* ── Entrance animations ─────────────────────────────── */
+  @keyframes fade-in-up {
+    0%   { opacity: 0; transform: translateY(40px) scale(0.98); filter: blur(8px); }
+    100% { opacity: 1; transform: translateY(0) scale(1);       filter: blur(0); }
+  }
+
+  .hero-eyebrow  { animation: fade-in-up 1.2s cubic-bezier(0.16,1,0.3,1) both; animation-delay: 0.1s; }
+  .hero-title    { animation: fade-in-up 1.2s cubic-bezier(0.16,1,0.3,1) both; animation-delay: 0.25s; }
+  .hero-subtitle { animation: fade-in-up 1.2s cubic-bezier(0.16,1,0.3,1) both; animation-delay: 0.4s; }
+  .hero-stats    { animation: fade-in-up 1.2s cubic-bezier(0.16,1,0.3,1) both; animation-delay: 0.55s; }
+
+  /* ── Scroll-driven ───────────────────────────────────── */
+  .slide-up-content {
+    animation: slide-up-anim linear both;
+    animation-timeline: view();
+    animation-range: entry 5% cover 30%;
+  }
+
+  @keyframes slide-up-anim {
+    from { opacity: 0; transform: translateY(50px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── Marquee ─────────────────────────────────────────── */
+  .marquee-wrapper { width: max-content; }
+
+  .marquee-content {
+    animation: marquee-scroll 40s linear infinite;
+  }
+
+  @keyframes marquee-scroll {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-100%); }
+  }
+
+  /* ── Scrollbar hide ──────────────────────────────────── */
+  .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+  .scrollbar-hide::-webkit-scrollbar { display: none; }
+
+  /* ── Record Holders: color variants ─────────────────── */
+  .holder-card-blue   { border-color: rgb(59 130 246 / 0); }
+  .holder-card-blue:hover  { border-color: rgb(59 130 246 / 0.3); }
+  .holder-card-emerald { border-color: rgb(16 185 129 / 0); }
+  .holder-card-emerald:hover { border-color: rgb(16 185 129 / 0.3); }
+  .holder-card-rose   { border-color: rgb(244 63 94 / 0); }
+  .holder-card-rose:hover   { border-color: rgb(244 63 94 / 0.3); }
+  .holder-card-orange { border-color: rgb(249 115 22 / 0); }
+  .holder-card-orange:hover { border-color: rgb(249 115 22 / 0.3); }
+
+  .holder-glow-blue    { background: rgb(59 130 246 / 0.12); }
+  .holder-glow-emerald { background: rgb(16 185 129 / 0.12); }
+  .holder-glow-rose    { background: rgb(244 63 94 / 0.12); }
+  .holder-glow-orange  { background: rgb(249 115 22 / 0.12); }
+
+  .holder-count-blue    { color: rgb(147 197 253); }
+  .holder-count-emerald { color: rgb(110 231 183); }
+  .holder-count-rose    { color: rgb(253 164 175); }
+  .holder-count-orange  { color: rgb(253 186 116); }
+
+  .holder-name-blue:is(.group:hover *)    { color: rgb(191 219 254); }
+  .holder-name-emerald:is(.group:hover *) { color: rgb(167 243 208); }
+  .holder-name-rose:is(.group:hover *)    { color: rgb(254 205 211); }
+  .holder-name-orange:is(.group:hover *)  { color: rgb(254 215 170); }
+
+  .holder-badge-blue    { background: rgb(59 130 246 / 0.1); color: rgb(147 197 253); border-color: rgb(59 130 246 / 0.2); }
+  .holder-badge-emerald { background: rgb(16 185 129 / 0.1); color: rgb(110 231 183); border-color: rgb(16 185 129 / 0.2); }
+  .holder-badge-rose    { background: rgb(244 63 94 / 0.1);  color: rgb(253 164 175); border-color: rgb(244 63 94 / 0.2); }
+  .holder-badge-orange  { background: rgb(249 115 22 / 0.1); color: rgb(253 186 116); border-color: rgb(249 115 22 / 0.2); }
+
+  /* ── Grammy category cards ───────────────────────────── */
+  .cat-card-amber:hover  { border-color: rgb(245 158 11 / 0.3); }
+  .cat-card-purple:hover { border-color: rgb(168 85 247 / 0.3); }
+  .cat-card-blue:hover   { border-color: rgb(59 130 246 / 0.3); }
+  .cat-card-emerald:hover { border-color: rgb(16 185 129 / 0.3); }
+  .cat-card-pink:hover   { border-color: rgb(236 72 153 / 0.3); }
+  .cat-card-orange:hover { border-color: rgb(249 115 22 / 0.3); }
+
+  .cat-num-amber    { color: rgb(245 158 11 / 0.05); }
+  .cat-num-purple   { color: rgb(168 85 247 / 0.05); }
+  .cat-num-blue     { color: rgb(59 130 246 / 0.05); }
+  .cat-num-emerald  { color: rgb(16 185 129 / 0.05); }
+  .cat-num-pink     { color: rgb(236 72 153 / 0.05); }
+  .cat-num-orange   { color: rgb(249 115 22 / 0.05); }
+
+  .cat-glow-amber    { background: rgb(245 158 11 / 0.04); }
+  .cat-glow-purple   { background: rgb(168 85 247 / 0.04); }
+  .cat-glow-blue     { background: rgb(59 130 246 / 0.04); }
+  .cat-glow-emerald  { background: rgb(16 185 129 / 0.04); }
+  .cat-glow-pink     { background: rgb(236 72 153 / 0.04); }
+  .cat-glow-orange   { background: rgb(249 115 22 / 0.04); }
+
+  .cat-icon-amber    { color: rgb(251 191 36); }
+  .cat-icon-purple   { color: rgb(196 181 253); }
+  .cat-icon-blue     { color: rgb(147 197 253); }
+  .cat-icon-emerald  { color: rgb(110 231 183); }
+  .cat-icon-pink     { color: rgb(249 168 212); }
+  .cat-icon-orange   { color: rgb(253 186 116); }
+
+  .cat-badge-amber    { background: rgb(245 158 11 / 0.1);  border-color: rgb(245 158 11 / 0.2); }
+  .cat-badge-purple   { background: rgb(168 85 247 / 0.1);  border-color: rgb(168 85 247 / 0.2); }
+  .cat-badge-blue     { background: rgb(59 130 246 / 0.1);  border-color: rgb(59 130 246 / 0.2); }
+  .cat-badge-emerald  { background: rgb(16 185 129 / 0.1);  border-color: rgb(16 185 129 / 0.2); }
+  .cat-badge-pink     { background: rgb(236 72 153 / 0.1);  border-color: rgb(236 72 153 / 0.2); }
+  .cat-badge-orange   { background: rgb(249 115 22 / 0.1);  border-color: rgb(249 115 22 / 0.2); }
+
+  .cat-year-amber    { color: rgb(251 191 36); }
+  .cat-year-purple   { color: rgb(196 181 253); }
+  .cat-year-blue     { color: rgb(147 197 253); }
+  .cat-year-emerald  { color: rgb(110 231 183); }
+  .cat-year-pink     { color: rgb(249 168 212); }
+  .cat-year-orange   { color: rgb(253 186 116); }
+
+  .cat-title-amber:is(.group:hover *)    { color: rgb(252 211 77); }
+  .cat-title-purple:is(.group:hover *)   { color: rgb(216 180 254); }
+  .cat-title-blue:is(.group:hover *)     { color: rgb(191 219 254); }
+  .cat-title-emerald:is(.group:hover *)  { color: rgb(167 243 208); }
+  .cat-title-pink:is(.group:hover *)     { color: rgb(251 207 232); }
+  .cat-title-orange:is(.group:hover *)   { color: rgb(254 215 170); }
+
+  .cat-recent-amber    { background: rgb(245 158 11 / 0.05); border: 1px solid rgb(245 158 11 / 0.1); border-radius: 0.75rem; }
+  .cat-recent-purple   { background: rgb(168 85 247 / 0.05); border: 1px solid rgb(168 85 247 / 0.1); border-radius: 0.75rem; }
+  .cat-recent-blue     { background: rgb(59 130 246 / 0.05); border: 1px solid rgb(59 130 246 / 0.1); border-radius: 0.75rem; }
+  .cat-recent-emerald  { background: rgb(16 185 129 / 0.05); border: 1px solid rgb(16 185 129 / 0.1); border-radius: 0.75rem; }
+  .cat-recent-pink     { background: rgb(236 72 153 / 0.05); border: 1px solid rgb(236 72 153 / 0.1); border-radius: 0.75rem; }
+  .cat-recent-orange   { background: rgb(249 115 22 / 0.05); border: 1px solid rgb(249 115 22 / 0.1); border-radius: 0.75rem; }
+
+  .cat-recent-title-amber   { color: rgb(251 191 36); }
+  .cat-recent-title-purple  { color: rgb(196 181 253); }
+  .cat-recent-title-blue    { color: rgb(147 197 253); }
+  .cat-recent-title-emerald { color: rgb(110 231 183); }
+  .cat-recent-title-pink    { color: rgb(249 168 212); }
+  .cat-recent-title-orange  { color: rgb(253 186 116); }
+
+  /* ── Milestone cards ─────────────────────────────────── */
+  .milestone-card-amber:hover  { border-color: rgb(245 158 11 / 0.3); }
+  .milestone-card-blue:hover   { border-color: rgb(59 130 246 / 0.3); }
+  .milestone-card-purple:hover { border-color: rgb(168 85 247 / 0.3); }
+  .milestone-card-red:hover    { border-color: rgb(239 68 68 / 0.3); }
+  .milestone-card-pink:hover   { border-color: rgb(236 72 153 / 0.3); }
+  .milestone-card-orange:hover { border-color: rgb(249 115 22 / 0.3); }
+  .milestone-card-emerald:hover { border-color: rgb(16 185 129 / 0.3); }
+  .milestone-card-cyan:hover   { border-color: rgb(6 182 212 / 0.3); }
+
+  .milestone-glow-amber    { background: rgb(245 158 11 / 0.12); }
+  .milestone-glow-blue     { background: rgb(59 130 246 / 0.12); }
+  .milestone-glow-purple   { background: rgb(168 85 247 / 0.12); }
+  .milestone-glow-red      { background: rgb(239 68 68 / 0.12); }
+  .milestone-glow-pink     { background: rgb(236 72 153 / 0.12); }
+  .milestone-glow-orange   { background: rgb(249 115 22 / 0.12); }
+  .milestone-glow-emerald  { background: rgb(16 185 129 / 0.12); }
+  .milestone-glow-cyan     { background: rgb(6 182 212 / 0.12); }
+
+  .milestone-badge-amber    { background: rgb(245 158 11 / 0.1); color: rgb(251 191 36);   border-color: rgb(245 158 11 / 0.2); }
+  .milestone-badge-blue     { background: rgb(59 130 246 / 0.1); color: rgb(147 197 253);  border-color: rgb(59 130 246 / 0.2); }
+  .milestone-badge-purple   { background: rgb(168 85 247 / 0.1); color: rgb(196 181 253);  border-color: rgb(168 85 247 / 0.2); }
+  .milestone-badge-red      { background: rgb(239 68 68 / 0.1);  color: rgb(252 165 165);  border-color: rgb(239 68 68 / 0.2); }
+  .milestone-badge-pink     { background: rgb(236 72 153 / 0.1); color: rgb(249 168 212);  border-color: rgb(236 72 153 / 0.2); }
+  .milestone-badge-orange   { background: rgb(249 115 22 / 0.1); color: rgb(253 186 116);  border-color: rgb(249 115 22 / 0.2); }
+  .milestone-badge-emerald  { background: rgb(16 185 129 / 0.1); color: rgb(110 231 183);  border-color: rgb(16 185 129 / 0.2); }
+  .milestone-badge-cyan     { background: rgb(6 182 212 / 0.1);  color: rgb(103 232 249);  border-color: rgb(6 182 212 / 0.2); }
+
+  .milestone-title-amber:is(.group:hover *)    { color: rgb(252 211 77); }
+  .milestone-title-blue:is(.group:hover *)     { color: rgb(191 219 254); }
+  .milestone-title-purple:is(.group:hover *)   { color: rgb(216 180 254); }
+  .milestone-title-red:is(.group:hover *)      { color: rgb(254 202 202); }
+  .milestone-title-pink:is(.group:hover *)     { color: rgb(251 207 232); }
+  .milestone-title-orange:is(.group:hover *)   { color: rgb(254 215 170); }
+  .milestone-title-emerald:is(.group:hover *)  { color: rgb(167 243 208); }
+  .milestone-title-cyan:is(.group:hover *)     { color: rgb(165 243 252); }
+
+  .milestone-line-amber    { background: linear-gradient(to right, rgb(245 158 11 / 0.4), transparent); }
+  .milestone-line-blue     { background: linear-gradient(to right, rgb(59 130 246 / 0.4), transparent); }
+  .milestone-line-purple   { background: linear-gradient(to right, rgb(168 85 247 / 0.4), transparent); }
+  .milestone-line-red      { background: linear-gradient(to right, rgb(239 68 68 / 0.4), transparent); }
+  .milestone-line-pink     { background: linear-gradient(to right, rgb(236 72 153 / 0.4), transparent); }
+  .milestone-line-orange   { background: linear-gradient(to right, rgb(249 115 22 / 0.4), transparent); }
+  .milestone-line-emerald  { background: linear-gradient(to right, rgb(16 185 129 / 0.4), transparent); }
+  .milestone-line-cyan     { background: linear-gradient(to right, rgb(6 182 212 / 0.4), transparent); }
+
+  /* ── Speech cards ────────────────────────────────────── */
+  .speech-card-red:hover     { border-color: rgb(239 68 68 / 0.3); }
+  .speech-card-emerald:hover { border-color: rgb(16 185 129 / 0.3); }
+  .speech-card-amber:hover   { border-color: rgb(245 158 11 / 0.3); }
+  .speech-card-purple:hover  { border-color: rgb(168 85 247 / 0.3); }
+  .speech-card-blue:hover    { border-color: rgb(59 130 246 / 0.3); }
+  .speech-card-cyan:hover    { border-color: rgb(6 182 212 / 0.3); }
+
+  .speech-glow-red     { background: rgb(239 68 68 / 0.1); }
+  .speech-glow-emerald { background: rgb(16 185 129 / 0.1); }
+  .speech-glow-amber   { background: rgb(245 158 11 / 0.1); }
+  .speech-glow-purple  { background: rgb(168 85 247 / 0.1); }
+  .speech-glow-blue    { background: rgb(59 130 246 / 0.1); }
+  .speech-glow-cyan    { background: rgb(6 182 212 / 0.1); }
+
+  .speech-quote-red     { color: rgb(239 68 68 / 0.2); }
+  .speech-quote-emerald { color: rgb(16 185 129 / 0.2); }
+  .speech-quote-amber   { color: rgb(245 158 11 / 0.2); }
+  .speech-quote-purple  { color: rgb(168 85 247 / 0.2); }
+  .speech-quote-blue    { color: rgb(59 130 246 / 0.2); }
+  .speech-quote-cyan    { color: rgb(6 182 212 / 0.2); }
+
+  .speech-line-red     { background: rgb(239 68 68); }
+  .speech-line-emerald { background: rgb(16 185 129); }
+  .speech-line-amber   { background: rgb(245 158 11); }
+  .speech-line-purple  { background: rgb(168 85 247); }
+  .speech-line-blue    { background: rgb(59 130 246); }
+  .speech-line-cyan    { background: rgb(6 182 212); }
+
+  .speech-name-red     { color: rgb(252 165 165); }
+  .speech-name-emerald { color: rgb(110 231 183); }
+  .speech-name-amber   { color: rgb(251 191 36); }
+  .speech-name-purple  { color: rgb(196 181 253); }
+  .speech-name-blue    { color: rgb(147 197 253); }
+  .speech-name-cyan    { color: rgb(103 232 249); }
+
+  /* ── Hall of Fame cards ──────────────────────────────── */
+  .hof-card-amber:hover   { border-color: rgb(245 158 11 / 0.2); }
+  .hof-card-orange:hover  { border-color: rgb(249 115 22 / 0.2); }
+  .hof-card-purple:hover  { border-color: rgb(168 85 247 / 0.2); }
+  .hof-card-blue:hover    { border-color: rgb(59 130 246 / 0.2); }
+  .hof-card-emerald:hover { border-color: rgb(16 185 129 / 0.2); }
+
+  .hof-decade-amber    { color: rgb(251 191 36); }
+  .hof-decade-orange   { color: rgb(253 186 116); }
+  .hof-decade-purple   { color: rgb(196 181 253); }
+  .hof-decade-blue     { color: rgb(147 197 253); }
+  .hof-decade-emerald  { color: rgb(110 231 183); }
+
+  .hof-act-amber    { background: rgb(245 158 11 / 0.06); color: rgb(245 158 11 / 0.6); border-color: rgb(245 158 11 / 0.1); }
+  .hof-act-orange   { background: rgb(249 115 22 / 0.06); color: rgb(249 115 22 / 0.6); border-color: rgb(249 115 22 / 0.1); }
+  .hof-act-purple   { background: rgb(168 85 247 / 0.06); color: rgb(168 85 247 / 0.6); border-color: rgb(168 85 247 / 0.1); }
+  .hof-act-blue     { background: rgb(59 130 246 / 0.06); color: rgb(59 130 246 / 0.6);  border-color: rgb(59 130 246 / 0.1); }
+  .hof-act-emerald  { background: rgb(16 185 129 / 0.06); color: rgb(16 185 129 / 0.6);  border-color: rgb(16 185 129 / 0.1); }
+
+  .hof-card-amber:hover  .hof-act-amber   { border-color: rgb(245 158 11 / 0.2); color: rgb(251 191 36 / 0.8); }
+  .hof-card-orange:hover .hof-act-orange  { border-color: rgb(249 115 22 / 0.2); color: rgb(253 186 116 / 0.8); }
+  .hof-card-purple:hover .hof-act-purple  { border-color: rgb(168 85 247 / 0.2); color: rgb(196 181 253 / 0.8); }
+  .hof-card-blue:hover   .hof-act-blue    { border-color: rgb(59 130 246 / 0.2);  color: rgb(147 197 253 / 0.8); }
+  .hof-card-emerald:hover .hof-act-emerald { border-color: rgb(16 185 129 / 0.2); color: rgb(110 231 183 / 0.8); }
+</style>
