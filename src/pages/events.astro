@@ -1,0 +1,388 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import { Image } from 'astro:assets';
+import { events } from '@/data/events';
+
+// Import images
+import beatlesImg from '@/assets/events/beatles_shea.png';
+import montereyImg from '@/assets/events/monterey_pop.png';
+import woodstockImg from '@/assets/events/woodstock.png';
+import mtvImg from '@/assets/events/mtv_launch.png';
+import liveAidImg from '@/assets/events/live_aid.png';
+import coachellaImg from '@/assets/events/coachella.png';
+
+const imageMap = {
+	beatles_shea: beatlesImg,
+	monterey_pop: montereyImg,
+	woodstock: woodstockImg,
+	mtv_launch: mtvImg,
+	live_aid: liveAidImg,
+	coachella: coachellaImg,
+};
+---
+
+<Layout title="Eventos | Música">
+	<!-- ─── HERO ─────────────────────────────────────────────── -->
+	<section class="relative min-h-[90vh] flex flex-col items-center justify-center overflow-hidden px-6 py-24">
+		<!-- Atmospheric glows -->
+		<div class="absolute top-1/4 left-1/4 w-[600px] h-[600px] bg-indigo-600/15 blur-[150px] rounded-full pointer-events-none mix-blend-screen -z-10"></div>
+		<div class="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-purple-600/10 blur-[130px] rounded-full pointer-events-none mix-blend-screen -z-10"></div>
+
+		<!-- Grid dot overlay -->
+		<div class="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:24px_24px] [mask-image:radial-gradient(ellipse_at_center,black_50%,transparent_80%)] -z-10"></div>
+
+		<!-- Main title -->
+		<div class="hero-title z-10 text-center flex flex-col items-center">
+			<div class="inline-flex items-center gap-3 px-4 py-2 rounded-full border border-white/10 bg-white/5 mb-8 backdrop-blur-md">
+				<span class="w-2 h-2 rounded-full bg-indigo-500 animate-pulse"></span>
+				<span class="text-xs uppercase tracking-widest text-zinc-300 font-bold">Momentos que definieron la historia</span>
+			</div>
+			
+			<h1 class="font-display font-black uppercase leading-none text-7xl md:text-[10rem] lg:text-[13rem] text-transparent bg-clip-text bg-gradient-to-b from-indigo-200 via-zinc-100 to-zinc-500 tracking-tight drop-shadow-2xl">
+				EVENTOS
+			</h1>
+		</div>
+
+		<!-- Subtitle -->
+		<p class="hero-subtitle z-10 mt-6 text-center text-xl text-zinc-400 font-light max-w-2xl leading-relaxed">
+			Conciertos, festivales y transmisiones que no solo cambiaron la música, sino que reescribieron la cultura popular para siempre.
+		</p>
+
+		<!-- Scroll indicator -->
+		<div class="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-60 animate-bounce">
+			<span class="text-xs font-bold tracking-widest uppercase text-zinc-500">Scroll para explorar</span>
+			<div class="w-px h-16 bg-gradient-to-b from-zinc-500 to-transparent"></div>
+		</div>
+	</section>
+
+	<!-- ─── PARALLAX EVENTS ──────────────────────────────────── -->
+	<div class="relative w-full bg-zinc-950">
+		{events.slice(0, 2).map((event, index) => {
+			const isEven = index % 2 === 0;
+			return (
+				<section class="relative min-h-[120vh] w-full flex items-center justify-center py-20 overflow-hidden">
+					<!-- Sticky Image Background -->
+					<div class="absolute inset-0 w-full h-full clip-path-container">
+						<div class="sticky top-0 w-full h-screen">
+							<Image 
+								src={imageMap[event.imageKey as keyof typeof imageMap]} 
+								alt={event.title}
+								class="w-full h-full object-cover opacity-30 filter saturate-50 transition-all duration-1000 parallax-image"
+							/>
+							<div class="absolute inset-0 bg-gradient-to-b from-zinc-950/80 via-zinc-950/40 to-zinc-950/90"></div>
+							<div class="absolute inset-0 bg-zinc-950/20 mix-blend-multiply"></div>
+						</div>
+					</div>
+
+					<!-- Content Container -->
+					<div class={`relative z-10 w-full max-w-[1400px] px-6 flex flex-col ${isEven ? 'md:flex-row' : 'md:flex-row-reverse'} items-center gap-12 md:gap-24`}>
+						
+						<!-- Decorative Year / Abstract Shape -->
+						<div class="w-full md:w-1/2 flex justify-center parallax-fast">
+							<div class={`text-[12rem] md:text-[18rem] lg:text-[24rem] font-display font-black leading-none text-transparent bg-clip-text bg-gradient-to-b from-white/10 to-transparent select-none drop-shadow-2xl`}>
+								{event.year}
+							</div>
+						</div>
+
+						<!-- Text Block -->
+						<div class="w-full md:w-1/2 flex flex-col justify-center parallax-slow">
+							<div class={`p-8 md:p-12 rounded-[2.5rem] bg-zinc-900/40 backdrop-blur-xl border border-white/5 shadow-2xl relative overflow-hidden group`}>
+								<div class={`absolute top-0 ${isEven ? 'right-0' : 'left-0'} w-64 h-64 bg-${event.color}-500/10 blur-[80px] rounded-full group-hover:bg-${event.color}-500/20 transition-colors duration-700 pointer-events-none`}></div>
+								
+								<div class="flex items-center gap-4 mb-6 relative z-10">
+									<span class={`px-4 py-1.5 rounded-full bg-${event.color}-500/10 text-${event.color}-400 text-sm font-bold tracking-widest uppercase border border-${event.color}-500/20`}>
+										{event.year}
+									</span>
+									<div class="h-px flex-1 bg-gradient-to-r from-white/10 to-transparent"></div>
+								</div>
+								
+								<h2 class="font-display font-black uppercase text-5xl md:text-6xl text-zinc-100 leading-none mb-6 relative z-10 group-hover:drop-shadow-[0_0_15px_rgba(255,255,255,0.2)] transition-all duration-500">
+									{event.title}
+								</h2>
+								
+								<p class="text-zinc-300 text-lg md:text-xl font-light leading-relaxed relative z-10">
+									{event.description}
+								</p>
+							</div>
+						</div>
+					</div>
+				</section>
+			);
+		})}
+
+		<!-- INTERSTITIAL 1: Cita inspiradora -->
+		<section class="relative py-40 px-6 flex flex-col items-center justify-center bg-zinc-950 border-y border-white/5 overflow-hidden">
+			<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-amber-500/5 blur-[150px] rounded-full pointer-events-none mix-blend-screen"></div>
+			<div class="max-w-5xl mx-auto text-center relative z-10 parallax-slow">
+				<div class="text-[8rem] md:text-[14rem] font-display font-black leading-none text-transparent bg-clip-text bg-gradient-to-b from-zinc-800 to-zinc-950 select-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 -z-10">IMPACTO</div>
+				<blockquote class="text-4xl md:text-6xl font-display uppercase font-black text-zinc-100 leading-tight">
+					"Un gran concierto no solo se escucha, <span class="text-transparent bg-clip-text bg-gradient-to-r from-amber-200 to-amber-600">se vive y se hace eterno</span>."
+				</blockquote>
+				<div class="w-24 h-px bg-amber-500 mx-auto mt-12"></div>
+			</div>
+		</section>
+
+		{events.slice(2, 4).map((event, index) => {
+			const isEven = index % 2 === 0;
+			return (
+				<section class="relative min-h-[120vh] w-full flex items-center justify-center py-20 overflow-hidden">
+					<!-- Sticky Image Background -->
+					<div class="absolute inset-0 w-full h-full clip-path-container">
+						<div class="sticky top-0 w-full h-screen">
+							<Image 
+								src={imageMap[event.imageKey as keyof typeof imageMap]} 
+								alt={event.title}
+								class="w-full h-full object-cover opacity-30 filter saturate-50 transition-all duration-1000 parallax-image"
+							/>
+							<div class="absolute inset-0 bg-gradient-to-b from-zinc-950/80 via-zinc-950/40 to-zinc-950/90"></div>
+							<div class="absolute inset-0 bg-zinc-950/20 mix-blend-multiply"></div>
+						</div>
+					</div>
+
+					<!-- Content Container -->
+					<div class={`relative z-10 w-full max-w-[1400px] px-6 flex flex-col ${isEven ? 'md:flex-row' : 'md:flex-row-reverse'} items-center gap-12 md:gap-24`}>
+						
+						<!-- Decorative Year / Abstract Shape -->
+						<div class="w-full md:w-1/2 flex justify-center parallax-fast">
+							<div class={`text-[12rem] md:text-[18rem] lg:text-[24rem] font-display font-black leading-none text-transparent bg-clip-text bg-gradient-to-b from-white/10 to-transparent select-none drop-shadow-2xl`}>
+								{event.year}
+							</div>
+						</div>
+
+						<!-- Text Block -->
+						<div class="w-full md:w-1/2 flex flex-col justify-center parallax-slow">
+							<div class={`p-8 md:p-12 rounded-[2.5rem] bg-zinc-900/40 backdrop-blur-xl border border-white/5 shadow-2xl relative overflow-hidden group`}>
+								<div class={`absolute top-0 ${isEven ? 'right-0' : 'left-0'} w-64 h-64 bg-${event.color}-500/10 blur-[80px] rounded-full group-hover:bg-${event.color}-500/20 transition-colors duration-700 pointer-events-none`}></div>
+								
+								<div class="flex items-center gap-4 mb-6 relative z-10">
+									<span class={`px-4 py-1.5 rounded-full bg-${event.color}-500/10 text-${event.color}-400 text-sm font-bold tracking-widest uppercase border border-${event.color}-500/20`}>
+										{event.year}
+									</span>
+									<div class="h-px flex-1 bg-gradient-to-r from-white/10 to-transparent"></div>
+								</div>
+								
+								<h2 class="font-display font-black uppercase text-5xl md:text-6xl text-zinc-100 leading-none mb-6 relative z-10 group-hover:drop-shadow-[0_0_15px_rgba(255,255,255,0.2)] transition-all duration-500">
+									{event.title}
+								</h2>
+								
+								<p class="text-zinc-300 text-lg md:text-xl font-light leading-relaxed relative z-10">
+									{event.description}
+								</p>
+							</div>
+						</div>
+					</div>
+				</section>
+			);
+		})}
+
+		<!-- INTERSTITIAL 2: Marquee / Ticker -->
+		<section class="relative py-24 overflow-hidden bg-zinc-900/50 border-y border-white/5">
+			<div class="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:24px_24px] pointer-events-none"></div>
+			<div class="flex items-center whitespace-nowrap flex-nowrap w-[200%] animate-marquee">
+				<div class="text-[6rem] md:text-[8rem] font-display font-black uppercase text-transparent bg-clip-text bg-gradient-to-r from-zinc-700 to-zinc-600 opacity-30 select-none mr-8">
+					REVOLUCIÓN SONORA · IMPACTO GLOBAL · MULTITUDES · HISTORIA · LEYENDAS ·
+				</div>
+				<div class="text-[6rem] md:text-[8rem] font-display font-black uppercase text-transparent bg-clip-text bg-gradient-to-r from-zinc-700 to-zinc-600 opacity-30 select-none mr-8">
+					REVOLUCIÓN SONORA · IMPACTO GLOBAL · MULTITUDES · HISTORIA · LEYENDAS ·
+				</div>
+			</div>
+		</section>
+
+		{events.slice(4).map((event, index) => {
+			const isEven = index % 2 === 0;
+			return (
+				<section class="relative min-h-[120vh] w-full flex items-center justify-center py-20 overflow-hidden">
+					<!-- Sticky Image Background -->
+					<div class="absolute inset-0 w-full h-full clip-path-container">
+						<div class="sticky top-0 w-full h-screen">
+							<Image 
+								src={imageMap[event.imageKey as keyof typeof imageMap]} 
+								alt={event.title}
+								class="w-full h-full object-cover opacity-30 filter saturate-50 transition-all duration-1000 parallax-image"
+							/>
+							<div class="absolute inset-0 bg-gradient-to-b from-zinc-950/80 via-zinc-950/40 to-zinc-950/90"></div>
+							<div class="absolute inset-0 bg-zinc-950/20 mix-blend-multiply"></div>
+						</div>
+					</div>
+
+					<!-- Content Container -->
+					<div class={`relative z-10 w-full max-w-[1400px] px-6 flex flex-col ${isEven ? 'md:flex-row' : 'md:flex-row-reverse'} items-center gap-12 md:gap-24`}>
+						
+						<!-- Decorative Year / Abstract Shape -->
+						<div class="w-full md:w-1/2 flex justify-center parallax-fast">
+							<div class={`text-[12rem] md:text-[18rem] lg:text-[24rem] font-display font-black leading-none text-transparent bg-clip-text bg-gradient-to-b from-white/10 to-transparent select-none drop-shadow-2xl`}>
+								{event.year}
+							</div>
+						</div>
+
+						<!-- Text Block -->
+						<div class="w-full md:w-1/2 flex flex-col justify-center parallax-slow">
+							<div class={`p-8 md:p-12 rounded-[2.5rem] bg-zinc-900/40 backdrop-blur-xl border border-white/5 shadow-2xl relative overflow-hidden group`}>
+								<div class={`absolute top-0 ${isEven ? 'right-0' : 'left-0'} w-64 h-64 bg-${event.color}-500/10 blur-[80px] rounded-full group-hover:bg-${event.color}-500/20 transition-colors duration-700 pointer-events-none`}></div>
+								
+								<div class="flex items-center gap-4 mb-6 relative z-10">
+									<span class={`px-4 py-1.5 rounded-full bg-${event.color}-500/10 text-${event.color}-400 text-sm font-bold tracking-widest uppercase border border-${event.color}-500/20`}>
+										{event.year}
+									</span>
+									<div class="h-px flex-1 bg-gradient-to-r from-white/10 to-transparent"></div>
+								</div>
+								
+								<h2 class="font-display font-black uppercase text-5xl md:text-6xl text-zinc-100 leading-none mb-6 relative z-10 group-hover:drop-shadow-[0_0_15px_rgba(255,255,255,0.2)] transition-all duration-500">
+									{event.title}
+								</h2>
+								
+								<p class="text-zinc-300 text-lg md:text-xl font-light leading-relaxed relative z-10">
+									{event.description}
+								</p>
+							</div>
+						</div>
+					</div>
+				</section>
+			);
+		})}
+	</div>
+
+	<!-- INTERSTITIAL 3: Stats Grid -->
+	<section class="relative py-32 px-6 flex flex-col items-center justify-center bg-zinc-900/30 border-y border-white/5 overflow-hidden">
+		<div class="absolute top-0 right-1/4 w-[500px] h-[500px] bg-indigo-500/10 blur-[130px] rounded-full pointer-events-none mix-blend-screen -z-10"></div>
+		
+		<div class="relative z-10 w-full max-w-[1200px] mx-auto">
+			<div class="text-center mb-16 parallax-fast">
+				<span class="text-xs font-bold tracking-widest uppercase text-indigo-400 mb-4 block">La Magnitud</span>
+				<h2 class="font-display font-black uppercase text-5xl md:text-7xl text-zinc-100 leading-none">
+					EVENTOS EN NÚMEROS
+				</h2>
+			</div>
+
+			<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 parallax-slow">
+				<div class="p-8 rounded-[2rem] bg-zinc-900/60 border border-white/5 backdrop-blur-md text-center hover:-translate-y-2 transition-transform duration-500 group">
+					<div class="absolute inset-0 bg-indigo-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-[2rem] pointer-events-none"></div>
+					<span class="block text-5xl font-black font-display text-indigo-400 mb-2 group-hover:scale-110 transition-transform duration-500">500k+</span>
+					<span class="block text-sm font-bold tracking-widest uppercase text-zinc-400 mb-3">Asistentes en Woodstock</span>
+					<div class="w-12 h-px bg-white/10 mx-auto mb-3"></div>
+					<p class="text-zinc-500 text-xs leading-relaxed">Tres días de paz, música y barro que superaron absolutamente todas las expectativas.</p>
+				</div>
+				<div class="p-8 rounded-[2rem] bg-zinc-900/60 border border-white/5 backdrop-blur-md text-center hover:-translate-y-2 transition-transform duration-500 group">
+					<div class="absolute inset-0 bg-purple-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-[2rem] pointer-events-none"></div>
+					<span class="block text-5xl font-black font-display text-purple-400 mb-2 group-hover:scale-110 transition-transform duration-500">1.9B</span>
+					<span class="block text-sm font-bold tracking-widest uppercase text-zinc-400 mb-3">Espectadores Live Aid</span>
+					<div class="w-12 h-px bg-white/10 mx-auto mb-3"></div>
+					<p class="text-zinc-500 text-xs leading-relaxed">Audiencia global estimada durante la icónica transmisión simultánea televisiva de 1985.</p>
+				</div>
+				<div class="p-8 rounded-[2rem] bg-zinc-900/60 border border-white/5 backdrop-blur-md text-center hover:-translate-y-2 transition-transform duration-500 group">
+					<div class="absolute inset-0 bg-amber-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-[2rem] pointer-events-none"></div>
+					<span class="block text-5xl font-black font-display text-amber-400 mb-2 group-hover:scale-110 transition-transform duration-500">73</span>
+					<span class="block text-sm font-bold tracking-widest uppercase text-zinc-400 mb-3">Países en vivo</span>
+					<div class="w-12 h-px bg-white/10 mx-auto mb-3"></div>
+					<p class="text-zinc-500 text-xs leading-relaxed">Naciones que transmitieron Live Aid, uniendo al mundo a través de la magia de la televisión.</p>
+				</div>
+				<div class="p-8 rounded-[2rem] bg-zinc-900/60 border border-white/5 backdrop-blur-md text-center hover:-translate-y-2 transition-transform duration-500 group">
+					<div class="absolute inset-0 bg-emerald-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-[2rem] pointer-events-none"></div>
+					<span class="block text-5xl font-black font-display text-emerald-400 mb-2 group-hover:scale-110 transition-transform duration-500">∞</span>
+					<span class="block text-sm font-bold tracking-widest uppercase text-zinc-400 mb-3">Impacto Cultural</span>
+					<div class="w-12 h-px bg-white/10 mx-auto mb-3"></div>
+					<p class="text-zinc-500 text-xs leading-relaxed">Inspiración incalculable que continúa moldeando a futuras generaciones de artistas.</p>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- ─── CALL TO ACTION ───────────────────────────────────── -->
+	<section class="relative py-32 px-6 flex flex-col items-center justify-center bg-zinc-950 border-t border-white/5 overflow-hidden">
+		<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-indigo-500/10 blur-[130px] rounded-full pointer-events-none mix-blend-screen"></div>
+
+		<div class="relative z-10 text-center">
+			<h2 class="font-display font-black uppercase text-5xl md:text-7xl text-zinc-100 leading-none mb-8">
+				Sigue Explorando
+			</h2>
+			<div class="flex flex-wrap justify-center gap-4">
+				<a href="/history" class="px-8 py-4 rounded-full bg-zinc-100 text-zinc-950 font-bold tracking-widest uppercase text-sm hover:bg-zinc-300 transition-colors duration-300 shadow-[0_0_20px_rgba(255,255,255,0.1)]">
+					Ver Historia
+				</a>
+				<a href="/artists" class="px-8 py-4 rounded-full bg-zinc-900 border border-white/10 text-white font-bold tracking-widest uppercase text-sm hover:bg-zinc-800 transition-colors duration-300">
+					Ver Artistas
+				</a>
+			</div>
+		</div>
+	</section>
+</Layout>
+
+<style>
+	@reference "../global.css";
+
+	.hero-title {
+		animation: fade-in-up 1.2s cubic-bezier(0.16, 1, 0.3, 1) both;
+		animation-delay: 0.1s;
+	}
+	
+	.hero-subtitle {
+		animation: fade-in-up 1.2s cubic-bezier(0.16, 1, 0.3, 1) both;
+		animation-delay: 0.3s;
+	}
+
+	@keyframes fade-in-up {
+		0% {
+			opacity: 0;
+			transform: translateY(40px) scale(0.98);
+			filter: blur(10px);
+		}
+		100% {
+			opacity: 1;
+			transform: translateY(0) scale(1);
+			filter: blur(0);
+		}
+	}
+
+	/* Parallax Effects with Scroll-Driven Animations */
+	@supports (animation-timeline: view()) {
+		.parallax-image {
+			animation: parallax-zoom linear both;
+			animation-timeline: view();
+			animation-range: entry 0% exit 100%;
+		}
+
+		.parallax-fast {
+			animation: parallax-y-fast linear both;
+			animation-timeline: view();
+			animation-range: entry 10% cover 50%;
+		}
+
+		.parallax-slow {
+			animation: parallax-fade-up linear both;
+			animation-timeline: view();
+			animation-range: entry 10% cover 40%;
+		}
+	}
+
+	@keyframes parallax-zoom {
+		0% { transform: scale(1); opacity: 0; }
+		20% { opacity: 0.5; filter: saturate(0.8); }
+		50% { transform: scale(1.1); filter: saturate(1); }
+		80% { opacity: 0.5; filter: saturate(0.8); }
+		100% { transform: scale(1.2); opacity: 0; }
+	}
+
+	@keyframes parallax-y-fast {
+		0% { transform: translateY(150px); opacity: 0; }
+		100% { transform: translateY(-50px); opacity: 1; }
+	}
+
+	@keyframes parallax-fade-up {
+		0% { transform: translateY(80px); opacity: 0; filter: blur(5px); }
+		100% { transform: translateY(0); opacity: 1; filter: blur(0); }
+	}
+
+	/* Clip path para que el sticky no se desborde visualmente si hay superposición */
+	.clip-path-container {
+		clip-path: inset(0 0 0 0);
+	}
+
+	.animate-marquee {
+		animation: marquee 20s linear infinite;
+	}
+
+	@keyframes marquee {
+		0% { transform: translateX(0); }
+		100% { transform: translateX(-50%); }
+	}
+</style>
