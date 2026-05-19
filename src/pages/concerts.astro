@@ -1,0 +1,413 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import khalidImg from '@/assets/concerts/Khalid.jpg';
+import camiloImg from '@/assets/concerts/camilo.webp';
+import cristianImg from '@/assets/concerts/cristian-castro.jpg';
+import komanderImg from '@/assets/concerts/el-komander.jpg';
+import firmeImg from '@/assets/concerts/grupo-firme.webp';
+import harryImg from '@/assets/concerts/harry-styles.webp';
+import mykeImg from '@/assets/concerts/myke-towers.avif';
+import rosaliaImg from '@/assets/concerts/rosalia.jpg';
+import rufusImg from '@/assets/concerts/rufus-del-sol.jpg';
+import warpedImg from '@/assets/concerts/vans-warped.jpg';
+import mikoImg from '@/assets/concerts/young-miko.jpg';
+
+const artistImages = {
+  "rufus-du-sol": rufusImg,
+  "grupo-firme": firmeImg,
+  "harry-styles": harryImg,
+  "rosalia": rosaliaImg,
+  "el-komander": komanderImg,
+  "camilo": camiloImg,
+  "cristian-castro": cristianImg,
+  "vans-warped-tour-mexico": warpedImg,
+  "khalid": khalidImg,
+  "young-miko": mikoImg,
+  "myke-towers": mykeImg
+};
+
+const concerts = [
+  {
+    "artist": "Rüfüs Du Sol",
+    "date": "2026-07-04",
+    "venue": "Estadio GNP Seguros",
+    "city": "Ciudad de México",
+    "source": "Sopitas / Estadio GNP Seguros",
+    "lat": 19.4045,
+    "lng": -99.0945
+  },
+  {
+    "artist": "Grupo Firme",
+    "date": "2026-07-17",
+    "venue": "Estadio GNP Seguros",
+    "city": "Ciudad de México",
+    "source": "Songkick / Estadio GNP Seguros",
+    "lat": 19.4045,
+    "lng": -99.0945
+  },
+  {
+    "artist": "Harry Styles",
+    "date": "2026-07-31",
+    "venue": "Estadio GNP Seguros",
+    "city": "Ciudad de México",
+    "source": "Estadio GNP Seguros / Facebook Agenda",
+    "lat": 19.4045,
+    "lng": -99.0945
+  },
+  {
+    "artist": "Rosalía",
+    "date": "2026-08-15",
+    "venue": "Arena V.F.G.",
+    "city": "Tlajomulco de Zúñiga (Guadalajara)",
+    "source": "El Economista",
+    "lat": 20.4725,
+    "lng": -103.2272
+  },
+  {
+    "artist": "Rosalía",
+    "date": "2026-08-16",
+    "venue": "Arena V.F.G.",
+    "city": "Tlajomulco de Zúñiga (Guadalajara)",
+    "source": "El Economista",
+    "lat": 20.4725,
+    "lng": -103.2272
+  },
+  {
+    "artist": "Rosalía",
+    "date": "2026-08-19",
+    "venue": "Arena Monterrey",
+    "city": "Monterrey",
+    "source": "El Economista",
+    "lat": 25.6806,
+    "lng": -100.2858
+  },
+  {
+    "artist": "Rosalía",
+    "dates": ["2026-08-22", "2026-08-24", "2026-08-26", "2026-08-28", "2026-08-29"],
+    "venue": "Palacio de los Deportes",
+    "city": "Ciudad de México",
+    "source": "El Economista",
+    "lat": 19.4057,
+    "lng": -99.0988
+  },
+  {
+    "artist": "El Komander",
+    "date": "2026-08-27",
+    "venue": "Arena CDMX",
+    "city": "Ciudad de México",
+    "source": "Shazam Arena CDMX",
+    "lat": 19.4975,
+    "lng": -99.1741
+  },
+  {
+    "artist": "Camilo",
+    "date": "2026-08-28",
+    "venue": "Arena CDMX",
+    "city": "Ciudad de México",
+    "source": "Shazam Arena CDMX",
+    "lat": 19.4975,
+    "lng": -99.1741
+  },
+  {
+    "artist": "Cristian Castro",
+    "date": "2026-08-29",
+    "venue": "Auditorio Telmex",
+    "city": "Zapopan (Guadalajara)",
+    "source": "Concerts 50",
+    "lat": 20.7397,
+    "lng": -103.3860
+  },
+  {
+    "artist": "Vans Warped Tour México",
+    "dates": ["2026-09-12", "2026-09-13"],
+    "venue": "Autódromo Hermanos Rodríguez",
+    "city": "Ciudad de México",
+    "source": "Sopitas / El Economista",
+    "lat": 19.4045,
+    "lng": -99.0945
+  },
+  {
+    "artist": "Khalid",
+    "date": "2026-09-17",
+    "venue": "Arena CDMX",
+    "city": "Ciudad de México",
+    "source": "Shazam Arena CDMX",
+    "lat": 19.4975,
+    "lng": -99.1741
+  },
+  {
+    "artist": "Young Miko",
+    "date": "2026-09-17",
+    "venue": "Arena VFG",
+    "city": "Guadalajara",
+    "source": "Vogue México",
+    "lat": 20.4725,
+    "lng": -103.2272
+  },
+  {
+    "artist": "Myke Towers",
+    "date": "2026-09-18",
+    "venue": "Auditorio Telmex",
+    "city": "Zapopan (Guadalajara)",
+    "source": "Concerts 50",
+    "lat": 20.7397,
+    "lng": -103.3860
+  },
+  {
+    "artist": "Young Miko",
+    "date": "2026-09-19",
+    "venue": "Arena Monterrey",
+    "city": "Monterrey",
+    "source": "Vogue México",
+    "lat": 25.6806,
+    "lng": -100.2858
+  }
+];
+
+// Process data for the calendar
+// Flatten the dates so each date has its own event entry
+const calendarEvents = concerts.flatMap(c => {
+    if (c.dates) {
+        return c.dates.map(d => ({ ...c, date: d, isMulti: true }));
+    }
+    return [{ ...c, isMulti: false }];
+}).sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
+
+---
+
+<Layout>
+    <main class="h-screen w-full overflow-y-scroll snap-y snap-mandatory bg-zinc-950 hide-scrollbar smooth-scroll relative">
+        
+        <!-- Hero Section -->
+        <section class="relative h-screen w-full snap-start flex flex-col items-center justify-center overflow-hidden">
+            <!-- Background Elements -->
+            <div class="absolute inset-0 z-0">
+                <div class="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-indigo-900/20 blur-[120px] rounded-full mix-blend-screen pointer-events-none"></div>
+                <div class="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-pink-900/20 blur-[120px] rounded-full mix-blend-screen pointer-events-none"></div>
+            </div>
+
+            <div class="relative z-10 flex flex-col items-center gap-8 w-full max-w-4xl px-6 animate-fade-in-up text-center">
+                <span class="px-6 py-2 rounded-full border border-white/10 bg-white/5 backdrop-blur-md text-xs uppercase tracking-widest text-indigo-400 font-bold shadow-xl">
+                    Próximos Eventos
+                </span>
+                <h1 class="text-6xl md:text-8xl font-display text-white tracking-tighter uppercase drop-shadow-xl">
+                    Conciertos en México <br/><span class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-pink-500">2026</span>
+                </h1>
+                <p class="text-zinc-400 text-lg md:text-xl font-light max-w-2xl">
+                    Explora el calendario interactivo y el mapa de los próximos conciertos en vivo en México.
+                </p>
+                <div class="flex gap-4 mt-4">
+                    <a href="#calendar" class="px-8 py-3 rounded-full bg-white text-black font-bold tracking-widest uppercase text-xs hover:bg-zinc-200 transition-colors duration-300">
+                        Ver Calendario
+                    </a>
+                    <a href="#map" class="px-8 py-3 rounded-full bg-white/10 border border-white/20 text-white font-bold tracking-widest uppercase text-xs hover:bg-white/20 transition-colors duration-300">
+                        Ver Mapa
+                    </a>
+                </div>
+            </div>
+            
+            <div class="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-50 animate-bounce">
+                <span class="text-xs uppercase tracking-widest text-white">Desliza</span>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
+            </div>
+        </section>
+
+        <!-- Calendar Section -->
+        <section id="calendar" class="relative min-h-screen w-full snap-start bg-zinc-950 py-24 px-6 md:px-12 flex flex-col items-center z-10">
+            <h2 class="text-4xl md:text-6xl font-display font-black text-white text-center mb-16 tracking-widest uppercase">
+                Calendario <span class="text-indigo-400">2026</span>
+            </h2>
+            
+            <div class="w-full max-w-6xl">
+                <!-- Timeline Calendar -->
+                <div class="relative border-l border-white/10 pl-8 ml-4 md:ml-0 md:pl-0 md:border-l-0">
+                    <!-- MD+ Vertical line -->
+                    <div class="hidden md:block absolute left-1/2 top-0 bottom-0 w-px bg-white/10 -translate-x-1/2"></div>
+                    
+                    <div class="space-y-12">
+                        {calendarEvents.map((event, i) => {
+                            const dateObj = new Date(event.date);
+                            const month = dateObj.toLocaleString('es-ES', { month: 'short' });
+                            const day = dateObj.getDate();
+                            const isLeft = i % 2 === 0;
+
+                            const artistKey = event.artist.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^a-z0-9]/g, "-").replace(/-+/g, '-');
+                            const artistImg = artistImages[artistKey];
+                            const fallbackSrc = `https://ui-avatars.com/api/?name=${encodeURIComponent(event.artist)}&background=18181b&color=818cf8&size=150`;
+                            const imgSrc = artistImg ? artistImg.src : fallbackSrc;
+
+                            return (
+                                <div class={`relative flex flex-col md:flex-row items-center justify-between w-full group ${isLeft ? 'md:flex-row-reverse' : ''}`}>
+                                    <!-- Node dot -->
+                                    <div class="absolute left-[-39px] md:left-1/2 md:-translate-x-1/2 w-4 h-4 rounded-full bg-zinc-950 border-2 border-indigo-500 group-hover:bg-indigo-500 transition-colors duration-300 z-10 shadow-[0_0_15px_rgba(99,102,241,0.5)]"></div>
+                                    
+                                    <!-- Empty space for md side -->
+                                    <div class="hidden md:block w-[45%]"></div>
+                                    
+                                    <!-- Content Card -->
+                                    <div class="w-full md:w-[45%] bg-black/40 backdrop-blur-md border border-white/10 rounded-3xl p-6 hover:bg-white/5 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_0_30px_rgba(99,102,241,0.15)] flex flex-col sm:flex-row items-start sm:items-center gap-6">
+                                        <!-- Artist Image -->
+                                        <div class="w-20 h-20 rounded-2xl overflow-hidden shrink-0 shadow-lg border border-white/10 bg-zinc-900 group-hover:scale-105 transition-transform duration-300">
+                                            <img src={imgSrc} alt={event.artist} class="w-full h-full object-cover" onerror={`this.onerror=null; this.src='${fallbackSrc}';`} />
+                                        </div>
+
+                                        <!-- Date Box -->
+                                        <div class="bg-white/5 rounded-2xl p-4 flex flex-col items-center justify-center min-w-[80px] border border-white/10 shrink-0">
+                                            <span class="text-indigo-400 text-xs font-bold uppercase tracking-widest">{month}</span>
+                                            <span class="text-white font-display text-3xl font-black">{day}</span>
+                                        </div>
+                                        
+                                        <!-- Info -->
+                                        <div class="flex-1">
+                                            <h3 class="text-2xl font-serif italic text-white mb-2">{event.artist}</h3>
+                                            <div class="flex flex-col gap-1 text-sm text-zinc-400">
+                                                <div class="flex items-center gap-2">
+                                                    <svg class="w-4 h-4 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                                                    <span>{event.venue}, {event.city}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            );
+                        })}
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Map Section -->
+        <section id="map" class="relative h-screen w-full snap-start bg-zinc-950 flex flex-col items-center justify-center overflow-hidden">
+            <div class="absolute inset-0 z-0">
+                <div class="w-full h-full" id="leafletMap"></div>
+            </div>
+            
+            <!-- Removed text overlay and map opacity to allow full visibility -->
+            <div class="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-zinc-950 to-transparent pointer-events-none z-10"></div>
+            <div class="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-zinc-950 to-transparent pointer-events-none z-10"></div>
+        </section>
+
+    </main>
+
+    <!-- Leaflet CSS and JS via CDN -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
+    <script define:vars={{ concerts }}>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Wait for Leaflet to load if needed
+            if (typeof L !== 'undefined') {
+                initMap();
+            } else {
+                window.onload = initMap;
+            }
+
+            function initMap() {
+                // Initialize map centered on Mexico
+                const map = L.map('leafletMap', {
+                    center: [22.5, -100], // Center of Mexico roughly
+                    zoom: 5,
+                    zoomControl: false,
+                    scrollWheelZoom: false,
+                });
+
+                // Dark theme tiles (CartoDB Dark Matter)
+                L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+                    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+                    subdomains: 'abcd',
+                    maxZoom: 20
+                }).addTo(map);
+
+                // Add zoom control manually to right
+                L.control.zoom({
+                    position: 'bottomright'
+                }).addTo(map);
+
+                // Add markers
+                const markers = [];
+                concerts.forEach(c => {
+                    if (c.lat && c.lng) {
+                        // Create custom divIcon for modern look
+                        const customIcon = L.divIcon({
+                            className: 'custom-pin',
+                            html: `<div class="w-4 h-4 bg-indigo-500 rounded-full border-2 border-white shadow-[0_0_15px_rgba(99,102,241,0.8)]"></div>`,
+                            iconSize: [16, 16],
+                            iconAnchor: [8, 8]
+                        });
+
+                        const datesText = c.dates ? c.dates.join('<br>') : c.date;
+
+                        const marker = L.marker([c.lat, c.lng], { icon: customIcon }).addTo(map);
+                        marker.bindPopup(`
+                            <div class="p-2 text-center">
+                                <h3 class="font-bold text-lg mb-1">${c.artist}</h3>
+                                <p class="text-sm text-gray-600 mb-1">${c.venue}</p>
+                                <p class="text-xs text-gray-400">${datesText}</p>
+                            </div>
+                        `);
+                        markers.push(marker);
+                    }
+                });
+
+                // Fit bounds if markers exist
+                if (markers.length > 0) {
+                    const group = L.featureGroup(markers);
+                    map.fitBounds(group.getBounds(), { padding: [50, 50] });
+                }
+            }
+        });
+    </script>
+</Layout>
+
+<style>
+    @reference "../global.css";
+
+    .hide-scrollbar {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
+    .hide-scrollbar::-webkit-scrollbar {
+        display: none;
+    }
+
+    html {
+        scroll-behavior: smooth;
+    }
+
+    @keyframes fade-in-up {
+        0% {
+            opacity: 0;
+            transform: translateY(40px);
+            filter: blur(10px);
+        }
+        100% {
+            opacity: 1;
+            transform: translateY(0);
+            filter: blur(0);
+        }
+    }
+
+    .animate-fade-in-up {
+        animation: fade-in-up 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    /* Custom Leaflet popup dark styling overrides */
+    :global(.leaflet-popup-content-wrapper) {
+        background-color: rgba(24, 24, 27, 0.95) !important; /* bg-zinc-900 */
+        color: white !important;
+        border: 1px solid rgba(255,255,255,0.1);
+        backdrop-filter: blur(8px);
+        border-radius: 1rem !important;
+    }
+    :global(.leaflet-popup-tip) {
+        background-color: rgba(24, 24, 27, 0.95) !important;
+    }
+    :global(.leaflet-popup-content h3) {
+        color: white !important;
+        font-family: serif;
+        font-style: italic;
+    }
+    :global(.leaflet-popup-content p.text-gray-600) {
+        color: #a1a1aa !important; /* text-zinc-400 */
+    }
+</style>
